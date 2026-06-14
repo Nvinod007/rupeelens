@@ -1,0 +1,41 @@
+name: Build (manual)
+
+# Run a full affected build on demand (e.g. before a release) without merging to main.
+on:
+  workflow_dispatch:
+    inputs:
+      base:
+        description: Git ref to compare against (nx affected base)
+        required: false
+        default: main
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  build:
+    name: Build (affected)
+    runs-on: ubuntu-latest
+    environment: build-approval
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: tree:0
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.8.0
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Affected build
+        run: pnpm exec nx affected -t build --parallel=3 --base=origin/${{ inputs.base }}
