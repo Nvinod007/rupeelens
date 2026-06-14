@@ -1,6 +1,7 @@
 {
   "nxConsole.nxWorkspacePath": "",
   "eslint.useFlatConfig": true,
+  "prisma.pinToPrisma6": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.showUnused": true,

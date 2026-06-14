@@ -11,10 +11,14 @@ export class AuthService {
   async findOrCreateUser(claims: SupabaseAuthClaims): Promise<User> {
     const supabaseId = claims.sub;
     const email = claims.email ?? null;
+    const name = claims.name ?? null;
 
     return this.prisma.user.upsert({
-      create: { email, supabaseId },
-      update: email ? { email } : {},
+      create: { email, name, supabaseId },
+      update: {
+        ...(email ? { email } : {}),
+        ...(name ? { name } : {}),
+      },
       where: { supabaseId },
     });
   }

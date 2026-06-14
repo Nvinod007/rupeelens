@@ -12,6 +12,7 @@
     "ms-playwright.playwright",
     "firsttris.vscode-jest-runner",
     "streetsidesoftware.code-spell-checker",
+    "Prisma.prisma",
     "wix.vscode-import-cost",
     "eamodio.gitlens",
     "naumovs.color-highlight",
