@@ -20,7 +20,13 @@
         "name": "next"
       }
     ],
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@shared-ui": ["../../libs/ui/src/index.ts"],
+      "@shared-ui/*": ["../../libs/ui/src/*"]
+    }
   },
   "include": [
     "**/*.ts",

@@ -1,18 +1,18 @@
-const nextJest = require('next/jest.js');
+const nextJest = require("next/jest.js");
 
 const createJestConfig = nextJest({
-  dir: './',
+  dir: "./",
 });
 
 const config = {
-  displayName: 'rupeelens-fe',
-  preset: '../../jest.preset.js',
+  coverageDirectory: "../../coverage/apps/rupeelens-fe",
+  displayName: "rupeelens-fe",
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
+  preset: "../../jest.preset.js",
+  testEnvironment: "jsdom",
   transform: {
-    '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nx/react/plugins/jest',
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "@nx/react/plugins/jest",
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/apps/rupeelens-fe',
-  testEnvironment: 'jsdom',
 };
 
 const jestConfig = createJestConfig(config);

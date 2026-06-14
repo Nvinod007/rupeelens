@@ -1,96 +1,183 @@
 # Rupeelens
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+**Track. Analyze. Plan.**
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+Self-hosted personal finance dashboard that aggregates UPI, IMPS, NEFT, and net-banking transactions from multiple Indian bank accounts into one unified ledger and analytics UI.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+---
 
-## Run tasks
+## What it does (product vision)
 
-To run tasks with Nx use:
+Rupeelens is a **personal multi-bank UPI & transaction aggregator** (not a generic expense app):
 
-```sh
-npx nx <target> <project-name>
+| Area | Planned capability |
+|------|-------------------|
+| **Data pipeline** | Setu Account Aggregator (AA) — consent flow, webhooks (`FINANCIAL_DATA_READY`), secure fetch of financial data |
+| **ETL** | Parse AA JSON, normalize balances/transactions, deconstruct UPI narration strings, idempotent upserts |
+| **Dashboard** | Unified ledger, multi-account filters, search across merchants and references |
+| **Ops** | Async workers for webhooks, encrypted storage, webhook signature validation |
+
+High-level flow:
+
+```text
+Next.js (rupeelens-fe)  ←→  API (planned)  ←→  Setu AA
+                                    ↓
+                              PostgreSQL
 ```
 
-For example:
+---
 
-```sh
-npx nx build myproject
+## Repository status
+
+This repo is an **[Nx](https://nx.dev) monorepo** (pnpm). What exists today vs what’s planned:
+
+| Piece | Status |
+|-------|--------|
+| `apps/rupeelens-fe` | Next.js app (App Router) |
+| `libs/ui` (`@shared-ui`) | Shared UI — Tailwind theme, shadcn/ui components |
+| `apps/rupeelens-fe-e2e` | Playwright e2e |
+| Nest API + PostgreSQL + Setu integration | **Planned** |
+
+---
+
+## Tech stack
+
+| Layer | Choice |
+|-------|--------|
+| Monorepo | Nx 22, pnpm |
+| Frontend | Next.js, React, Tailwind CSS, shadcn/ui (`@shared-ui`) |
+| Backend (planned) | NestJS (or Node API), PostgreSQL |
+| Integrations (planned) | Setu Account Aggregator |
+| Quality | ESLint (flat config), Prettier, Jest, Playwright |
+| CI | GitHub Actions — affected lint/test; affected build on PR; gated build on `main` |
+
+---
+
+## Project structure
+
+```text
+rupeelens/
+├── apps/
+│   ├── rupeelens-fe/          # Next.js dashboard
+│   └── rupeelens-fe-e2e/      # Playwright tests
+├── libs/
+│   └── ui/                    # @shared-ui — shared components & theme
+├── docs/
+│   └── shared-ui/             # How to add shadcn components to the lib
+├── .github/workflows/
+│   ├── ci.yml                 # PR + main CI
+│   └── build-manual.yml       # Manual affected build (approval)
+├── components.json            # shadcn CLI (root; targets libs/ui)
+├── eslint.config.mjs
+├── package.json               # Root scripts only
+└── tsconfig.base.json         # Path alias @shared-ui
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+---
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## Prerequisites
 
-## Add new projects
+- **Node.js** 20+
+- **pnpm** 9.x (see `packageManager` in root `package.json`)
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+---
 
-To install a new plugin you can use the `nx add` command. Here's an example of adding the React plugin:
-```sh
-npx nx add @nx/react
-```
-
-Use the plugin's generator to create new projects. For example, to create a new React app or library:
+## Getting started
 
 ```sh
-# Generate an app
-npx nx g @nx/react:app demo
-
-# Generate a library
-npx nx g @nx/react:lib some-lib
+git clone <your-repo-url>
+cd rupeelens
+pnpm install
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Set up CI!
-
-### Step 1
-
-To connect to Nx Cloud, run the following command:
+### Run the frontend locally
 
 ```sh
-npx nx connect
+pnpm exec nx dev rupeelens-fe
 ```
 
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
+Open [http://localhost:3000](http://localhost:3000).
 
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-### Step 2
-
-Use the following command to configure a CI workflow for your workspace:
+### Other useful commands
 
 ```sh
-npx nx g ci-workflow
+# Lint / test / build (all projects)
+pnpm lint
+pnpm test
+pnpm build
+
+# Only what changed vs main
+pnpm lint:affected
+pnpm test:affected
+pnpm build:affected
+
+# Format
+pnpm format
+pnpm format:check
+
+# E2E
+pnpm exec nx e2e rupeelens-fe-e2e
+
+# Dependency graph
+pnpm exec nx graph
 ```
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Import shared UI in the app:
 
-## Install Nx Console
+```tsx
+import { Button } from "@shared-ui";
+```
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+See [docs/shared-ui/README.md](./docs/shared-ui/README.md) and [adding components](./docs/shared-ui/adding-components.md).
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+---
 
-## Useful links
+## Environment variables
 
-Learn more:
+Backend and Setu credentials are **not wired yet**. When the API is added, use a root or app-level `.env` (never commit secrets). Typical keys will include:
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- Setu / AA client credentials
+- Webhook signing secret
+- `DATABASE_URL` (PostgreSQL)
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+---
+
+## CI/CD
+
+Workflow: [`.github/workflows/ci.yml`](./.github/workflows/ci.yml)
+
+| Job | When | What |
+|-----|------|------|
+| **verify** | Every PR and push to `main` | `nx affected` — lint & test |
+| **build-pr** | Pull requests | `nx affected` — build (compile only; no deploy) |
+| **build-main** | Push to `main` | `nx affected` — build after **manual approval** |
+
+**One-time setup:** In GitHub → **Settings → Environments**, create `build-approval` and add required reviewers.
+
+Manual build: **Actions → Build (manual) → Run workflow** ([`build-manual.yml`](./.github/workflows/build-manual.yml)).
+
+`nx affected` uses full git history (`fetch-depth: 0`) and [`nrwl/nx-set-shas`](https://github.com/nrwl/nx-set-shas) so only changed projects are checked.
+
+---
+
+## Roadmap (from SRS)
+
+1. **API** — Nest app in `apps/`, webhook route `/webhooks/setu-aa`, worker queue for ETL  
+2. **Database** — PostgreSQL schema (accounts, transactions, `raw_narration` fallback)  
+3. **Setu AA** — Consent init, redirect/SDK, webhook + fetch pipeline  
+4. **Dashboard** — Ledger, filters, search, charts  
+5. **Deploy** — Separate workflow with `production` environment (deploy ≠ `nx build`)
+
+---
+
+## Contributing
+
+1. Branch from `main`
+2. Keep changes focused; use `pnpm lint:affected` / `pnpm test:affected` before pushing
+3. Open a PR — CI runs verify + build-pr automatically
+
+---
+
+## License
+
+MIT — see [package.json](./package.json).
