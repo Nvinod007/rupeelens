@@ -69,19 +69,22 @@
     "db-generate": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "prisma generate --schema=apps/rupeelens-be/prisma/schema.prisma"
+        "command": "prisma generate --schema=prisma/schema.prisma",
+        "cwd": "apps/rupeelens-be"
       }
     },
     "db-migrate": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "prisma migrate dev --schema=apps/rupeelens-be/prisma/schema.prisma"
+        "command": "prisma migrate dev --schema=prisma/schema.prisma",
+        "cwd": "apps/rupeelens-be"
       }
     },
     "db-studio": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "prisma studio --schema=apps/rupeelens-be/prisma/schema.prisma"
+        "command": "prisma studio --schema=prisma/schema.prisma",
+        "cwd": "apps/rupeelens-be"
       }
     }
   }

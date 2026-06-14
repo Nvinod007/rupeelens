@@ -95,12 +95,21 @@ pnpm add -D prisma@6
 
 Use **Prisma 6** if `prisma@7` complains about Node version. Match Node to `.nvmrc` (20+).
 
-Add scripts to root `package.json`:
+**Init (only once):** run inside the backend app so files land in the right place:
 
-```json
-"db:generate": "prisma generate --schema=apps/rupeelens-be/prisma/schema.prisma",
-"db:migrate": "prisma migrate dev --schema=apps/rupeelens-be/prisma/schema.prisma",
-"db:studio": "prisma studio --schema=apps/rupeelens-be/prisma/schema.prisma"
+```bash
+cd apps/rupeelens-be
+pnpm exec prisma init --datasource-provider postgresql
+```
+
+That creates `apps/rupeelens-be/prisma/schema.prisma`. Put `DATABASE_URL` in `apps/rupeelens-be/.env` (not repo root).
+
+Nx targets (already in `apps/rupeelens-be/project.json`):
+
+```bash
+pnpm exec nx run rupeelens-be:db-generate
+pnpm exec nx run rupeelens-be:db-migrate
+pnpm exec nx run rupeelens-be:db-studio
 ```
 
 ### Phase C — First schema (Rupeelens tables)
