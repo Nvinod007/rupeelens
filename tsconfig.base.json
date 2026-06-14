@@ -13,7 +13,11 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "paths": {}
+    "baseUrl": ".",
+    "paths": {
+      "@shared-ui": ["./libs/ui/src/index.ts"],
+      "@shared-ui/*": ["libs/ui/src/*"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
