@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@shared-ui": ["./libs/ui/src/index.ts"],
-      "@shared-ui/*": ["libs/ui/src/*"]
+      "@shared-ui/*": ["libs/ui/src/*"],
+      "@shared-types": ["./libs/types/src/index.ts"],
+      "@shared-utils": ["./libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
