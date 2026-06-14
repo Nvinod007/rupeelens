@@ -1,0 +1,12 @@
+---
+description: Run these rules whenever handling environment variables, configuration files, or server setups.
+globs: ["**/*.env*", "next.config.js", "src/config/**/*"]
+alwaysApply: true
+---
+
+# Environment Variable Rules
+
+- NEVER attempt to read, scan, or assume the existence of `.env`, `.env.local`, or `.env.production`.
+- ALWAYS use `.env.example` as your single source of truth for the project's environment variables schema.
+- If a new package or feature requires a new key, append a safe placeholder value to `.env.example`.
+- Direct the user to manually mirror variables to their local files; do not attempt to automate local `.env` writing.

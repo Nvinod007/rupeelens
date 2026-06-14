@@ -18,7 +18,9 @@
       "@shared-ui": ["./libs/ui/src/index.ts"],
       "@shared-ui/*": ["libs/ui/src/*"],
       "@shared-types": ["./libs/types/src/index.ts"],
-      "@shared-utils": ["./libs/utils/src/index.ts"]
+      "@shared-utils": ["./libs/utils/src/index.ts"],
+      "@auth": ["./libs/auth/src/index.ts"],
+      "@auth/server": ["./libs/auth/src/supabase/server-client.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
