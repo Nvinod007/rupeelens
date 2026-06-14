@@ -3,6 +3,7 @@ import {
   CanActivate,
   ExecutionContext,
   Injectable,
+  Logger,
   UnauthorizedException,
 } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
@@ -18,6 +19,8 @@ type AuthenticatedRequest = Request & { user?: RequestUser };
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
+  private readonly logger = new Logger(JwtAuthGuard.name);
+
   constructor(
     private readonly reflector: Reflector,
     private readonly supabaseAuth: SupabaseAuthService,
@@ -44,6 +47,10 @@ export class JwtAuthGuard implements CanActivate {
     try {
       claims = await this.supabaseAuth.verifyAccessToken(token);
     } catch (error) {
+      const reason =
+        error instanceof Error ? error.message : "unknown auth error";
+      this.logger.warn(`Auth failed ${req.method} ${req.path}: ${reason}`);
+
       if (error instanceof SupabaseTokenVerificationError) {
         throw new UnauthorizedException(error.message);
       }
