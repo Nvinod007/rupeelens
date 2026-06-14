@@ -1,3 +1,5 @@
+import { randomUUID } from "node:crypto";
+
 import { Injectable } from "@nestjs/common";
 import { User } from "@prisma/client";
 import type { SupabaseAuthClaims } from "@shared-types";
@@ -13,13 +15,22 @@ export class AuthService {
     const email = claims.email ?? null;
     const name = claims.name ?? null;
 
-    return this.prisma.user.upsert({
-      create: { email, name, supabaseId },
+    const user = await this.prisma.user.upsert({
+      create: { email, importKey: randomUUID(), name, supabaseId },
       update: {
         ...(email ? { email } : {}),
         ...(name ? { name } : {}),
       },
       where: { supabaseId },
     });
+
+    if (!user.importKey) {
+      return this.prisma.user.update({
+        data: { importKey: randomUUID() },
+        where: { id: user.id },
+      });
+    }
+
+    return user;
   }
 }
