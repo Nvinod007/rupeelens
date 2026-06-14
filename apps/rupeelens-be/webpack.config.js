@@ -3,23 +3,23 @@ const { join } = require("path");
 
 module.exports = {
   output: {
-    path: join(__dirname, "../../dist/apps/rupeelens-be"),
     clean: true,
+    path: join(__dirname, "../../dist/apps/rupeelens-be"),
     ...(process.env.NODE_ENV !== "production" && {
       devtoolModuleFilenameTemplate: "[absolute-resource-path]",
     }),
   },
   plugins: [
     new NxAppWebpackPlugin({
-      target: "node",
-      compiler: "tsc",
-      main: "./src/main.ts",
-      tsConfig: "./tsconfig.app.json",
       assets: ["./src/assets"],
+      compiler: "tsc",
+      generatePackageJson: true,
+      main: "./src/main.ts",
       optimization: false,
       outputHashing: "none",
-      generatePackageJson: true,
       sourceMap: true,
+      target: "node",
+      tsConfig: "./tsconfig.app.json",
     }),
   ],
 };
