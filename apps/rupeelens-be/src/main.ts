@@ -1,22 +1,26 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
-import { Logger } from "@nestjs/common";
+import { Logger, ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 
 import { AppModule } from "./app/app.module";
 
 const port = process.env.PORT || 3001;
+const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { rawBody: true });
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      forbidNonWhitelisted: true,
+      transform: true,
+      whitelist: true,
+    })
+  );
 
   app.enableCors({
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Authorization", "Content-Type", "x-import-key"],
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: frontendUrl,
   });
 
   const globalPrefix = "api";
