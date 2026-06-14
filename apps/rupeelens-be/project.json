@@ -65,6 +65,24 @@
       "options": {
         "passWithNoTests": true
       }
+    },
+    "db-generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prisma generate --schema=apps/rupeelens-be/prisma/schema.prisma"
+      }
+    },
+    "db-migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prisma migrate dev --schema=apps/rupeelens-be/prisma/schema.prisma"
+      }
+    },
+    "db-studio": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prisma studio --schema=apps/rupeelens-be/prisma/schema.prisma"
+      }
     }
   }
 }

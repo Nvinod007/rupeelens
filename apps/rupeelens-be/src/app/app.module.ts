@@ -8,7 +8,7 @@ import { AppService } from "./app.service";
   controllers: [AppController],
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [".env", "../../.env"],
+      envFilePath: [".env"],
       isGlobal: true,
     }),
   ],

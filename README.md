@@ -36,7 +36,8 @@ This repo is an **[Nx](https://nx.dev) monorepo** (pnpm). What exists today vs w
 | `apps/rupeelens-fe` | Next.js app (App Router) |
 | `libs/ui` (`@shared-ui`) | Shared UI — Tailwind theme, shadcn/ui components |
 | `apps/rupeelens-fe-e2e` | Playwright e2e |
-| Nest API + PostgreSQL + Setu integration | **Planned** |
+| `apps/rupeelens-be` (Nest) | Started (config, serve on :3001) |
+| Nest API + PostgreSQL + Setu integration | **Planned** — see [docs/architecture](./docs/architecture/) |
 
 ---
 
@@ -63,6 +64,8 @@ rupeelens/
 ├── libs/
 │   └── ui/                    # @shared-ui — shared components & theme
 ├── docs/
+│   ├── architecture/          # HLD, LLD, ERD, API, flows (see README there)
+│   ├── learnings/             # Tutorials (Prisma, Setu, …)
 │   └── shared-ui/             # How to add shadcn components to the lib
 ├── .github/workflows/
 │   ├── ci.yml                 # PR + main CI
