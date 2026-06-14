@@ -17,13 +17,20 @@ model User {
   name      String?
   mobile    String?  @unique
   email     String?  @unique
-  createdAt DateTime @default(now())
+  importKey        String?   @unique
+  lastEmailSyncAt  DateTime?
+  createdAt        DateTime  @default(now())
   updatedAt DateTime @updatedAt
 
   consents     Consent[]
   bankAccounts BankAccount[]
 
   @@map("users")
+}
+
+enum AccountSource {
+  MANUAL
+  SETU
 }
 
 enum ConsentStatus {
@@ -50,21 +57,23 @@ model Consent {
 }
 
 model BankAccount {
-  id                  String   @id @default(cuid())
+  id                  String        @id @default(cuid())
   userId              String
-  consentId           String
+  consentId           String?
   setuAccountId       String
+  source              AccountSource @default(MANUAL)
   bankName            String
   accountType         String?
   maskedAccountNumber String
-  currency            String   @default("INR")
-  isActive            Boolean  @default(true)
-  createdAt           DateTime @default(now())
+  currency            String        @default("INR")
+  isActive            Boolean       @default(true)
+  createdAt           DateTime      @default(now())
 
   user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  consent      Consent       @relation(fields: [consentId], references: [id], onDelete: Cascade)
+  consent      Consent?      @relation(fields: [consentId], references: [id], onDelete: SetNull)
   transactions Transaction[]
 
+  @@unique([userId, setuAccountId])
   @@index([userId])
   @@index([consentId])
   @@index([setuAccountId])
