@@ -1,11 +1,14 @@
 import { render } from "@testing-library/react";
-import React from "react";
 
-import Page from "../src/app/page";
+import DashboardPage from "../src/app/(app)/page";
 
-describe("Page", () => {
+jest.mock("@auth", () => ({
+  getBrowserSessionUser: jest.fn().mockResolvedValue(null),
+}));
+
+describe("DashboardPage", () => {
   it("should render successfully", () => {
-    const { baseElement } = render(<Page />);
+    const { baseElement } = render(<DashboardPage />);
     expect(baseElement).toBeTruthy();
   });
 });

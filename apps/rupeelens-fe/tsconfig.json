@@ -26,6 +26,8 @@
       "@/*": ["./src/*"],
       "@shared-ui": ["../../libs/ui/src/index.ts"],
       "@shared-ui/*": ["../../libs/ui/src/*"],
+      "@shared-utils": ["../../libs/utils/src/index.ts"],
+      "@shared-types": ["../../libs/types/src/index.ts"],
       "@auth": ["../../libs/auth/src/index.ts"],
       "@auth/server": ["../../libs/auth/src/server.ts"]
     }

@@ -9,6 +9,7 @@ export const iconMotion = {
   rupee:
     "transition-transform duration-300 ease-out group-hover:-rotate-12 group-hover:scale-110",
   sun: "transition-transform duration-500 ease-out group-hover:rotate-90",
+  user: "transition-transform duration-200 ease-out group-hover:scale-110",
 } as const;
 
 export type IconMotionKey = keyof typeof iconMotion;

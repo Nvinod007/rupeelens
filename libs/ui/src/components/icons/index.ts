@@ -9,3 +9,4 @@ export { iconMotion } from "./motion";
 export { RupeeIcon } from "./rupee-icon";
 export { SunIcon } from "./sun-icon";
 export type { IconProps } from "./types";
+export { UserIcon } from "./user-icon";

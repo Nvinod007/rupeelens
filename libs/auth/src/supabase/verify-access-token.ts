@@ -1,4 +1,6 @@
-import type { SupabaseClient, User } from "@supabase/supabase-js";
+import type { SupabaseClient } from "@supabase/supabase-js";
+
+import { extractOAuthDisplayName } from "./oauth-display-name";
 
 /** Matches {@link SupabaseAuthClaims} in `@shared-types`. */
 export type VerifiedSupabaseUser = {
@@ -12,22 +14,6 @@ export class SupabaseTokenVerificationError extends Error {
     super(message);
     this.name = "SupabaseTokenVerificationError";
   }
-}
-
-/** Google OAuth stores display name in user_metadata.full_name or .name */
-function extractOAuthDisplayName(user: User): string | null {
-  const metadata = user.user_metadata as Record<string, unknown> | undefined;
-  if (!metadata) {
-    return null;
-  }
-
-  const candidate = metadata["full_name"] ?? metadata["name"];
-  if (typeof candidate !== "string") {
-    return null;
-  }
-
-  const trimmed = candidate.trim();
-  return trimmed.length > 0 ? trimmed : null;
 }
 
 /** Verify a Supabase access token using an existing server-side client. */
