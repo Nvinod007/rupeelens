@@ -23,4 +23,9 @@ export async function signInWithGoogle() {
   });
 
   if (error) throw error;
+  if (!data.url) {
+    throw new Error("OAuth sign-in did not return a redirect URL");
+  }
+
+  return data.url;
 }

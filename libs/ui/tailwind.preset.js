@@ -59,6 +59,9 @@ module.exports = {
           foreground: "hsl(var(--secondary-foreground))",
         },
       },
+      fontFamily: {
+        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
+      },
     },
   },
 };

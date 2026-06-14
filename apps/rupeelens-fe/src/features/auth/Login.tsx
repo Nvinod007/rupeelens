@@ -1,19 +1,42 @@
 "use client";
 
-import { signInWithGoogle } from "@auth";
-import { Button } from "@shared-ui";
+import { Label, LockIcon } from "@shared-ui";
+import Link from "next/link";
+
+import { AuthCard } from "./AuthCard";
+import { AuthLayout } from "./AuthLayout";
+import { GoogleSignInButton } from "./GoogleSignInButton";
 
 export function Login() {
-  const handleClick = async () => {
-    try {
-      await signInWithGoogle();
-      window.location.href = "/";
-    } catch (error: unknown) {
-      console.info("[auth:Login] signInWithGoogle failed", {
-        error: error instanceof Error ? error.message : error,
-      });
-    }
-  };
+  return (
+    <AuthLayout>
+      <AuthCard
+        footer={
+          <Link
+            className="group inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            href="#"
+          >
+            <LockIcon className="size-4" />
+            Privacy &amp; security
+          </Link>
+        }
+      >
+        <Label className="block text-center" variant="muted">
+          Sign in to continue
+        </Label>
 
-  return <Button onClick={handleClick}>Sign In with Google</Button>;
+        <GoogleSignInButton />
+
+        <p className="text-center text-sm text-muted-foreground">
+          By continuing, you agree to our{" "}
+          <Link
+            className="text-primary underline-offset-4 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            href="#"
+          >
+            Terms of Service
+          </Link>
+        </p>
+      </AuthCard>
+    </AuthLayout>
+  );
 }
