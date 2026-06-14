@@ -13,6 +13,12 @@
         "main": "libs/auth/src/index.ts",
         "tsConfig": "libs/auth/tsconfig.lib.json",
         "assets": ["libs/auth/*.md"]
+      },
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "options": {
+        "passWithNoTests": true
       }
     }
   }

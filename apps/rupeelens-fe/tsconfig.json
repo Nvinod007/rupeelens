@@ -27,7 +27,7 @@
       "@shared-ui": ["../../libs/ui/src/index.ts"],
       "@shared-ui/*": ["../../libs/ui/src/*"],
       "@auth": ["../../libs/auth/src/index.ts"],
-      "@auth/server": ["../../libs/auth/src/supabase/server-client.ts"]
+      "@auth/server": ["../../libs/auth/src/server.ts"]
     }
   },
   "include": [

@@ -6,7 +6,20 @@ import { PrismaService } from "../prisma/prisma.service";
 export class TransactionsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getTransactions() {
-    return this.prisma.transaction.findMany();
+  async getTransactionsForUser(userId: string) {
+    return this.prisma.transaction.findMany({
+      include: {
+        account: {
+          select: {
+            bankName: true,
+            maskedAccountNumber: true,
+          },
+        },
+      },
+      orderBy: { bookedAt: "desc" },
+      where: {
+        account: { userId },
+      },
+    });
   }
 }

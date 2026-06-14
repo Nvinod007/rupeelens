@@ -6,6 +6,9 @@
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "@swc/helpers": "~0.5.18"
+    "@swc/helpers": "~0.5.18",
+    "@supabase/supabase-js": "^2.107.0",
+    "@supabase/ssr": "^0.10.3",
+    "next": "~16.1.6"
   }
 }
