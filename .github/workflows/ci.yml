@@ -68,6 +68,8 @@ jobs:
       - uses: nrwl/nx-set-shas@v4
 
       - run: pnpm exec nx affected -t build --parallel=3
+        env:
+          DATABASE_URL: postgresql://rupeelens:rupeelens@localhost:5432/rupeelens
 
   build-main:
     name: Build (affected, main — needs approval)
@@ -96,3 +98,5 @@ jobs:
       - uses: nrwl/nx-set-shas@v4
 
       - run: pnpm exec nx affected -t build --parallel=3
+        env:
+          DATABASE_URL: postgresql://rupeelens:rupeelens@localhost:5432/rupeelens

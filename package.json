@@ -84,7 +84,7 @@
     "@nestjs/core": "^11.0.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.0.0",
-    "@prisma/client": "6",
+    "@prisma/client": "6.19.3",
     "@supabase/ssr": "^0.10.3",
     "@supabase/supabase-js": "^2.107.0",
     "axios": "^1.6.0",
