@@ -1,13 +1,11 @@
-import {
-  DEFAULT_CATEGORY,
-  type ParsedDraft,
-  TRANSACTION_LIMITS,
-} from '@shared-types';
-import { buildHeuristicDraft } from '@shared-utils';
+import { type ParsedDraft, TRANSACTION_LIMITS } from '@shared-types';
+import { buildHeuristicDraft, normalizeCategory } from '@shared-utils';
 
 const MAX_FUTURE_MS = 24 * 60 * 60 * 1000;
 
-type RawDraft = Partial<Record<keyof ParsedDraft, unknown>>;
+type RawDraft = Partial<
+  Record<keyof ParsedDraft | 'isExpense' | 'rejectionReason', unknown>
+>;
 
 function extractJsonObject(raw: string): RawDraft | null {
   const attempts = [raw, raw.slice(raw.indexOf('{'), raw.lastIndexOf('}') + 1)];
@@ -63,12 +61,33 @@ export function parseDraftResponse(
   return {
     amount: normalizeAmount(parsed.amount),
     bookedAt: normalizeBookedAt(parsed.bookedAt, context.now),
-    category:
-      text(parsed.category, TRANSACTION_LIMITS.categoryMaxLength) ||
-      DEFAULT_CATEGORY,
+    category: normalizeCategory(
+      text(parsed.category, TRANSACTION_LIMITS.categoryMaxLength)
+    ),
     notes:
       text(parsed.notes, TRANSACTION_LIMITS.notesMaxLength) || fallback.notes,
     title:
       text(parsed.title, TRANSACTION_LIMITS.titleMaxLength) || fallback.title,
   };
 }
+
+const DEFAULT_REJECTION =
+  'That does not look like an expense. Try something like: Swiggy 450 dinner.';
+
+/**
+ * Returns a user-facing reason when the model flagged the note as not an
+ * expense (or the model gave no amount), otherwise `null`.
+ */
+export function readRejection(raw: string): string | null {
+  const parsed = extractJsonObject(raw);
+  if (!parsed || parsed.isExpense !== false) {
+    return null;
+  }
+  return (
+    text(parsed.rejectionReason, TRANSACTION_LIMITS.notesMaxLength) ||
+    DEFAULT_REJECTION
+  );
+}
+
+export const NO_AMOUNT_MESSAGE =
+  'I could not find an amount. Add how much you spent, e.g. "Swiggy 450".';

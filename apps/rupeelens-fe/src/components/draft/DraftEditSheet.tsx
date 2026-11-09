@@ -1,11 +1,12 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 
 import type { DraftTransaction } from '@shared-types';
 import { MicIcon, Spinner } from '@shared-ui';
 
 import { AiSettingsLink } from '@/components/common/AiSettingsLink';
+import { CategoryField } from '@/components/common/CategoryField';
 import { fromDateTimeLocalValue, toDateTimeLocalValue } from '@shared-utils';
 
 type DraftEditSheetProps = {
@@ -21,6 +22,9 @@ type DraftEditSheetProps = {
   refineError?: string | null;
   /** Editing an already-saved transaction. */
   saved?: boolean;
+  /** Delete this transaction; omit for a brand-new (unsaved) one. */
+  onDelete?: () => void;
+  deleting?: boolean;
   /** Original voice note / prompt this transaction came from. */
   note: string;
   onNoteChange: (note: string) => void;
@@ -40,6 +44,8 @@ export function DraftEditSheet({
   saving,
   refineError,
   saved,
+  onDelete,
+  deleting,
   note,
   onNoteChange,
   dictating,
@@ -70,6 +76,8 @@ export function DraftEditSheet({
         onToggleDictation={onToggleDictation}
         refineError={refineError}
         saved={saved}
+        onDelete={onDelete}
+        deleting={deleting}
       />
     </div>
   );
@@ -85,12 +93,15 @@ function DraftForm({
   saving,
   refineError,
   saved,
+  onDelete,
+  deleting,
   note,
   onNoteChange,
   dictating,
   onToggleDictation,
 }: Omit<DraftEditSheetProps, 'open'>) {
-  const busy = Boolean(saving || refining);
+  const busy = Boolean(saving || refining || deleting);
+  const [confirmDelete, setConfirmDelete] = useState(false);
   return (
     <form
       className="glass-card w-full max-w-lg space-y-4 p-5 pb-6"
@@ -181,10 +192,9 @@ function DraftForm({
         />
       </Field>
       <Field label="Category">
-        <input
-          className="field-input"
+        <CategoryField
           value={draft.category}
-          onChange={(e) => onChange({ ...draft, category: e.target.value })}
+          onChange={(category) => onChange({ ...draft, category })}
         />
       </Field>
       <Field label="Notes">
@@ -205,13 +215,50 @@ function DraftForm({
         </button>
         <button
           type="button"
-          disabled={Boolean(saving)}
+          disabled={Boolean(saving || deleting)}
           onClick={onDiscard}
           className="rounded-lg border border-border px-4 py-2.5 text-sm disabled:opacity-60"
         >
           Cancel
         </button>
       </div>
+      {onDelete ? (
+        <div className="border-t border-border pt-3">
+          {confirmDelete ? (
+            <div className="flex items-center gap-2">
+              <p className="flex-1 text-sm text-muted-foreground">
+                Delete this transaction?
+              </p>
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => setConfirmDelete(false)}
+                className="rounded-lg border border-border px-3 py-2 text-sm disabled:opacity-60"
+              >
+                Keep
+              </button>
+              <button
+                type="button"
+                disabled={busy}
+                onClick={onDelete}
+                className="flex items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-sm font-medium text-white disabled:opacity-60"
+              >
+                {deleting ? <Spinner /> : null}
+                {deleting ? 'Deleting…' : 'Yes, delete'}
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => setConfirmDelete(true)}
+              className="text-sm text-red-500 underline-offset-4 hover:underline disabled:opacity-60"
+            >
+              Delete transaction
+            </button>
+          )}
+        </div>
+      ) : null}
     </form>
   );
 }

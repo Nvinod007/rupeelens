@@ -19,6 +19,7 @@ import { TransactionsEmptyState } from '@/components/home/TransactionsEmptyState
 import { sseParseDraft } from '@/lib/api/sseParseDraft';
 import {
   useCreateTransaction,
+  useDeleteTransaction,
   useTransactions,
   useUpdateTransaction,
 } from '@/lib/queries/transactions';
@@ -43,6 +44,7 @@ export default function HomePage() {
   const { data: transactions = [], isLoading: loading } = useTransactions();
   const createMutation = useCreateTransaction();
   const updateMutation = useUpdateTransaction();
+  const deleteMutation = useDeleteTransaction();
   const [addOpen, setAddOpen] = useState(false);
   const [addInitialTab, setAddInitialTab] = useState<AddExpenseTab>('voice');
   const [helpOpen, setHelpOpen] = useState(false);
@@ -229,6 +231,21 @@ export default function HomePage() {
     }
   };
 
+  const deleteEditing = async () => {
+    if (!editingId) {
+      return;
+    }
+    try {
+      await deleteMutation.mutateAsync(editingId);
+      stopDictation();
+      setDraftOpen(false);
+      setEditingId(null);
+      setPendingTranscript('');
+    } catch {
+      /* keep sheet open */
+    }
+  };
+
   const openDraftEdit = (tx: Transaction) => {
     setEditingId(tx.id);
     setEditingSaved(tx.status === 'saved');
@@ -315,6 +332,8 @@ export default function HomePage() {
         refining={refineBusy}
         saving={createMutation.isPending || updateMutation.isPending}
         saved={editingSaved}
+        deleting={deleteMutation.isPending}
+        onDelete={editingId ? () => void deleteEditing() : undefined}
         onDiscard={() => {
           stopDictation();
           setRefineError(null);

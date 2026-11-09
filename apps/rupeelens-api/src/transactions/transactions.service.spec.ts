@@ -18,7 +18,7 @@ describe('TransactionsService', () => {
     });
 
     expect(created).toMatchObject({
-      category: 'Uncategorized',
+      category: null,
       notes: null,
       status: 'saved',
       transcript: null,

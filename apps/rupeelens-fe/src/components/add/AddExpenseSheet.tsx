@@ -6,6 +6,7 @@ import { NoteDispositionActions } from '@/components/voice/NoteDispositionAction
 import { Spinner } from '@shared-ui';
 
 import { AiSettingsLink } from '@/components/common/AiSettingsLink';
+import { CategoryField } from '@/components/common/CategoryField';
 import { DEFAULT_CATEGORY, type DraftTransaction } from '@shared-types';
 import { fromDateTimeLocalValue, toDateTimeLocalValue } from '@shared-utils';
 
@@ -499,10 +500,9 @@ function ManualPanel({
       </label>
       <label className="block space-y-1 text-sm">
         <span className="text-muted-foreground">Category</span>
-        <input
-          className="field-input"
+        <CategoryField
           value={draft.category}
-          onChange={(e) => onChange({ ...draft, category: e.target.value })}
+          onChange={(category) => onChange({ ...draft, category })}
         />
       </label>
       <label className="block space-y-1 text-sm">

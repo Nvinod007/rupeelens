@@ -37,22 +37,50 @@ export type CreateTransactionRequest = {
 
 export type UpdateTransactionRequest = Partial<CreateTransactionRequest>;
 
-export const DEFAULT_CATEGORY = 'Uncategorized';
-
-/** Suggested categories; also steers the AI. Per-user categories come later. */
+/** Suggested categories; also steers the AI. Users may also type their own. */
 export const EXPENSE_CATEGORIES = [
   'Food & Dining',
   'Groceries',
+  'Coffee & Snacks',
   'Transport',
+  'Fuel',
+  'Cab & Auto',
   'Shopping',
+  'Clothing',
+  'Electronics',
   'Bills & Utilities',
-  'Entertainment',
-  'Health',
-  'Travel',
-  'Education',
+  'Mobile & Internet',
+  'Electricity',
   'Rent',
+  'Home & Maintenance',
+  'Entertainment',
+  'Subscriptions',
+  'Movies & Events',
+  'Health',
+  'Medicines',
+  'Fitness',
+  'Personal Care',
+  'Travel',
+  'Hotels & Stay',
+  'Education',
+  'Books & Courses',
+  'Gifts & Donations',
+  'Insurance',
+  'Investments',
+  'EMI & Loans',
+  'Taxes & Fees',
+  'Kids & Family',
+  'Pets',
+  'Business',
   'Other',
 ] as const;
+
+export type ExpenseCategory = (typeof EXPENSE_CATEGORIES)[number];
+
+export const OTHER_CATEGORY: ExpenseCategory = 'Other';
+
+/** No category is preselected: the user picks one or types their own. */
+export const DEFAULT_CATEGORY = '';
 
 export const TRANSACTION_LIMITS = {
   amountMax: 1_000_000_000,
@@ -61,3 +89,16 @@ export const TRANSACTION_LIMITS = {
   titleMaxLength: 120,
   transcriptMaxLength: 1_000,
 } as const;
+
+/** A category the user added on top of {@link EXPENSE_CATEGORIES}. */
+export type UserCategory = {
+  id: string;
+  name: string;
+};
+
+export type CreateCategoryRequest = {
+  name: string;
+};
+
+/** Per-user cap on custom categories (abuse guard). */
+export const CUSTOM_CATEGORY_LIMIT = 50;

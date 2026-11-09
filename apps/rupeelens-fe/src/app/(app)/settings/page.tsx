@@ -1,4 +1,5 @@
 import { AccountCard } from '@/components/settings/AccountCard';
+import { CategoriesCard } from '@/components/settings/CategoriesCard';
 import { ByokForm } from '@/components/settings/ByokForm';
 
 export default function SettingsPage() {
@@ -9,13 +10,14 @@ export default function SettingsPage() {
           Settings
         </h1>
         <p className="text-sm text-muted-foreground">
-          API key, account, and legal.
+          API key, categories, account, and legal.
         </p>
       </div>
       <div className="grid gap-4 lg:grid-cols-2 lg:items-start">
         <div className="space-y-4">
           <AccountCard />
           <ByokForm />
+          <CategoriesCard />
         </div>
         <LegalSupportSection />
       </div>

@@ -15550,11 +15550,6 @@
       },
       {
         "source": "rupeelens-api",
-        "target": "npm:reflect-metadata",
-        "type": "static"
-      },
-      {
-        "source": "rupeelens-api",
         "target": "npm:class-transformer",
         "type": "static"
       },
@@ -15565,12 +15560,17 @@
       },
       {
         "source": "rupeelens-api",
-        "target": "npm:dotenv",
+        "target": "npm:@supabase/supabase-js",
         "type": "static"
       },
       {
         "source": "rupeelens-api",
-        "target": "npm:@supabase/supabase-js",
+        "target": "npm:reflect-metadata",
+        "type": "static"
+      },
+      {
+        "source": "rupeelens-api",
+        "target": "npm:dotenv",
         "type": "static"
       },
       {
@@ -37108,5 +37108,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1794229828660
+  "computedAt": 1794239550006
 }

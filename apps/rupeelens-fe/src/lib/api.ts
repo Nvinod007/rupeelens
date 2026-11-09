@@ -3,10 +3,12 @@ import {
   API_ROUTES,
   AUTH_SCHEME,
   type ByokStatus,
+  type CreateCategoryRequest,
   type CreateTransactionRequest,
   type SaveByokRequest,
   type Transaction,
   type UpdateTransactionRequest,
+  type UserCategory,
 } from '@shared-types';
 
 import { getAccessToken } from './auth/AuthProvider';
@@ -60,6 +62,9 @@ async function apiFetch<T>(route: string, init?: RequestInit): Promise<T> {
   if (!res.ok) {
     throw new Error(await readErrorMessage(res));
   }
+  if (res.status === 204) {
+    return undefined as T;
+  }
   return res.json() as Promise<T>;
 }
 
@@ -76,6 +81,18 @@ export const createTransaction = (payload: CreateTransactionRequest) =>
 
 export const updateTransaction = (id: string, payload: UpdateTransactionRequest) =>
   apiFetch<Transaction>(`${API_ROUTES.transactions}/${id}`, json('PATCH', payload));
+
+export const deleteTransaction = (id: string) =>
+  apiFetch<void>(`${API_ROUTES.transactions}/${id}`, { method: 'DELETE' });
+
+export const fetchCategories = () =>
+  apiFetch<UserCategory[]>(API_ROUTES.categories);
+
+export const addCategory = (payload: CreateCategoryRequest) =>
+  apiFetch<UserCategory[]>(API_ROUTES.categories, json('POST', payload));
+
+export const deleteCategory = (id: string) =>
+  apiFetch<void>(`${API_ROUTES.categories}/${id}`, { method: 'DELETE' });
 
 export const fetchByokStatus = () => apiFetch<ByokStatus>(API_ROUTES.settingsByokStatus);
 

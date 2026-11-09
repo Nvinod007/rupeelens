@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { DEFAULT_CATEGORY, type Transaction } from '@shared-types';
+import { type Transaction } from '@shared-types';
+import { normalizeCategory } from '@shared-utils';
 
 import type { CreateTransactionDto } from './dto/create-transaction.dto';
 import { DEFAULT_LIST_LIMIT } from './dto/list-transactions-query.dto';
@@ -18,7 +19,7 @@ export class TransactionsService {
     return this.repository.create(ownerId, {
       amount: dto.amount,
       bookedAt: dto.bookedAt ?? new Date().toISOString(),
-      category: dto.category ?? DEFAULT_CATEGORY,
+      category: normalizeCategory(dto.category) || null,
       notes: dto.notes ?? null,
       status: dto.status,
       title: dto.title,
@@ -34,7 +35,10 @@ export class TransactionsService {
     const updated = await this.repository.update(ownerId, id, {
       amount: dto.amount,
       bookedAt: dto.bookedAt,
-      category: dto.category,
+      category:
+        dto.category === undefined
+          ? undefined
+          : normalizeCategory(dto.category) || null,
       notes: dto.notes,
       status: dto.status,
       title: dto.title,
@@ -44,5 +48,12 @@ export class TransactionsService {
       throw new NotFoundException('Transaction not found');
     }
     return updated;
+  }
+
+  async remove(ownerId: string, id: string): Promise<void> {
+    const deleted = await this.repository.delete(ownerId, id);
+    if (!deleted) {
+      throw new NotFoundException('Transaction not found');
+    }
   }
 }

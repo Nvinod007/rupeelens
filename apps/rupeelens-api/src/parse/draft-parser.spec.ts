@@ -49,7 +49,7 @@ describe('parseDraftResponse', () => {
     expect(draft).toMatchObject({
       amount: 0,
       bookedAt: now.toISOString(),
-      category: 'Uncategorized',
+      category: '',
       notes: context.transcript,
     });
     expect(draft?.title.length).toBeGreaterThan(0);

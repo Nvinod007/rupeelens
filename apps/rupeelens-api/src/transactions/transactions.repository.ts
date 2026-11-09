@@ -21,6 +21,9 @@ export abstract class TransactionsRepository {
     transaction: NewTransaction
   ): Promise<Transaction>;
 
+  /** Removes the transaction; resolves `false` when it does not exist for this owner. */
+  abstract delete(ownerId: string, id: string): Promise<boolean>;
+
   /** Resolves `null` when the transaction does not exist for this owner. */
   abstract update(
     ownerId: string,

@@ -32,6 +32,13 @@ export class InMemoryTransactionsRepository extends TransactionsRepository {
     return created;
   }
 
+  async delete(ownerId: string, id: string): Promise<boolean> {
+    const transactions = this.byOwner.get(ownerId) ?? [];
+    const remaining = transactions.filter((item) => item.id !== id);
+    this.byOwner.set(ownerId, remaining);
+    return remaining.length < transactions.length;
+  }
+
   async update(
     ownerId: string,
     id: string,

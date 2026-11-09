@@ -9,6 +9,7 @@ import { AppThrottlerGuard } from '../common/throttle/app-throttler.guard';
 import { RATE_LIMITS } from '../config/config.constants';
 import { configLoaders } from '../config/configuration';
 import { validateEnv } from '../config/env.validation';
+import { CategoriesModule } from '../categories/categories.module';
 import { CryptoModule } from '../crypto/crypto.module';
 import { DatabaseModule } from '../database/database.module';
 import { HealthModule } from '../health/health.module';
@@ -33,6 +34,7 @@ import { TransactionsModule } from '../transactions/transactions.module';
     HealthModule,
     SettingsModule,
     TransactionsModule,
+    CategoriesModule,
     ParseModule,
   ],
   // Order matters: authenticate first so the throttler can key on the user id.

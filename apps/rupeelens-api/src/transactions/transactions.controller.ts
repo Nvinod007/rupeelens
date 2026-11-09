@@ -1,7 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   ParseUUIDPipe,
   Patch,
@@ -43,5 +46,14 @@ export class TransactionsController {
     @Body() body: UpdateTransactionDto
   ): Promise<Transaction> {
     return this.transactions.update(ownerId, id, body);
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  remove(
+    @UserId() ownerId: string,
+    @Param('id', ParseUUIDPipe) id: string
+  ): Promise<void> {
+    return this.transactions.remove(ownerId, id);
   }
 }

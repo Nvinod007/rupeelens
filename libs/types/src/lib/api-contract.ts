@@ -10,6 +10,7 @@ export const AUTH_HEADER = 'authorization';
 export const AUTH_SCHEME = 'Bearer';
 
 export const API_ROUTES = {
+  categories: '/categories',
   health: '/health',
   parseDraft: '/parse/draft',
   settingsByok: '/settings/byok',

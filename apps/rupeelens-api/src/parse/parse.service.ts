@@ -3,7 +3,11 @@ import type { ParseSseEvent } from '@shared-types';
 
 import { LlmClient, type LlmErrorKind, LlmProviderError } from '../llm/llm.types';
 import { SettingsService } from '../settings/settings.service';
-import { parseDraftResponse } from './draft-parser';
+import {
+  NO_AMOUNT_MESSAGE,
+  parseDraftResponse,
+  readRejection,
+} from './draft-parser';
 import type { ParseDraftDto } from './dto/parse-draft.dto';
 import {
   buildUserPrompt,
@@ -63,14 +67,24 @@ export class ParseService {
         }),
       });
 
+      const rejection = readRejection(raw);
+      if (rejection) {
+        yield { data: { message: rejection }, event: 'error' };
+        return;
+      }
+
       const draft = parseDraftResponse(raw, {
         now,
         transcript: request.transcript,
       });
 
-      yield draft
-        ? { data: draft, event: 'complete' }
-        : { data: { message: UNREADABLE_MESSAGE }, event: 'error' };
+      if (!draft) {
+        yield { data: { message: UNREADABLE_MESSAGE }, event: 'error' };
+      } else if (draft.amount <= 0) {
+        yield { data: { message: NO_AMOUNT_MESSAGE }, event: 'error' };
+      } else {
+        yield { data: draft, event: 'complete' };
+      }
     } catch (error) {
       yield { data: { message: this.messageFor(error) }, event: 'error' };
     }

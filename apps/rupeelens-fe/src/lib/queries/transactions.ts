@@ -9,6 +9,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import {
   createTransaction,
+  deleteTransaction,
   fetchTransactions,
   updateTransaction,
 } from '../api';
@@ -52,6 +53,21 @@ export function useUpdateTransaction() {
       queryClient.setQueryData<Transaction[]>(
         transactionsKey(user?.id),
         (current = []) => current.map((t) => (t.id === updated.id ? updated : t))
+      );
+    },
+  });
+}
+
+export function useDeleteTransaction() {
+  const queryClient = useQueryClient();
+  const { user } = useAuth();
+
+  return useMutation({
+    mutationFn: (id: string) => deleteTransaction(id),
+    onSuccess: (_result, id) => {
+      queryClient.setQueryData<Transaction[]>(
+        transactionsKey(user?.id),
+        (current = []) => current.filter((t) => t.id !== id)
       );
     },
   });

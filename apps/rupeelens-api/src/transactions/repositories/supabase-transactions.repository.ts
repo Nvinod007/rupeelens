@@ -108,6 +108,22 @@ export class SupabaseTransactionsRepository extends TransactionsRepository {
     return data ? toTransaction(data as TransactionRow) : null;
   }
 
+  /** Soft delete: keeps the row (deleted_at) so it can be recovered or purged later. */
+  async delete(ownerId: string, id: string): Promise<boolean> {
+    const { data, error } = await this.client()
+      .from(TABLE)
+      .update({ deleted_at: new Date().toISOString() })
+      .eq('id', id)
+      .eq('user_id', ownerId)
+      .is('deleted_at', null)
+      .select('id')
+      .maybeSingle();
+    if (error) {
+      this.fail(error);
+    }
+    return Boolean(data);
+  }
+
   private client() {
     const client = this.supabase.getClient();
     if (!client) {

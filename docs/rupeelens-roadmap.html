@@ -66,7 +66,7 @@
 
   <section class="deploy" id="deploy">
     <h2>Deployment commands</h2>
-    <p>Frontend on Vercel, API on Fly.io, domain on Hostinger. Run from the repo root. Never commit secrets.</p>
+    <p>Frontend on Vercel, API on Northflank, domain on Hostinger. Run from the repo root. Never commit secrets.</p>
 
     <h3>1. Install</h3>
 <pre><code>pnpm install --frozen-lockfile</code></pre>
@@ -88,37 +88,36 @@ vercel env add NEXT_PUBLIC_SUPABASE_URL production
 vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY production
 vercel --prod</code></pre>
 
-    <h3>4. API → Fly.io</h3>
-<pre><code>brew install flyctl
-fly auth login
-fly apps create rupeelens-api
-fly secrets set -a rupeelens-api \
-  KEY_ENCRYPTION_SECRET=... \
-  SUPABASE_URL=... \
-  SUPABASE_SERVICE_ROLE_KEY=... \
-  GEMINI_MODEL=... \
-  CORS_ORIGINS=https://rupeelens.appkits.in
-fly deploy --config apps/rupeelens-api/fly.toml \
-  --dockerfile apps/rupeelens-api/Dockerfile .
-fly status -a rupeelens-api
-curl https://rupeelens-api.fly.dev/api/health</code></pre>
+    <h3>4. API → Northflank (London, free Sandbox)</h3>
+<pre><code># Set once in the Northflank UI (no CLI needed):
+#   Service type: Combined (build + deploy) from GitHub repo, branch main, CI/CD on
+#   Build: Dockerfile  /apps/rupeelens-api/Dockerfile   context  /
+#   Port: 8080 (HTTP, public)   Health check: /api/health
+#   Runtime variables:
+#     NODE_ENV=production  PORT=8080  TRANSACTIONS_STORAGE=supabase
+#     KEY_ENCRYPTION_SECRET=...  SUPABASE_URL=...  SUPABASE_SERVICE_ROLE_KEY=...
+#     GEMINI_MODEL=...
+#     CORS_ORIGINS=https://rupeelens.appkits.in,https://rupeelens-gules.vercel.app
+
+# Every push to main rebuilds and redeploys automatically.
+curl https://api-rupeelens.appkits.in/api/health</code></pre>
 
     <h3>5. Domain DNS (Hostinger)</h3>
-<pre><code># Frontend
-vercel domains add rupeelens.appkits.in
-#   Hostinger DNS: CNAME  host: rupeelens  →  cname.vercel-dns.com
-#   (use the exact target Vercel prints)
+<pre><code># Frontend (Vercel)
+#   CNAME  rupeelens      →  target Vercel prints (e.g. cname.vercel-dns.com)
 
-# API
-fly certs add api.rupeelens.appkits.in -a rupeelens-api
-fly certs show api.rupeelens.appkits.in -a rupeelens-api
-#   Hostinger DNS: CNAME  host: api.rupeelens  →  rupeelens-api.fly.dev
-#   (or the A / AAAA records Fly prints)
+# API (Northflank)
+#   CNAME  api-rupeelens  →  api-rupeelens.appkits.in.&lt;id&gt;.dns.northflank.app
+#   TXT    verify-api...  →  value Northflank prints (keep it; proves ownership)
+#   Certificate is issued and renewed automatically.
 
 # Supabase → Auth → URL Configuration
 #   Site URL:      https://rupeelens.appkits.in
 #   Redirect URL:  https://rupeelens.appkits.in/auth/callback
-#   Then set NEXT_PUBLIC_API_URL=https://api.rupeelens.appkits.in and redeploy.</code></pre>
+# Vercel env: NEXT_PUBLIC_API_URL=https://api-rupeelens.appkits.in
+
+# Database migrations (Supabase SQL editor, in order)
+#   003_auth_schema_v2.sql  →  004_user_categories.sql</code></pre>
   </section>
 
   <script>
@@ -138,7 +137,10 @@ fly certs show api.rupeelens.appkits.in -a rupeelens-api
             { t: "Edit saved transactions + date/time field", s: "done" },
             { t: "\"Your note\" section: edit by typing or re-record, then Refine with AI", s: "done" },
             { t: "Inline error states (no alerts), mic-blocked help", s: "done" },
-            { t: "Missing-key help: link AI errors to Settings", s: "done" }
+            { t: "Missing-key help: link AI errors to Settings", s: "done" },
+            { t: "Category picker: type to filter, add your own, nothing preselected", s: "done" },
+            { t: "Custom categories saved per user (DB) + manage in Settings", s: "done", n: "Migration 004; run it in Supabase before using" },
+            { t: "Delete transactions (soft delete, with confirm)", s: "done" }
           ]},
           { name: "App shell & settings", items: [
             { t: "Home with recent activity + summary (month total, entries, drafts)", s: "done" },
@@ -161,7 +163,7 @@ fly certs show api.rupeelens.appkits.in -a rupeelens-api
           ]},
           { name: "Launch blockers", items: [
             { t: "Consent gate + real Privacy / Terms pages", s: "done", n: "Public /privacy and /terms; login requires ticking consent; recorded on the account" },
-            { t: "Deploy: Vercel (FE) + Fly.io (API), prod env + Supabase redirect URLs", s: "todo" },
+            { t: "Deploy: Vercel (FE) + Northflank (API), custom domains, prod env + Supabase redirect URLs", s: "done", n: "rupeelens.appkits.in + api-rupeelens.appkits.in; auto-deploy on push to main" },
             { t: "Production smoke test of voice, prompt and form flows", s: "todo" }
           ]}
         ]
@@ -174,16 +176,16 @@ fly certs show api.rupeelens.appkits.in -a rupeelens-api
           { name: "Understand spending", items: [
             { t: "Dashboard", s: "todo" },
             { t: "Pie chart / spending analyser (category breakdown)", s: "todo" },
-            { t: "Transactions page (full history, search, filters)", s: "todo" },
-            { t: "Per-user categories + captures schema (categories, amount_minor)", s: "todo" }
+            { t: "Transactions page (full history, search, filter by category)", s: "todo", n: "Next up: search bar with category filter" },
+            { t: "Captures schema (amount_minor, raw capture records)", s: "todo" }
           ]},
           { name: "Scale & safety", items: [
             { t: "Cursor pagination for transactions", s: "todo" },
             { t: "AI usage tracking + quota + friendly limit errors", s: "todo" },
-            { t: "Soft delete UI + export my data", s: "todo" },
-            { t: "CI (lint, test, build on every PR)", s: "todo" },
+            { t: "Export my data", s: "todo" },
+            { t: "CI (lint, test, build on every PR)", s: "done", n: "GitHub Actions on Node 22" },
             { t: "Structured logging, error tracking, metrics", s: "todo" },
-            { t: "Frontend unit tests (api client, hooks)", s: "todo" }
+            { t: "Frontend unit tests (api client, hooks)", s: "wip", n: "Jest set up; legal, consent, login covered; api client + hooks pending" }
           ]}
         ]
       },
