@@ -1,0 +1,31 @@
+# Deploy from the repo root:
+#   fly deploy --config apps/rupeelens-api/fly.toml --dockerfile apps/rupeelens-api/Dockerfile .
+app = "rupeelens-api"
+primary_region = "bom" # Mumbai
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  PORT = "8080"
+  TRANSACTIONS_STORAGE = "supabase"
+  # Secrets (never here): fly secrets set KEY_ENCRYPTION_SECRET=... SUPABASE_SERVICE_ROLE_KEY=... GEMINI_MODEL=...
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    method = "GET"
+    path = "/api/health"
+    interval = "15s"
+    timeout = "3s"
+    grace_period = "10s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

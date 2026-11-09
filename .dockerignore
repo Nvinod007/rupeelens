@@ -1,0 +1,10 @@
+node_modules
+.git
+.nx
+.next
+dist
+coverage
+**/.env
+**/.env.local
+apps/*/.data
+docs

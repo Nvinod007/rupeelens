@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  NX_DAEMON: 'false'
+  NX_NO_CLOUD: 'true'
+
+jobs:
+  main:
+    name: Lint, test, build (affected)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Nx affected needs full history
+
+      - uses: pnpm/action-setup@v4 # version comes from package.json "packageManager"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Derive base/head SHAs for affected
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: main
+
+      - name: Cache Nx
+        uses: actions/cache@v4
+        with:
+          path: .nx/cache
+          key: nx-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
+          restore-keys: |
+            nx-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-
+            nx-${{ runner.os }}-
+
+      - name: Lint
+        run: pnpm nx affected -t lint --parallel=3
+
+      - name: Test
+        run: pnpm nx affected -t test --parallel=3 --ci --coverage
+
+      - name: Build
+        run: pnpm nx affected -t build --parallel=2
+        env:
+          # Public, build-time values only. Real values live in Vercel.
+          NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || 'http://localhost:4001' }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co' }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder' }}
+
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage
+          if-no-files-found: ignore
+          retention-days: 7

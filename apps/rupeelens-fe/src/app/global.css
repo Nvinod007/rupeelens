@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Luminous Finance — Stitch tokens */
+:root {
+  --background: 210 40% 96%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --primary: 160 84% 39%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 198 93% 60%;
+  --secondary-foreground: 222 47% 11%;
+  --muted: 210 40% 94%;
+  --muted-foreground: 215 16% 47%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 160 84% 39%;
+  --accent: 210 40% 94%;
+  --accent-foreground: 222 47% 11%;
+  --destructive: 347 90% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --auth-dot: 160 84% 39% / 0.2;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 222 47% 11%;
+  --foreground: 214 32% 91%;
+  --card: 217 33% 17%;
+  --card-foreground: 214 32% 91%;
+  --primary: 160 84% 39%;
+  --primary-foreground: 222 47% 11%;
+  --secondary: 198 93% 60%;
+  --secondary-foreground: 222 47% 11%;
+  --muted: 217 33% 20%;
+  --muted-foreground: 215 16% 57%;
+  --border: 215 20% 28%;
+  --input: 217 33% 20%;
+  --ring: 160 84% 39%;
+  --accent: 217 33% 20%;
+  --accent-foreground: 214 32% 91%;
+  --destructive: 347 90% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --auth-dot: 160 84% 39% / 0.28;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image: radial-gradient(
+        ellipse 120% 80% at 50% -20%,
+        hsl(var(--primary) / 0.12),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 100% 50%,
+        hsl(var(--secondary) / 0.08),
+        transparent
+      );
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply rounded-xl border border-white/10 bg-card/80 shadow-lg backdrop-blur-md;
+  }
+  .field-input {
+    @apply w-full rounded-lg border border-input bg-background/50 px-3 py-2 text-sm outline-none ring-ring focus:ring-2;
+  }
+}

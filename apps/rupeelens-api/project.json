@@ -1,0 +1,43 @@
+{
+  "name": "rupeelens-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/rupeelens-api/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "webpack-cli build",
+        "args": ["node-env=production"]
+      },
+      "configurations": {
+        "development": {
+          "args": ["node-env=development"]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "rupeelens-api:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "rupeelens-api:build:development"
+        },
+        "production": {
+          "buildTarget": "rupeelens-api:build:production"
+        }
+      }
+    },
+    "test": {
+      "options": {
+        "passWithNoTests": true
+      }
+    }
+  }
+}

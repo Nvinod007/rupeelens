@@ -1,0 +1,1184 @@
+{
+  "apps/rupeelens-fe": {
+    "root": [
+      "apps/rupeelens-fe/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.build": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.build.options": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.build.dependsOn": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.outputs": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.build.executor": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.build.options.cwd": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.build.options.tty": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.build.options.command": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.dev": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.dev.options": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.dev.executor": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.dev.options.cwd": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.dev.options.command": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.start": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.start.options": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.start.dependsOn": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.start.executor": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.start.options.cwd": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.start.options.command": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.serve-static": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.serve-static.options": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.serve-static.dependsOn": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.serve-static.executor": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.serve-static.options.cwd": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.serve-static.options.command": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.build-deps": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.build-deps.dependsOn": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.watch-deps": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.watch-deps.dependsOn": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.watch-deps.executor": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.watch-deps.options": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.watch-deps.options.command": [
+      "apps/rupeelens-fe/next.config.js",
+      "@nx/next/plugin"
+    ],
+    "targets.test": [
+      "apps/rupeelens-fe/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options": [
+      "apps/rupeelens-fe/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata": [
+      "apps/rupeelens-fe/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.outputs": [
+      "apps/rupeelens-fe/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.executor": [
+      "apps/rupeelens-fe/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.cwd": [
+      "apps/rupeelens-fe/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.env": [
+      "apps/rupeelens-fe/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.command": [
+      "apps/rupeelens-fe/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.technologies": [
+      "apps/rupeelens-fe/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.technologies.0": [
+      "apps/rupeelens-fe/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.description": [
+      "apps/rupeelens-fe/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help": [
+      "apps/rupeelens-fe/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help.command": [
+      "apps/rupeelens-fe/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help.example": [
+      "apps/rupeelens-fe/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.lint": [
+      "apps/rupeelens-fe/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.options": [
+      "apps/rupeelens-fe/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.inputs": [
+      "apps/rupeelens-fe/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.outputs": [
+      "apps/rupeelens-fe/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata": [
+      "apps/rupeelens-fe/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.executor": [
+      "apps/rupeelens-fe/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.options.cwd": [
+      "apps/rupeelens-fe/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.options.command": [
+      "apps/rupeelens-fe/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.technologies": [
+      "apps/rupeelens-fe/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.technologies.0": [
+      "apps/rupeelens-fe/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.description": [
+      "apps/rupeelens-fe/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help": [
+      "apps/rupeelens-fe/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help.command": [
+      "apps/rupeelens-fe/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help.example": [
+      "apps/rupeelens-fe/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "name": [
+      "apps/rupeelens-fe/project.json",
+      "nx/core/project-json"
+    ],
+    "$schema": [
+      "apps/rupeelens-fe/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "apps/rupeelens-fe/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "apps/rupeelens-fe/project.json",
+      "nx/core/project-json"
+    ],
+    "// targets": [
+      "apps/rupeelens-fe/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "apps/rupeelens-fe/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
+  "apps/rupeelens-api": {
+    "root": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "apps/rupeelens-api/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.metadata": [
+      "apps/rupeelens-api/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.outputs": [
+      "apps/rupeelens-api/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.executor": [
+      "apps/rupeelens-api/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.cwd": [
+      "apps/rupeelens-api/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.env": [
+      "apps/rupeelens-api/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.command": [
+      "apps/rupeelens-api/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.technologies": [
+      "apps/rupeelens-api/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.technologies.0": [
+      "apps/rupeelens-api/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.description": [
+      "apps/rupeelens-api/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help": [
+      "apps/rupeelens-api/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help.command": [
+      "apps/rupeelens-api/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help.example": [
+      "apps/rupeelens-api/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.lint": [
+      "apps/rupeelens-api/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.options": [
+      "apps/rupeelens-api/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.inputs": [
+      "apps/rupeelens-api/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.outputs": [
+      "apps/rupeelens-api/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata": [
+      "apps/rupeelens-api/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.executor": [
+      "apps/rupeelens-api/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.options.cwd": [
+      "apps/rupeelens-api/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.options.command": [
+      "apps/rupeelens-api/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.technologies": [
+      "apps/rupeelens-api/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.technologies.0": [
+      "apps/rupeelens-api/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.description": [
+      "apps/rupeelens-api/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help": [
+      "apps/rupeelens-api/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help.command": [
+      "apps/rupeelens-api/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help.example": [
+      "apps/rupeelens-api/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "projectType": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.dependsOn": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.outputs": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.build.metadata": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.build.executor": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.cwd": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.build.options.args": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.command": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.metadata.technologies": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.build.metadata.technologies.0": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.build.metadata.description": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.build.metadata.help": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.build.metadata.help.command": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.build.metadata.help.example": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.preview": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.preview.options": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.preview.metadata": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.preview.executor": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.preview.options.cwd": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.preview.options.args": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.preview.options.command": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.preview.metadata.technologies": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.preview.metadata.technologies.0": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.preview.metadata.description": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.preview.metadata.help": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.preview.metadata.help.command": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.preview.metadata.help.example": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.build-deps": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.build-deps.dependsOn": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.watch-deps": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.watch-deps.dependsOn": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.watch-deps.executor": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.watch-deps.options": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "targets.watch-deps.options.command": [
+      "apps/rupeelens-api/webpack.config.js",
+      "@nx/webpack/plugin"
+    ],
+    "name": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "$schema": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.development": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.development.args": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.executor": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.defaultConfiguration": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.dependsOn": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options.buildTarget": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options.runBuildTargetDependencies": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.development": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.development.buildTarget": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.production": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.production.buildTarget": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.passWithNoTests": [
+      "apps/rupeelens-api/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
+  "libs/types": {
+    "root": [
+      "libs/types/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.outputs": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.executor": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.cwd": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.env": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.command": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.technologies": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.technologies.0": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.description": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help.command": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help.example": [
+      "libs/types/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.lint": [
+      "libs/types/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.options": [
+      "libs/types/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.inputs": [
+      "libs/types/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.outputs": [
+      "libs/types/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata": [
+      "libs/types/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.executor": [
+      "libs/types/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.options.cwd": [
+      "libs/types/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.options.command": [
+      "libs/types/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.technologies": [
+      "libs/types/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.technologies.0": [
+      "libs/types/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.description": [
+      "libs/types/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help": [
+      "libs/types/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help.command": [
+      "libs/types/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help.example": [
+      "libs/types/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "name": [
+      "libs/types/project.json",
+      "nx/core/project-json"
+    ],
+    "$schema": [
+      "libs/types/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "libs/types/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "libs/types/project.json",
+      "nx/core/project-json"
+    ],
+    "// targets": [
+      "libs/types/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "libs/types/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
+  "libs/ui": {
+    "root": [
+      "libs/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.outputs": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.executor": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.cwd": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.env": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.command": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.technologies": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.technologies.0": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.description": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help.command": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help.example": [
+      "libs/ui/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.lint": [
+      "libs/ui/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.options": [
+      "libs/ui/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.inputs": [
+      "libs/ui/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.outputs": [
+      "libs/ui/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata": [
+      "libs/ui/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.executor": [
+      "libs/ui/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.options.cwd": [
+      "libs/ui/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.options.command": [
+      "libs/ui/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.technologies": [
+      "libs/ui/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.technologies.0": [
+      "libs/ui/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.description": [
+      "libs/ui/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help": [
+      "libs/ui/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help.command": [
+      "libs/ui/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help.example": [
+      "libs/ui/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "name": [
+      "libs/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "$schema": [
+      "libs/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "libs/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "libs/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "// targets": [
+      "libs/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "libs/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
+  "libs/utils": {
+    "root": [
+      "libs/utils/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.outputs": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.executor": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.cwd": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.env": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.options.command": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.technologies": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.technologies.0": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.description": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help.command": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.test.metadata.help.example": [
+      "libs/utils/jest.config.ts",
+      "@nx/jest/plugin"
+    ],
+    "targets.lint": [
+      "libs/utils/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.options": [
+      "libs/utils/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.inputs": [
+      "libs/utils/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.outputs": [
+      "libs/utils/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata": [
+      "libs/utils/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.executor": [
+      "libs/utils/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.options.cwd": [
+      "libs/utils/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.options.command": [
+      "libs/utils/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.technologies": [
+      "libs/utils/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.technologies.0": [
+      "libs/utils/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.description": [
+      "libs/utils/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help": [
+      "libs/utils/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help.command": [
+      "libs/utils/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "targets.lint.metadata.help.example": [
+      "libs/utils/eslint.config.mjs",
+      "@nx/eslint/plugin"
+    ],
+    "name": [
+      "libs/utils/project.json",
+      "nx/core/project-json"
+    ],
+    "$schema": [
+      "libs/utils/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "libs/utils/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "libs/utils/project.json",
+      "nx/core/project-json"
+    ],
+    "// targets": [
+      "libs/utils/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "libs/utils/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm nx build rupeelens-fe",
+  "outputDirectory": "apps/rupeelens-fe/.next",
+  "ignoreCommand": "npx nx show projects --affected --base=$VERCEL_GIT_PREVIOUS_SHA --head=HEAD | grep -q rupeelens-fe && exit 1 || exit 0"
+}
