@@ -50,56 +50,28 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "supabase/migrations/002_byok_keys.sql",
-        "hash": "3109586101418970123"
-      },
-      {
-        "file": ".prettierignore",
-        "hash": "14688272390704683536"
-      },
-      {
         "file": "docs/RUPEELENS-SUMMARY.md",
         "hash": "17618563275569295419"
-      },
-      {
-        "file": "vercel.json",
-        "hash": "2356219925519336613"
-      },
-      {
-        "file": "eslint.config.mjs",
-        "hash": "3462096019013144053"
-      },
-      {
-        "file": "supabase/migrations/001_transactions.sql",
-        "hash": "8788550156546250842"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "16267754514737964994"
-      },
-      {
-        "file": "pnpm-workspace.yaml",
-        "hash": "2811845925925127796"
-      },
-      {
-        "file": "jest.preset.js",
-        "hash": "9430166341120122740"
       },
       {
         "file": "supabase/migrations/003_auth_schema_v2.sql",
         "hash": "15332121087809965246"
       },
       {
-        "file": "package.json",
-        "hash": "9484407263021639084"
+        "file": ".prettierignore",
+        "hash": "14688272390704683536"
       },
       {
-        "file": "pnpm-lock.yaml",
-        "hash": "16054378824818442649"
+        "file": "docs/rupeelens-srs.html",
+        "hash": "17702669150495319209"
       },
       {
-        "file": "nx.json",
-        "hash": "985689564224161594"
+        "file": "vercel.json",
+        "hash": "11998241608411593838"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "9430166341120122740"
       },
       {
         "file": ".dockerignore",
@@ -110,24 +82,52 @@
         "hash": "8094490713162496875"
       },
       {
+        "file": "eslint.config.mjs",
+        "hash": "3462096019013144053"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "16267754514737964994"
+      },
+      {
+        "file": "supabase/migrations/001_transactions.sql",
+        "hash": "8788550156546250842"
+      },
+      {
         "file": "tsconfig.base.json",
         "hash": "9718832641666275383"
       },
       {
-        "file": "docs/rupeelens-srs.html",
-        "hash": "17702669150495319209"
-      },
-      {
-        "file": "jest.config.ts",
-        "hash": "6870352021923392442"
+        "file": ".github/workflows/ci.yml",
+        "hash": "2853269498279245655"
       },
       {
         "file": "docs/rupeelens-roadmap.html",
         "hash": "7461608301574082045"
       },
       {
-        "file": ".github/workflows/ci.yml",
-        "hash": "2853269498279245655"
+        "file": "package.json",
+        "hash": "9484407263021639084"
+      },
+      {
+        "file": "supabase/migrations/002_byok_keys.sql",
+        "hash": "3109586101418970123"
+      },
+      {
+        "file": "pnpm-lock.yaml",
+        "hash": "16054378824818442649"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "6870352021923392442"
+      },
+      {
+        "file": "nx.json",
+        "hash": "985689564224161594"
+      },
+      {
+        "file": "pnpm-workspace.yaml",
+        "hash": "2811845925925127796"
       }
     ],
     "projectFileMap": {
