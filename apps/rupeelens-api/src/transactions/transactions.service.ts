@@ -3,10 +3,16 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { type Transaction } from '@shared-types';
-import { clampBookedAtToNow, isBookedAtInFuture, normalizeCategory } from '@shared-utils';
+import { type Transaction, type TransactionListPage } from '@shared-types';
+import {
+  clampBookedAtToNow,
+  decodeListCursor,
+  isBookedAtInFuture,
+  normalizeCategory,
+} from '@shared-utils';
 
 import type { CreateTransactionDto } from './dto/create-transaction.dto';
+import { ListTransactionsQueryDto } from './dto/list-transactions-query.dto';
 import { DEFAULT_LIST_LIMIT } from './dto/list-transactions-query.dto';
 import type { UpdateTransactionDto } from './dto/update-transaction.dto';
 import { TransactionsRepository } from './transactions.repository';
@@ -15,8 +21,21 @@ import { TransactionsRepository } from './transactions.repository';
 export class TransactionsService {
   constructor(private readonly repository: TransactionsRepository) {}
 
-  list(ownerId: string, limit = DEFAULT_LIST_LIMIT): Promise<Transaction[]> {
-    return this.repository.list(ownerId, { limit });
+  list(ownerId: string, query: ListTransactionsQueryDto = {}): Promise<TransactionListPage> {
+    const limit = query.limit ?? DEFAULT_LIST_LIMIT;
+    const cursor = query.cursor ? decodeListCursor(query.cursor) : undefined;
+    if (query.cursor && !cursor) {
+      throw new BadRequestException('Invalid cursor');
+    }
+    const category =
+      query.category === undefined ? undefined : normalizeCategory(query.category);
+    return this.repository.list(ownerId, {
+      category: category || undefined,
+      cursor: cursor ?? undefined,
+      limit,
+      q: query.q?.trim() || undefined,
+      status: query.status,
+    });
   }
 
   create(ownerId: string, dto: CreateTransactionDto): Promise<Transaction> {

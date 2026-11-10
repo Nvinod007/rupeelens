@@ -8,3 +8,7 @@ export * from './lib/draft/heuristic-draft';
 export * from './lib/env/parse-env';
 export * from './lib/security/gemini-key';
 export * from './lib/category/category';
+export * from './lib/spending/category-breakdown';
+export * from './lib/spending/spend-time-series';
+export * from './lib/export/transactions-csv';
+export * from './lib/transactions/list-cursor';

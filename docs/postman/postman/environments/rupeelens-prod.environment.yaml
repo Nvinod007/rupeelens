@@ -1,0 +1,35 @@
+$kind: environment
+name: RupeeLens — Production
+values:
+  - key: apiBaseUrl
+    value: https://api-rupeelens.appkits.in/api
+    enabled: true
+    type: default
+  - key: supabaseUrl
+    value: https://YOUR_PROJECT.supabase.co
+    enabled: true
+    type: default
+  - key: supabaseAnonKey
+    value: YOUR_SUPABASE_ANON_OR_PUBLISHABLE_KEY
+    enabled: true
+    type: secret
+  - key: accessToken
+    value: ''
+    enabled: true
+    type: secret
+  - key: refreshToken
+    value: ''
+    enabled: true
+    type: secret
+  - key: transactionId
+    value: ''
+    enabled: true
+    type: default
+  - key: categoryId
+    value: ''
+    enabled: true
+    type: default
+  - key: geminiApiKey
+    value: ''
+    enabled: true
+    type: secret

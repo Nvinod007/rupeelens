@@ -11,7 +11,7 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
-import type { Transaction } from '@shared-types';
+import type { Transaction, TransactionListPage } from '@shared-types';
 
 import { UserId } from '../auth/current-user.decorator';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
@@ -27,8 +27,8 @@ export class TransactionsController {
   list(
     @UserId() ownerId: string,
     @Query() query: ListTransactionsQueryDto
-  ): Promise<Transaction[]> {
-    return this.transactions.list(ownerId, query.limit);
+  ): Promise<TransactionListPage> {
+    return this.transactions.list(ownerId, query);
   }
 
   @Post()

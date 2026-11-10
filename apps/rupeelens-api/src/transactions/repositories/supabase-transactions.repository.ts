@@ -3,7 +3,8 @@ import {
   Logger,
   ServiceUnavailableException,
 } from '@nestjs/common';
-import type { Transaction, TransactionStatus } from '@shared-types';
+import type { Transaction, TransactionListPage, TransactionStatus } from '@shared-types';
+import { encodeListCursor } from '@shared-utils';
 import type { PostgrestError } from '@supabase/supabase-js';
 
 import { SupabaseService } from '../../database/supabase.service';
@@ -59,19 +60,60 @@ export class SupabaseTransactionsRepository extends TransactionsRepository {
 
   async list(
     ownerId: string,
-    { limit }: ListTransactionsOptions
-  ): Promise<Transaction[]> {
-    const { data, error } = await this.client()
+    options: ListTransactionsOptions
+  ): Promise<TransactionListPage> {
+    const take = options.limit + 1;
+    let query = this.client()
       .from(TABLE)
       .select('*')
       .eq('user_id', ownerId)
-      .is('deleted_at', null)
+      .is('deleted_at', null);
+
+    if (options.status) {
+      query = query.eq('status', options.status);
+    }
+    if (options.category) {
+      query = query.eq('category', options.category);
+    }
+    if (options.q) {
+      const escaped = options.q.replace(/[%_\\]/g, '\\$&');
+      const pattern = `%${escaped}%`;
+      query = query.or(`title.ilike.${pattern},notes.ilike.${pattern}`);
+    }
+    if (options.cursor) {
+      const { bookedAt, id } = options.cursor;
+      query = query.or(
+        `booked_at.lt.${bookedAt},and(booked_at.eq.${bookedAt},id.lt.${id})`
+      );
+    }
+
+    const { data, error } = await query
       .order('booked_at', { ascending: false })
-      .limit(limit);
+      .order('id', { ascending: false })
+      .limit(take);
+
     if (error) {
       this.fail(error);
     }
-    return ((data ?? []) as TransactionRow[]).map(toTransaction);
+
+    const rows = ((data ?? []) as TransactionRow[]).map(toTransaction);
+
+    // No exact substring hit on the first page: fall back to typo-tolerant match.
+    if (options.q && !options.cursor && rows.length === 0) {
+      return { items: await this.fuzzySearch(ownerId, options), nextCursor: null };
+    }
+
+    const hasMore = rows.length > options.limit;
+    const items = hasMore ? rows.slice(0, options.limit) : rows;
+    const last = items.at(-1);
+
+    return {
+      items,
+      nextCursor:
+        hasMore && last
+          ? encodeListCursor({ bookedAt: last.bookedAt, id: last.id })
+          : null,
+    };
   }
 
   async create(
@@ -122,6 +164,28 @@ export class SupabaseTransactionsRepository extends TransactionsRepository {
       this.fail(error);
     }
     return Boolean(data);
+  }
+
+  /** Best-effort: if the 005 migration isn't applied, behave like "no matches". */
+  private async fuzzySearch(
+    ownerId: string,
+    options: ListTransactionsOptions
+  ): Promise<Transaction[]> {
+    const { data, error } = await this.client().rpc(
+      'search_transactions_fuzzy',
+      {
+        p_category: options.category ?? null,
+        p_limit: options.limit,
+        p_q: options.q,
+        p_status: options.status ?? null,
+        p_user: ownerId,
+      }
+    );
+    if (error) {
+      this.logger.warn(`Fuzzy search unavailable: ${error.message}`);
+      return [];
+    }
+    return ((data ?? []) as TransactionRow[]).map(toTransaction);
   }
 
   private client() {

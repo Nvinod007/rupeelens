@@ -8,6 +8,9 @@ export const RATE_LIMITS = {
 
 export const DEFAULT_PORT = 4001;
 
+/** AI parses allowed per user per IST day (override with AI_DAILY_LIMIT). */
+export const DEFAULT_AI_DAILY_LIMIT = 50;
+
 export const DEFAULT_CORS_ORIGINS: readonly string[] = [
   'http://localhost:3000',
   'http://localhost:3001',

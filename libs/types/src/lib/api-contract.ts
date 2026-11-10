@@ -13,6 +13,7 @@ export const API_ROUTES = {
   categories: '/categories',
   health: '/health',
   parseDraft: '/parse/draft',
+  settingsAiUsage: '/settings/ai-usage',
   settingsByok: '/settings/byok',
   settingsByokStatus: '/settings/byok/status',
   transactions: '/transactions',

@@ -1,0 +1,24 @@
+$kind: http-request
+name: Create transaction (draft)
+method: POST
+url: '{{apiBaseUrl}}/transactions'
+order: 2500
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "title": "Postman draft note",
+      "amount": 1,
+      "status": "draft",
+      "transcript": "Swiggy 450 dinner"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      if (pm.response.code === 201 || pm.response.code === 200) {
+        const j = pm.response.json();
+        if (j.id) pm.environment.set('transactionId', j.id);
+      }

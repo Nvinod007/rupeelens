@@ -1,0 +1,27 @@
+$kind: collection
+name: RupeeLens API
+schemaVersion: '3.0'
+description: |
+  Nest API (`/api` prefix). Protected routes need `Authorization: Bearer {{accessToken}}` (Supabase JWT).
+
+  **Login (Google app user):**
+  1. Sign in at the web app.
+  2. DevTools → Network → copy `access_token`, or Local Storage → Supabase session.
+  3. Paste into environment `accessToken` (and `refreshToken` if present).
+  4. Run **Auth Supabase → Refresh access token** when expired.
+
+  Set `supabaseUrl` + `supabaseAnonKey` from `apps/rupeelens-fe/.env.example`.
+auth:
+  type: bearer
+  bearer:
+    - key: token
+      value: '{{accessToken}}'
+      type: string
+order:
+  - auth-supabase
+  - health
+  - transactions
+  - categories
+  - settings-byok
+  - parse-ai-sse
+  - smoke-flow

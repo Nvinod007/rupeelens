@@ -1,0 +1,13 @@
+$kind: http-request
+name: Add custom category
+method: POST
+url: '{{apiBaseUrl}}/categories'
+order: 2000
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "PostmanCategory"
+    }

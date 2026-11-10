@@ -4,6 +4,7 @@ import { isLikelyGeminiKey } from '@shared-utils';
 import { useCallback, useState } from 'react';
 
 import {
+  useAiUsage,
   useByokStatus,
   useRevokeByok,
   useSaveByok,
@@ -16,6 +17,7 @@ export function ByokForm() {
   const [showKey, setShowKey] = useState(false);
   const [consent, setConsent] = useState(false);
   const status = useByokStatus();
+  const aiUsage = useAiUsage();
   const saveMutation = useSaveByok();
   const revokeMutation = useRevokeByok();
   const configured = status.data?.configured ?? false;
@@ -76,6 +78,12 @@ export function ByokForm() {
         <div>
           <h2 className="text-base font-semibold">Gemini API key (BYOK)</h2>
           <p className="text-sm text-primary">✓ Key stored on your account</p>
+          {aiUsage.data ? (
+            <p className="mt-1 text-xs text-muted-foreground">
+              AI parses today: {aiUsage.data.used} / {aiUsage.data.limit} (resets
+              midnight IST)
+            </p>
+          ) : null}
         </div>
         {error ? <p className="text-sm text-destructive">{error}</p> : null}
         <button

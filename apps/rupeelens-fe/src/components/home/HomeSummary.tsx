@@ -44,6 +44,11 @@ export function HomeSummary({
   );
   const spend = inPeriod.reduce((sum, t) => sum + Number(t.amount), 0);
   const drafts = transactions.filter((t) => t.status === 'draft').length;
+  const entriesInPeriod = transactions.filter(
+    (t) =>
+      t.status === 'draft' ||
+      (t.status === 'saved' && transactionInSpendRange(t.bookedAt, range))
+  ).length;
   const maxDate = maxDateLocalValue(now);
 
   return (
@@ -115,12 +120,16 @@ export function HomeSummary({
         </div>
         <div className="glass-card p-4">
           <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-            All entries
+            {period === 'all' ? 'All entries' : 'In period'}
           </p>
           <p className="mt-1 text-2xl font-semibold tabular-nums">
-            {transactions.length}
+            {entriesInPeriod}
           </p>
-          <p className="mt-1 text-xs text-muted-foreground">Full history</p>
+          <p className="mt-1 text-xs text-muted-foreground">
+            {period === 'all'
+              ? `${transactions.length} loaded from API`
+              : range.label}
+          </p>
         </div>
         <div className="glass-card p-4 sm:col-span-2 lg:col-span-1">
           <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">

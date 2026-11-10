@@ -1,0 +1,5 @@
+$kind: http-request
+name: BYOK status
+method: GET
+url: '{{apiBaseUrl}}/settings/byok/status'
+order: 1000

@@ -1,0 +1,5 @@
+$kind: http-request
+name: Delete transaction
+method: DELETE
+url: '{{apiBaseUrl}}/transactions/{{transactionId}}'
+order: 4000

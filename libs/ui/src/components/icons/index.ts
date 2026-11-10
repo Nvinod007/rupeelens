@@ -9,6 +9,7 @@ export { MoonIcon } from './moon-icon';
 export type { IconMotionKey } from './motion';
 export { iconMotion } from './motion';
 export { RupeeIcon } from './rupee-icon';
+export { SignOutIcon } from './sign-out-icon';
 export { SunIcon } from './sun-icon';
 export type { IconProps } from './types';
 export { UserIcon } from './user-icon';

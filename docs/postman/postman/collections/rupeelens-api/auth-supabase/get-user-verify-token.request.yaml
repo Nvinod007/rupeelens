@@ -1,0 +1,10 @@
+$kind: http-request
+name: Get user (verify token)
+method: GET
+url: '{{supabaseUrl}}/auth/v1/user'
+order: 2000
+auth:
+  type: noauth
+headers:
+  apikey: '{{supabaseAnonKey}}'
+  Authorization: Bearer {{accessToken}}

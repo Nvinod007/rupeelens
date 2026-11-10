@@ -2,6 +2,7 @@ import { registerAs } from '@nestjs/config';
 import { parseCsv } from '@shared-utils';
 
 import {
+  DEFAULT_AI_DAILY_LIMIT,
   DEFAULT_BYOK_FILE_PATH,
   DEFAULT_CORS_ORIGINS,
   DEFAULT_PORT,
@@ -23,6 +24,10 @@ export const appConfig = registerAs('app', () => {
     port: Number(env()['PORT'] ?? DEFAULT_PORT),
   };
 });
+
+export const aiQuotaConfig = registerAs('aiQuota', () => ({
+  dailyLimit: Number(env()['AI_DAILY_LIMIT'] ?? DEFAULT_AI_DAILY_LIMIT),
+}));
 
 export const geminiConfig = registerAs('gemini', () => ({
   baseUrl: (env()['GEMINI_API_BASE_URL'] ?? GEMINI_DEFAULTS.baseUrl).replace(/\/$/, ''),
@@ -51,6 +56,7 @@ export const storageConfig = registerAs('storage', () => ({
 }));
 
 export const configLoaders = [
+  aiQuotaConfig,
   appConfig,
   geminiConfig,
   securityConfig,

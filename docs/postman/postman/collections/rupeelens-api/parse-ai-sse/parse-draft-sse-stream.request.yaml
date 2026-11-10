@@ -1,0 +1,15 @@
+$kind: http-request
+name: Parse draft (SSE stream)
+method: POST
+url: '{{apiBaseUrl}}/parse/draft'
+order: 1000
+description: Response is text/event-stream. Needs BYOK configured.
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "transcript": "Swiggy 450 dinner",
+      "timezone": "Asia/Kolkata"
+    }

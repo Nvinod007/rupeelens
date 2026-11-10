@@ -1,0 +1,14 @@
+$kind: http-request
+name: Save Gemini API key
+method: POST
+url: '{{apiBaseUrl}}/settings/byok'
+order: 2000
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "apiKey": "{{geminiApiKey}}",
+      "consentAccepted": true
+    }

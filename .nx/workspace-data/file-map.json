@@ -50,80 +50,12 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": ".prettierignore",
-        "hash": "14688272390704683536"
+        "file": "docs/postman/postman/collections/rupeelens-api/categories/list-categories.request.yaml",
+        "hash": "5698750037764397877"
       },
       {
-        "file": "jest.config.ts",
-        "hash": "6870352021923392442"
-      },
-      {
-        "file": "pnpm-workspace.yaml",
-        "hash": "2811845925925127796"
-      },
-      {
-        "file": "pnpm-lock.yaml",
-        "hash": "16054378824818442649"
-      },
-      {
-        "file": "docs/rupeelens-test-suites.html",
-        "hash": "860247596613761656"
-      },
-      {
-        "file": "tsconfig.base.json",
-        "hash": "9718832641666275383"
-      },
-      {
-        "file": "supabase/migrations/003_auth_schema_v2.sql",
-        "hash": "15332121087809965246"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "8094490713162496875"
-      },
-      {
-        "file": "supabase/migrations/001_transactions.sql",
-        "hash": "8788550156546250842"
-      },
-      {
-        "file": "docs/rupeelens-roadmap.html",
-        "hash": "9379817591071887166"
-      },
-      {
-        "file": "supabase/migrations/002_byok_keys.sql",
-        "hash": "3109586101418970123"
-      },
-      {
-        "file": "docs/RUPEELENS-SUMMARY.md",
-        "hash": "17618563275569295419"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "16267754514737964994"
-      },
-      {
-        "file": "vercel.json",
-        "hash": "11998241608411593838"
-      },
-      {
-        "file": ".dockerignore",
-        "hash": "17398535027823991950"
-      },
-      {
-        "file": "package.json",
-        "hash": "9484407263021639084"
-      },
-      {
-        "file": "jest.preset.js",
-        "hash": "9430166341120122740"
-      },
-      {
-        "file": ".github/workflows/ci.yml",
-        "hash": "4034064451718582737"
-      },
-      {
-        "file": "supabase/migrations/004_user_categories.sql",
-        "hash": "16236650264882847805"
+        "file": "docs/postman/postman/collections/rupeelens-api/smoke-flow/2-create-transaction.request.yaml",
+        "hash": "9609112767016021615"
       },
       {
         "file": "eslint.config.mjs",
@@ -134,8 +66,224 @@
         "hash": "17702669150495319209"
       },
       {
+        "file": "docs/postman/postman/environments/rupeelens-local.environment.yaml",
+        "hash": "15431496829443485748"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/smoke-flow/.resources/definition.yaml",
+        "hash": "7501589159871927473"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/health/.resources/definition.yaml",
+        "hash": "9879691940693485539"
+      },
+      {
+        "file": "docs/rupeelens-roadmap.html",
+        "hash": "39482438831802993"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/parse-ai-sse/.resources/definition.yaml",
+        "hash": "12131376228931632591"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/auth-supabase/refresh-access-token.request.yaml",
+        "hash": "18432045889836683180"
+      },
+      {
+        "file": "docs/postman/.postman/resources.yaml",
+        "hash": "1655382383094074489"
+      },
+      {
+        "file": "pnpm-lock.yaml",
+        "hash": "16054378824818442649"
+      },
+      {
+        "file": "pnpm-workspace.yaml",
+        "hash": "2811845925925127796"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "8094490713162496875"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/categories/add-custom-category.request.yaml",
+        "hash": "8254813741252076772"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "9718832641666275383"
+      },
+      {
+        "file": "supabase/migrations/001_transactions.sql",
+        "hash": "8788550156546250842"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/smoke-flow/1-health.request.yaml",
+        "hash": "4680782133055050515"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "9430166341120122740"
+      },
+      {
+        "file": "supabase/migrations/004_user_categories.sql",
+        "hash": "16236650264882847805"
+      },
+      {
         "file": "nx.json",
         "hash": "985689564224161594"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/smoke-flow/3-list-transactions.request.yaml",
+        "hash": "5494226768947380054"
+      },
+      {
+        "file": "docs/postman/postman/globals/workspace.globals.yaml",
+        "hash": "8730159271726546077"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/categories/.resources/definition.yaml",
+        "hash": "14529933028022639559"
+      },
+      {
+        "file": "vercel.json",
+        "hash": "11998241608411593838"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/settings-byok/revoke-gemini-api-key.request.yaml",
+        "hash": "13852397385070431949"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "14688272390704683536"
+      },
+      {
+        "file": "docs/postman/postman/environments/rupeelens-prod.environment.yaml",
+        "hash": "7191316153238030975"
+      },
+      {
+        "file": "docs/seeds/fix-future-booked-at-from-bad-bulk.sql",
+        "hash": "1083702358615012475"
+      },
+      {
+        "file": ".dockerignore",
+        "hash": "17398535027823991950"
+      },
+      {
+        "file": "docs/postman/README.md",
+        "hash": "3333387527232538905"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/parse-ai-sse/parse-draft-sse-stream.request.yaml",
+        "hash": "9554775674288033797"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/categories/remove-category.request.yaml",
+        "hash": "6043521192384603116"
+      },
+      {
+        "file": ".github/workflows/ci.yml",
+        "hash": "4034064451718582737"
+      },
+      {
+        "file": "package.json",
+        "hash": "9484407263021639084"
+      },
+      {
+        "file": "supabase/migrations/005_fuzzy_search.sql",
+        "hash": "13830550194731818394"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/transactions/list-transactions-page.request.yaml",
+        "hash": "1301420478535516458"
+      },
+      {
+        "file": "docs/v2-progress.md",
+        "hash": "3478546195048550595"
+      },
+      {
+        "file": "docs/rupeelens-test-suites.html",
+        "hash": "11584725246729926713"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/.resources/definition.yaml",
+        "hash": "4830241240835806009"
+      },
+      {
+        "file": "supabase/migrations/003_auth_schema_v2.sql",
+        "hash": "15332121087809965246"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/transactions/create-transaction-saved.request.yaml",
+        "hash": "3822051400035846226"
+      },
+      {
+        "file": "docs/seeds/README.md",
+        "hash": "18071895655770622154"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/settings-byok/save-gemini-api-key.request.yaml",
+        "hash": "1931882051100588207"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/auth-supabase/.resources/definition.yaml",
+        "hash": "12508204892924749971"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/settings-byok/.resources/definition.yaml",
+        "hash": "12607639112225646807"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/transactions/.resources/definition.yaml",
+        "hash": "6428620529694966335"
+      },
+      {
+        "file": "docs/seeds/bulk-transactions-once.sql",
+        "hash": "12858818055863622210"
+      },
+      {
+        "file": "supabase/migrations/006_ai_usage.sql",
+        "hash": "12001773959229079779"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "16267754514737964994"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/health/health-check.request.yaml",
+        "hash": "2941983127521586675"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/transactions/create-transaction-draft.request.yaml",
+        "hash": "2581242514847716160"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/transactions/delete-transaction.request.yaml",
+        "hash": "16034643093860625198"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/auth-supabase/get-user-verify-token.request.yaml",
+        "hash": "6832327955251562561"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/settings-byok/byok-status.request.yaml",
+        "hash": "4250746684475464102"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/transactions/update-transaction.request.yaml",
+        "hash": "372068130739444934"
+      },
+      {
+        "file": "docs/RUPEELENS-SUMMARY.md",
+        "hash": "17618563275569295419"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "6870352021923392442"
+      },
+      {
+        "file": "supabase/migrations/002_byok_keys.sql",
+        "hash": "3109586101418970123"
       }
     ],
     "projectFileMap": {
@@ -233,6 +381,13 @@
           ]
         },
         {
+          "file": "apps/rupeelens-fe/src/app/(app)/dashboard/page.tsx",
+          "hash": "8890062843785129508",
+          "deps": [
+            "npm:next"
+          ]
+        },
+        {
           "file": "apps/rupeelens-fe/src/app/(app)/home/empty-draft.ts",
           "hash": "16819713176769387482",
           "deps": [
@@ -251,11 +406,19 @@
         },
         {
           "file": "apps/rupeelens-fe/src/app/(app)/home/useSpendPeriodFilter.ts",
-          "hash": "9619931346711166764",
+          "hash": "7459003576328279018",
           "deps": [
             "types",
             "utils",
             "npm:react"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-fe/src/app/(app)/insights/page.tsx",
+          "hash": "13619527599246681190",
+          "deps": [
+            "npm:next",
+            "utils"
           ]
         },
         {
@@ -264,11 +427,19 @@
         },
         {
           "file": "apps/rupeelens-fe/src/app/(app)/page.tsx",
-          "hash": "12190180535929852407"
+          "hash": "5700446294733816476"
         },
         {
           "file": "apps/rupeelens-fe/src/app/(app)/settings/page.tsx",
-          "hash": "13227185662859446664"
+          "hash": "16242039520543166107"
+        },
+        {
+          "file": "apps/rupeelens-fe/src/app/(app)/transactions/page.tsx",
+          "hash": "11493642981641102585",
+          "deps": [
+            "npm:react",
+            "types"
+          ]
         },
         {
           "file": "apps/rupeelens-fe/src/app/(legal)/privacy/page.tsx",
@@ -298,11 +469,11 @@
         },
         {
           "file": "apps/rupeelens-fe/src/app/global.css",
-          "hash": "3735568905679625228"
+          "hash": "14422365404337135317"
         },
         {
           "file": "apps/rupeelens-fe/src/app/layout.tsx",
-          "hash": "1752535008205613599",
+          "hash": "13743529315877548016",
           "deps": [
             "npm:next"
           ]
@@ -360,11 +531,11 @@
         },
         {
           "file": "apps/rupeelens-fe/src/components/app-shell/MobileNav.tsx",
-          "hash": "1950485168922924113"
+          "hash": "628161953407836756"
         },
         {
           "file": "apps/rupeelens-fe/src/components/app-shell/NavLink.tsx",
-          "hash": "6287414456325406662",
+          "hash": "5766238641842631682",
           "deps": [
             "ui",
             "npm:next"
@@ -372,7 +543,18 @@
         },
         {
           "file": "apps/rupeelens-fe/src/components/app-shell/Sidebar.tsx",
-          "hash": "11386060038514135966"
+          "hash": "5608747979937799761"
+        },
+        {
+          "file": "apps/rupeelens-fe/src/components/app-shell/SidebarSignOut.tsx",
+          "hash": "506259006824416480"
+        },
+        {
+          "file": "apps/rupeelens-fe/src/components/app-shell/SignOutButton.tsx",
+          "hash": "18008180161344945500",
+          "deps": [
+            "ui"
+          ]
         },
         {
           "file": "apps/rupeelens-fe/src/components/app-shell/TopBar.tsx",
@@ -430,7 +612,7 @@
         },
         {
           "file": "apps/rupeelens-fe/src/components/common/CategoryField.tsx",
-          "hash": "14306398729133566489",
+          "hash": "11310376912234929779",
           "deps": [
             "ui",
             "utils"
@@ -440,6 +622,36 @@
           "file": "apps/rupeelens-fe/src/components/common/OfflineBanner.tsx",
           "hash": "5436641532489392315",
           "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-fe/src/components/common/SegmentedFilter.tsx",
+          "hash": "8003547935634579886",
+          "deps": [
+            "ui"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-fe/src/components/dashboard/CategoryPieChart.tsx",
+          "hash": "13676150287110991554",
+          "deps": [
+            "utils"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-fe/src/components/dashboard/CategorySpendCharts.tsx",
+          "hash": "13821201568574940777",
+          "deps": [
+            "utils",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-fe/src/components/dashboard/SpendTrendCharts.tsx",
+          "hash": "6258612338940437144",
+          "deps": [
+            "utils",
             "npm:react"
           ]
         },
@@ -469,7 +681,7 @@
         },
         {
           "file": "apps/rupeelens-fe/src/components/home/HomeSummary.tsx",
-          "hash": "7094118779119117903",
+          "hash": "10614985854796201089",
           "deps": [
             "types",
             "utils"
@@ -512,12 +724,8 @@
           ]
         },
         {
-          "file": "apps/rupeelens-fe/src/components/settings/AccountCard.tsx",
-          "hash": "7398529506871847919"
-        },
-        {
           "file": "apps/rupeelens-fe/src/components/settings/ByokForm.tsx",
-          "hash": "13210019488972286996",
+          "hash": "16337592841405543734",
           "deps": [
             "utils",
             "npm:react"
@@ -546,7 +754,7 @@
         },
         {
           "file": "apps/rupeelens-fe/src/lib/api.ts",
-          "hash": "5944762217767345948",
+          "hash": "12789296173296512656",
           "deps": [
             "types"
           ]
@@ -581,8 +789,22 @@
           ]
         },
         {
+          "file": "apps/rupeelens-fe/src/lib/hooks/useDebouncedValue.ts",
+          "hash": "8891228650833272471",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-fe/src/lib/hooks/useLoadMoreSentinel.ts",
+          "hash": "3608943955933233883",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
           "file": "apps/rupeelens-fe/src/lib/hooks/useOfflineSync.ts",
-          "hash": "7569088444502631467",
+          "hash": "4104572785183227159",
           "deps": [
             "types",
             "npm:@tanstack/react-query",
@@ -604,11 +826,11 @@
         },
         {
           "file": "apps/rupeelens-fe/src/lib/legal.ts",
-          "hash": "15738216214943886703"
+          "hash": "3886671042784603960"
         },
         {
           "file": "apps/rupeelens-fe/src/lib/nav-items.ts",
-          "hash": "3417388087823147146",
+          "hash": "338317343757019235",
           "deps": [
             "ui",
             "npm:react"
@@ -646,7 +868,7 @@
         },
         {
           "file": "apps/rupeelens-fe/src/lib/queries/byok.ts",
-          "hash": "11285831370483221699",
+          "hash": "841728034495767174",
           "deps": [
             "types",
             "npm:@tanstack/react-query"
@@ -664,7 +886,7 @@
         },
         {
           "file": "apps/rupeelens-fe/src/lib/queries/transactions.ts",
-          "hash": "10206098100353420181",
+          "hash": "11916260845980279084",
           "deps": [
             "types",
             "npm:@tanstack/react-query"
@@ -694,7 +916,7 @@
         },
         {
           "file": "apps/rupeelens-fe/src/lib/theme.tsx",
-          "hash": "272806320432793111",
+          "hash": "11647575789972430321",
           "deps": [
             "npm:react"
           ]
@@ -705,7 +927,7 @@
         },
         {
           "file": "apps/rupeelens-fe/tailwind.config.js",
-          "hash": "5799553675573282193"
+          "hash": "3691417769507355984"
         },
         {
           "file": "apps/rupeelens-fe/tsconfig.json",
@@ -717,7 +939,7 @@
         },
         {
           "file": "apps/rupeelens-fe/tsconfig.tsbuildinfo",
-          "hash": "15809183500711275692"
+          "hash": "5342813389437373198"
         }
       ],
       "ui": [
@@ -780,6 +1002,10 @@
         {
           "file": "libs/ui/src/components/icons/rupee-icon.tsx",
           "hash": "527624307487204719"
+        },
+        {
+          "file": "libs/ui/src/components/icons/sign-out-icon.tsx",
+          "hash": "124584950267969019"
         },
         {
           "file": "libs/ui/src/components/icons/sun-icon.tsx",
@@ -892,7 +1118,7 @@
       "rupeelens-api": [
         {
           "file": "apps/rupeelens-api/.env.example",
-          "hash": "5305631904693181732"
+          "hash": "18345432349751198790"
         },
         {
           "file": "apps/rupeelens-api/Dockerfile",
@@ -915,8 +1141,51 @@
           "hash": "12830733579239015331"
         },
         {
+          "file": "apps/rupeelens-api/src/ai-usage/ai-usage.controller.ts",
+          "hash": "11607892439607691226",
+          "deps": [
+            "npm:@nestjs/common",
+            "types"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-api/src/ai-usage/ai-usage.module.ts",
+          "hash": "1622510555545528523",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-api/src/ai-usage/ai-usage.service.ts",
+          "hash": "10572397558410381998",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/config",
+            "types",
+            "utils"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-api/src/ai-usage/ai-usage.store.ts",
+          "hash": "964170442215206615"
+        },
+        {
+          "file": "apps/rupeelens-api/src/ai-usage/stores/in-memory-ai-usage.store.ts",
+          "hash": "1357460393269732851",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-api/src/ai-usage/stores/supabase-ai-usage.store.ts",
+          "hash": "12316428053889558585",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
           "file": "apps/rupeelens-api/src/app/app.module.ts",
-          "hash": "2213793173864731086",
+          "hash": "15201655288878324624",
           "deps": [
             "npm:@nestjs/common",
             "npm:@nestjs/config",
@@ -1058,6 +1327,21 @@
           ]
         },
         {
+          "file": "apps/rupeelens-api/src/common/logging/json-logger.ts",
+          "hash": "13083905308427357298",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-api/src/common/logging/request-logger.middleware.ts",
+          "hash": "15602026788218552695",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:express@4.22.1"
+          ]
+        },
+        {
           "file": "apps/rupeelens-api/src/common/throttle/app-throttler.guard.ts",
           "hash": "10186425783509137000",
           "deps": [
@@ -1067,11 +1351,11 @@
         },
         {
           "file": "apps/rupeelens-api/src/config/config.constants.ts",
-          "hash": "87156198919018917"
+          "hash": "17291877015806871049"
         },
         {
           "file": "apps/rupeelens-api/src/config/configuration.ts",
-          "hash": "6225415881587552153",
+          "hash": "16839220892522677432",
           "deps": [
             "npm:@nestjs/config",
             "utils"
@@ -1083,7 +1367,7 @@
         },
         {
           "file": "apps/rupeelens-api/src/config/env.validation.ts",
-          "hash": "1160555278621457810",
+          "hash": "14443375370265827516",
           "deps": [
             "npm:reflect-metadata",
             "npm:class-transformer",
@@ -1176,7 +1460,7 @@
         },
         {
           "file": "apps/rupeelens-api/src/main.ts",
-          "hash": "10397714383903964310",
+          "hash": "3623200474317123173",
           "deps": [
             "npm:@nestjs/common",
             "npm:@nestjs/config",
@@ -1218,7 +1502,7 @@
         },
         {
           "file": "apps/rupeelens-api/src/parse/parse.module.ts",
-          "hash": "11472732785506138844",
+          "hash": "6662573658295378016",
           "deps": [
             "npm:@nestjs/common"
           ]
@@ -1232,14 +1516,14 @@
         },
         {
           "file": "apps/rupeelens-api/src/parse/parse.service.spec.ts",
-          "hash": "12677659763844415430",
+          "hash": "14219903855327418032",
           "deps": [
             "types"
           ]
         },
         {
           "file": "apps/rupeelens-api/src/parse/parse.service.ts",
-          "hash": "10975233237439470398",
+          "hash": "4563804227330624487",
           "deps": [
             "npm:@nestjs/common",
             "types"
@@ -1314,8 +1598,9 @@
         },
         {
           "file": "apps/rupeelens-api/src/transactions/dto/list-transactions-query.dto.ts",
-          "hash": "14486471448083563344",
+          "hash": "16871893213547350773",
           "deps": [
+            "types",
             "npm:class-transformer",
             "npm:class-validator"
           ]
@@ -1329,24 +1614,26 @@
         },
         {
           "file": "apps/rupeelens-api/src/transactions/repositories/in-memory-transactions.repository.ts",
-          "hash": "13494379452422618210",
+          "hash": "5233058105688147825",
           "deps": [
             "npm:@nestjs/common",
-            "types"
+            "types",
+            "utils"
           ]
         },
         {
           "file": "apps/rupeelens-api/src/transactions/repositories/supabase-transactions.repository.ts",
-          "hash": "3255058616356535740",
+          "hash": "18410896987695752510",
           "deps": [
             "npm:@nestjs/common",
             "types",
+            "utils",
             "npm:@supabase/supabase-js"
           ]
         },
         {
           "file": "apps/rupeelens-api/src/transactions/transactions.controller.ts",
-          "hash": "8409412649234255233",
+          "hash": "8368736921653925400",
           "deps": [
             "npm:@nestjs/common",
             "types"
@@ -1362,21 +1649,22 @@
         },
         {
           "file": "apps/rupeelens-api/src/transactions/transactions.repository.ts",
-          "hash": "3348681501237810639",
+          "hash": "15266106242212918375",
           "deps": [
-            "types"
+            "types",
+            "utils"
           ]
         },
         {
           "file": "apps/rupeelens-api/src/transactions/transactions.service.spec.ts",
-          "hash": "9049241874225830576",
+          "hash": "10633230387077671315",
           "deps": [
             "npm:@nestjs/common"
           ]
         },
         {
           "file": "apps/rupeelens-api/src/transactions/transactions.service.ts",
-          "hash": "18320575715863806241",
+          "hash": "14800137700481714084",
           "deps": [
             "npm:@nestjs/common",
             "types",
@@ -1422,7 +1710,7 @@
         },
         {
           "file": "libs/types/src/index.ts",
-          "hash": "13671099072759642174"
+          "hash": "10796557130423611530"
         },
         {
           "file": "libs/types/src/lib/api-contract.spec.ts",
@@ -1430,7 +1718,7 @@
         },
         {
           "file": "libs/types/src/lib/api-contract.ts",
-          "hash": "918003804945393689"
+          "hash": "16074046056448301190"
         },
         {
           "file": "libs/types/src/lib/auth.ts",
@@ -1442,7 +1730,11 @@
         },
         {
           "file": "libs/types/src/lib/settings.ts",
-          "hash": "3774448250426194029"
+          "hash": "16876248743298371060"
+        },
+        {
+          "file": "libs/types/src/lib/transaction-list.ts",
+          "hash": "8276935017984790855"
         },
         {
           "file": "libs/types/src/lib/transaction.ts",
@@ -1480,7 +1772,7 @@
         },
         {
           "file": "libs/utils/src/index.ts",
-          "hash": "11954168082178946393"
+          "hash": "882964787769847501"
         },
         {
           "file": "libs/utils/src/lib/category/category.ts",
@@ -1531,7 +1823,7 @@
         },
         {
           "file": "libs/utils/src/lib/datetime/spend-period.ts",
-          "hash": "7885445377797645350"
+          "hash": "1095138700525962088"
         },
         {
           "file": "libs/utils/src/lib/draft/heuristic-draft.spec.ts",
@@ -1553,12 +1845,37 @@
           "hash": "5299739963821715221"
         },
         {
+          "file": "libs/utils/src/lib/export/transactions-csv.ts",
+          "hash": "15394809927407785214",
+          "deps": [
+            "types"
+          ]
+        },
+        {
           "file": "libs/utils/src/lib/security/gemini-key.spec.ts",
           "hash": "10719460050629114486"
         },
         {
           "file": "libs/utils/src/lib/security/gemini-key.ts",
           "hash": "13044697143239406405"
+        },
+        {
+          "file": "libs/utils/src/lib/spending/category-breakdown.ts",
+          "hash": "6522183206261606080",
+          "deps": [
+            "types"
+          ]
+        },
+        {
+          "file": "libs/utils/src/lib/spending/spend-time-series.ts",
+          "hash": "5932039234732273255",
+          "deps": [
+            "types"
+          ]
+        },
+        {
+          "file": "libs/utils/src/lib/transactions/list-cursor.ts",
+          "hash": "1480355812144223046"
         },
         {
           "file": "libs/utils/tsconfig.json",

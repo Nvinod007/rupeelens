@@ -1,0 +1,14 @@
+$kind: http-request
+name: Update transaction
+method: PATCH
+url: '{{apiBaseUrl}}/transactions/{{transactionId}}'
+order: 3000
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "amount": 299,
+      "notes": "Updated from Postman"
+    }

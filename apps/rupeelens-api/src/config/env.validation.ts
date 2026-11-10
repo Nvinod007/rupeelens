@@ -55,6 +55,13 @@ export class EnvironmentVariables {
   TRANSACTIONS_STORAGE?: string;
 
   @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  @Max(100_000)
+  AI_DAILY_LIMIT?: number;
+
+  @IsOptional()
   @IsString()
   GEMINI_MODEL?: string;
 

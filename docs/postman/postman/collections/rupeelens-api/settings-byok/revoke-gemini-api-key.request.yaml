@@ -1,0 +1,5 @@
+$kind: http-request
+name: Revoke Gemini API key
+method: DELETE
+url: '{{apiBaseUrl}}/settings/byok'
+order: 3000

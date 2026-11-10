@@ -1,5 +1,6 @@
 import type { ParseSseEvent } from '@shared-types';
 
+import type { AiUsageService } from '../ai-usage/ai-usage.service';
 import { LlmClient, LlmProviderError } from '../llm/llm.types';
 import type { SettingsService } from '../settings/settings.service';
 import { ParseService } from './parse.service';
@@ -18,7 +19,11 @@ function build(options: { key: string | null; llm: Partial<LlmClient> }) {
   const settings = {
     getDecryptedKey: jest.fn().mockResolvedValue(options.key),
   } as unknown as SettingsService;
-  return new ParseService(settings, options.llm as LlmClient);
+  const aiUsage = {
+    dailyLimit: 50,
+    tryConsume: jest.fn().mockResolvedValue(true),
+  } as unknown as AiUsageService;
+  return new ParseService(settings, options.llm as LlmClient, aiUsage);
 }
 
 const request = { transcript: 'paid 500 swiggy biryani' };

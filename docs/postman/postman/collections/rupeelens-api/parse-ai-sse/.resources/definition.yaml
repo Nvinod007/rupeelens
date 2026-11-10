@@ -1,0 +1,4 @@
+$kind: folder
+name: Parse (AI — SSE)
+order:
+  - parse-draft-sse-stream

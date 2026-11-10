@@ -1,0 +1,5 @@
+$kind: http-request
+name: List transactions (page)
+method: GET
+url: '{{apiBaseUrl}}/transactions?limit=50'
+order: 1000

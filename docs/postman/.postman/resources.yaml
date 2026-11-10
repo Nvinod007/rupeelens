@@ -1,0 +1,10 @@
+# Use this workspace to collaborate
+workspace:
+  id: 230a56af-3614-4732-8212-a56c222e18d9
+
+localResources:
+  collections:
+    - ../postman/collections/rupeelens-api
+  environments:
+    - ../postman/environments/rupeelens-local.environment.yaml
+    - ../postman/environments/rupeelens-prod.environment.yaml

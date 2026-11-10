@@ -1,0 +1,6 @@
+$kind: folder
+name: Settings (BYOK)
+order:
+  - byok-status
+  - save-gemini-api-key
+  - revoke-gemini-api-key

@@ -117,7 +117,7 @@ curl https://api-rupeelens.appkits.in/api/health</code></pre>
 # Vercel env: NEXT_PUBLIC_API_URL=https://api-rupeelens.appkits.in
 
 # Database migrations (Supabase SQL editor, in order)
-#   003_auth_schema_v2.sql  →  004_user_categories.sql</code></pre>
+#   003_auth_schema_v2.sql  →  004_user_categories.sql  →  005_fuzzy_search.sql  →  006_ai_usage.sql</code></pre>
   </section>
 
   <script>
@@ -178,18 +178,20 @@ curl https://api-rupeelens.appkits.in/api/health</code></pre>
         goal: "Make the data useful and the product safe to grow: see where money goes, handle volume, control AI cost.",
         areas: [
           { name: "Understand spending", items: [
-            { t: "Dashboard", s: "todo" },
-            { t: "Pie chart / spending analyser (category breakdown)", s: "todo" },
-            { t: "Transactions page (full history, search, filter by category)", s: "todo", n: "Next up: search bar with category filter" },
-            { t: "Captures schema (amount_minor, raw capture records)", s: "todo" }
+            { t: "Insights (/insights)", s: "done", n: "Period filter + category pie + CSV export for current period; /dashboard redirects here" },
+            { t: "Pie chart / spending analyser (category breakdown)", s: "done", n: "SVG donut + hover-linked category list" },
+            { t: "Spend-over-time bar chart", s: "done", n: "Daily (week/month/short custom) or monthly buckets; hover shows date + amount" },
+            { t: "Transactions page (full history, search, filter by category)", s: "done", n: "/transactions — debounced search, category, status (server-side), infinite scroll" },
+            { t: "Typo-tolerant search (pg_trgm)", s: "done", n: "Migration 005; falls back when exact match is empty" }
           ]},
           { name: "Scale & safety", items: [
-            { t: "Cursor pagination for transactions", s: "todo" },
-            { t: "AI usage tracking + quota + friendly limit errors", s: "todo" },
-            { t: "Export my data", s: "todo" },
+            { t: "Cursor pagination for transactions", s: "done", n: "GET /transactions?cursor=&limit=; FE infinite list" },
+            { t: "Request cancellation + debounced search", s: "done", n: "AbortSignal from React Query; 350 ms debounce" },
+            { t: "Postman collection + one-time bulk seed SQL", s: "done", n: "docs/postman, docs/seeds" },
+            { t: "AI usage tracking + quota + friendly limit errors", s: "done", n: "Migration 006; AI_DAILY_LIMIT (default 50/user/IST day); friendly error in the parse stream; usage shown in Settings" },
+            { t: "Export my data", s: "done", n: "CSV export on Insights (current period saved rows)" },
             { t: "CI (lint, test, build on every PR)", s: "done", n: "GitHub Actions on Node 22" },
-            { t: "Structured logging, error tracking, metrics", s: "todo" },
-            { t: "Frontend unit tests (api client, hooks)", s: "wip", n: "offline queue, network, legal, consent, login; hooks/components still thin" }
+            { t: "Structured logging with request id + latency", s: "done", n: "JSON lines in production, readable text locally; x-request-id echoed; health probes skipped; query strings never logged" }
           ]}
         ]
       },
@@ -202,6 +204,11 @@ curl https://api-rupeelens.appkits.in/api/health</code></pre>
             { t: "Splitwise-style splits and shared groups", s: "todo", n: "Needs Supabase Realtime for live updates" },
             { t: "Accounts page", s: "todo" },
             { t: "Bank linking / sync", s: "todo" }
+          ]},
+          { name: "Platform (carried over from V2)", items: [
+            { t: "Captures schema (amount_minor, raw capture records)", s: "todo", n: "Moved from V2 — nothing shipped in V2 consumes it" },
+            { t: "Error tracking (Sentry) + metrics dashboard", s: "todo", n: "Moved from V2 — logs and request ids are in place" },
+            { t: "Frontend unit tests (hooks, components)", s: "todo", n: "Moved from V2 — offline queue, network, legal, consent, login covered today" }
           ]},
           { name: "Smarter product", items: [
             { t: "Insights page (AI-generated)", s: "todo" },

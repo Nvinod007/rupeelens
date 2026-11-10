@@ -14,7 +14,7 @@ export function useSpendPeriodFilter(transactions: Transaction[]) {
   const [spendPeriod, setSpendPeriod] = useState<SpendPeriod>('month');
   const [customRange, setCustomRange] = useState<CustomRangeYmd>(() => {
     const today = ymdInZone(new Date());
-    return { from: today, to: today };
+    return { from: `${today.slice(0, 7)}-01`, to: today };
   });
 
   const visibleTransactions = useMemo(() => {

@@ -190,17 +190,17 @@
         { t:"Cold start", st:["Wait 15 min idle, then reload"], e:"First request still succeeds within a few seconds." },
         { t:"Rollback sanity", st:["Note the previous deploy id"], e:"Know how to redeploy it in Vercel/Northflank." }
       ]},
-      { id:"dash", v:"v2", name:"Dashboard & analytics (planned)", cases:[
-        { t:"Category pie matches totals", st:["Open Dashboard"], e:"Slices sum to month total; custom categories shown." },
+      { id:"dash", v:"v2", name:"Insights (/insights)", cases:[
+        { t:"Category pie matches totals", st:["Open Insights","Month tab"], e:"Slices sum to period total; custom categories shown." },
         { t:"Empty state", st:["New account"], e:"Friendly empty chart message." },
         { t:"Date range switch", st:["Change month/range"], e:"Charts and totals update together." }
       ]},
-      { id:"txpage", v:"v2", name:"Transactions page: search & filters (planned)", cases:[
-        { t:"Search by title", st:["Type 'swig'"], e:"Matches Swiggy, case-insensitive." },
-        { t:"Filter by category", st:["Select 'Cooler'"], e:"Only that category; custom ones selectable." },
-        { t:"Combine filters", st:["Category + date range + text"], e:"AND logic; clear-all resets." },
-        { t:"Pagination", st:["Seed 200 rows, scroll"], e:"Cursor pagination, no duplicates, stable order." },
-        { t:"Export my data", st:["Click Export"], e:"CSV/JSON with only own, non-deleted rows." }
+      { id:"txpage", v:"v2", name:"Transactions (/transactions)", cases:[
+        { t:"Search by title", st:["Type 'swig'"], e:"Matches title/notes, case-insensitive." },
+        { t:"Filter by category", st:["Pick 'Cooler'"], e:"Only that category; custom ones selectable." },
+        { t:"Status filter", st:["Drafts tab"], e:"Only draft rows." },
+        { t:"Pagination", st:["Load more twice"], e:"No duplicates; stable newest-first order." },
+        { t:"Export my data", st:["Insights → Export CSV"], e:"CSV for current period saved rows only." }
       ]},
       { id:"ai2", v:"v2", name:"AI quota & cost control (planned)", cases:[
         { t:"Usage counter", st:["Run 5 parses"], e:"Usage increments by 5." },

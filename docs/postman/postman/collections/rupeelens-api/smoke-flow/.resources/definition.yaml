@@ -1,0 +1,6 @@
+$kind: folder
+name: Smoke flow
+order:
+  - 1-health
+  - 2-create-transaction
+  - 3-list-transactions

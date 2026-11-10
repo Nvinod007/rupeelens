@@ -2,8 +2,10 @@
  * Single source of truth for legal copy. Bump `version` whenever the Privacy
  * Policy or Terms change materially: returning users are asked to consent again.
  */
+export const SUPPORT_EMAIL = 'vinodkumar.nelanakula@gmail.com';
+
 export const LEGAL = {
-  contactEmail: 'hello@rupeelens.appkits.in',
+  contactEmail: SUPPORT_EMAIL,
   domain: 'rupeelens.appkits.in',
   effectiveDate: '9 November 2026',
   grievanceOfficer: 'Grievance Officer, RupeeLens',

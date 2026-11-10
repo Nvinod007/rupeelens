@@ -4,21 +4,23 @@
 
 /* Luminous Finance — Stitch tokens */
 :root {
-  --background: 210 40% 96%;
-  --foreground: 222 47% 11%;
-  --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
+  --background: 210 40% 95%;
+  --foreground: 222 42% 11%;
+  --card: 210 30% 97.5%;
+  --card-foreground: 222 42% 11%;
   --primary: 160 84% 39%;
   --primary-foreground: 0 0% 100%;
   --secondary: 198 93% 60%;
-  --secondary-foreground: 222 47% 11%;
-  --muted: 210 40% 94%;
-  --muted-foreground: 215 16% 47%;
-  --border: 214 32% 91%;
-  --input: 214 32% 91%;
+  --secondary-foreground: 222 42% 11%;
+  --muted: 210 32% 91%;
+  --muted-foreground: 215 19% 34%;
+  --border: 214 26% 84%;
+  --input: 210 28% 88%;
   --ring: 160 84% 39%;
-  --accent: 210 40% 94%;
-  --accent-foreground: 222 47% 11%;
+  --accent: 210 32% 91%;
+  --accent-foreground: 222 42% 11%;
+  --sidebar: 210 36% 91.5%;
+  --sidebar-foreground: 222 42% 11%;
   --destructive: 347 90% 60%;
   --destructive-foreground: 0 0% 100%;
   --auth-dot: 160 84% 39% / 0.2;
@@ -30,6 +32,8 @@
   --foreground: 214 32% 91%;
   --card: 217 33% 17%;
   --card-foreground: 214 32% 91%;
+  --sidebar: 217 33% 15%;
+  --sidebar-foreground: 214 32% 91%;
   --primary: 160 84% 39%;
   --primary-foreground: 222 47% 11%;
   --secondary: 198 93% 60%;
@@ -50,6 +54,12 @@
   * {
     @apply border-border;
   }
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
   body {
     @apply bg-background text-foreground antialiased;
     background-image: radial-gradient(
@@ -67,7 +77,10 @@
 
 @layer components {
   .glass-card {
-    @apply rounded-xl border border-white/10 bg-card/80 shadow-lg backdrop-blur-md;
+    @apply rounded-xl border border-border/90 bg-card/95 shadow-md backdrop-blur-md;
+  }
+  .dark .glass-card {
+    @apply border-white/10 bg-card/80 shadow-lg;
   }
   .field-input {
     @apply w-full rounded-lg border border-input bg-background/50 px-3 py-2 text-sm outline-none ring-ring focus:ring-2;

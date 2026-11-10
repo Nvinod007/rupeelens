@@ -85,7 +85,7 @@ export function resolveSpendRange(
 
   if (period === 'all') {
     return {
-      end,
+      end: atEndOfDayInZone(ymd, timeZone),
       label: 'All time',
       start: new Date(0),
     };

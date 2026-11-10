@@ -1,0 +1,9 @@
+$kind: folder
+name: Transactions
+order:
+  - list-transactions-page
+  - list-transactions-limit-100
+  - create-transaction-saved
+  - create-transaction-draft
+  - update-transaction
+  - delete-transaction

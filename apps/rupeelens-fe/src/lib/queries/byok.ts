@@ -3,7 +3,7 @@
 import type { ByokStatus, SaveByokRequest } from '@shared-types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { fetchByokStatus, revokeByokKey, saveByokKey } from '../api';
+import { fetchAiUsage, fetchByokStatus, revokeByokKey, saveByokKey } from '../api';
 import { useAuth } from '../auth/AuthProvider';
 
 export const byokStatusKey = (userId: string | undefined) =>
@@ -15,6 +15,19 @@ export function useByokStatus() {
     enabled: Boolean(user),
     queryFn: fetchByokStatus,
     queryKey: byokStatusKey(user?.id),
+  });
+}
+
+export const aiUsageKey = (userId: string | undefined) =>
+  ['ai-usage', userId] as const;
+
+export function useAiUsage() {
+  const { user } = useAuth();
+  return useQuery({
+    enabled: Boolean(user),
+    queryFn: fetchAiUsage,
+    queryKey: aiUsageKey(user?.id),
+    retry: false,
   });
 }
 

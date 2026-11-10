@@ -1,0 +1,22 @@
+$kind: http-request
+name: '2 — Create transaction'
+method: POST
+url: '{{apiBaseUrl}}/transactions'
+order: 2000
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "title": "Smoke test",
+      "amount": 99,
+      "status": "saved",
+      "category": "Other"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      const j = pm.response.json();
+      if (j.id) pm.environment.set('transactionId', j.id);

@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerModule } from '@nestjs/throttler';
 
+import { AiUsageModule } from '../ai-usage/ai-usage.module';
 import { AuthGuard } from '../auth/auth.guard';
 import { AuthModule } from '../auth/auth.module';
 import { AppThrottlerGuard } from '../common/throttle/app-throttler.guard';
@@ -33,6 +34,7 @@ import { TransactionsModule } from '../transactions/transactions.module';
     AuthModule,
     HealthModule,
     SettingsModule,
+    AiUsageModule,
     TransactionsModule,
     CategoriesModule,
     ParseModule,

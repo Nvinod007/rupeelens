@@ -15515,7 +15515,17 @@
       },
       {
         "source": "rupeelens-api",
+        "target": "types",
+        "type": "static"
+      },
+      {
+        "source": "rupeelens-api",
         "target": "npm:@nestjs/config",
+        "type": "static"
+      },
+      {
+        "source": "rupeelens-api",
+        "target": "utils",
         "type": "static"
       },
       {
@@ -15530,22 +15540,12 @@
       },
       {
         "source": "rupeelens-api",
-        "target": "types",
-        "type": "static"
-      },
-      {
-        "source": "rupeelens-api",
         "target": "npm:jose",
         "type": "static"
       },
       {
         "source": "rupeelens-api",
         "target": "npm:express@4.22.1",
-        "type": "static"
-      },
-      {
-        "source": "rupeelens-api",
-        "target": "utils",
         "type": "static"
       },
       {
@@ -15622,6 +15622,11 @@
       },
       {
         "source": "rupeelens-fe",
+        "target": "npm:next",
+        "type": "static"
+      },
+      {
+        "source": "rupeelens-fe",
         "target": "types",
         "type": "static"
       },
@@ -15638,11 +15643,6 @@
       {
         "source": "rupeelens-fe",
         "target": "npm:react",
-        "type": "static"
-      },
-      {
-        "source": "rupeelens-fe",
-        "target": "npm:next",
         "type": "static"
       },
       {
@@ -37108,5 +37108,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1794304770519
+  "computedAt": 1794331731880
 }

@@ -31,9 +31,9 @@ describe('TransactionsService', () => {
     await service.create('a', { amount: 2, bookedAt: '2026-02-01T00:00:00.000Z', status: 'saved', title: 'new' });
     await service.create('b', { amount: 3, status: 'draft', title: 'other' });
 
-    const listed = await service.list('a');
-    expect(listed.map((t) => t.title)).toEqual(['new', 'old']);
-    expect(await service.list('b')).toHaveLength(1);
+    const listed = await service.list('a', {});
+    expect(listed.items.map((t) => t.title)).toEqual(['new', 'old']);
+    expect((await service.list('b', {})).items).toHaveLength(1);
   });
 
   it('updates only provided fields', async () => {

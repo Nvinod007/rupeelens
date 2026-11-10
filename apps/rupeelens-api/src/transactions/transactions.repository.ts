@@ -1,10 +1,15 @@
-import type { Transaction } from '@shared-types';
+import type { Transaction, TransactionListPage, TransactionStatus } from '@shared-types';
+import type { TransactionCursorPayload } from '@shared-utils';
 
 export type NewTransaction = Omit<Transaction, 'id'>;
 export type TransactionPatch = Partial<NewTransaction>;
 
 export type ListTransactionsOptions = {
   limit: number;
+  cursor?: TransactionCursorPayload;
+  q?: string;
+  category?: string;
+  status?: TransactionStatus;
 };
 
 /**
@@ -14,7 +19,7 @@ export abstract class TransactionsRepository {
   abstract list(
     ownerId: string,
     options: ListTransactionsOptions
-  ): Promise<Transaction[]>;
+  ): Promise<TransactionListPage>;
 
   abstract create(
     ownerId: string,

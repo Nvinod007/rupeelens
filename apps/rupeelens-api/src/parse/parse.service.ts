@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import type { ParseSseEvent } from '@shared-types';
 
+import { AiUsageService } from '../ai-usage/ai-usage.service';
 import { LlmClient, type LlmErrorKind, LlmProviderError } from '../llm/llm.types';
 import { SettingsService } from '../settings/settings.service';
 import {
@@ -38,7 +39,8 @@ export class ParseService {
 
   constructor(
     private readonly settings: SettingsService,
-    private readonly llm: LlmClient
+    private readonly llm: LlmClient,
+    private readonly aiUsage: AiUsageService
   ) {}
 
   /** Never throws: failures are delivered as typed `error` events. */
@@ -49,6 +51,17 @@ export class ParseService {
     const apiKey = await this.settings.getDecryptedKey(ownerId);
     if (!apiKey) {
       yield { data: { message: NO_KEY_MESSAGE }, event: 'error' };
+      return;
+    }
+
+    if (!(await this.aiUsage.tryConsume(ownerId))) {
+      this.logger.warn(`AI daily limit reached for user ${ownerId}`);
+      yield {
+        data: {
+          message: `Daily AI limit reached (${this.aiUsage.dailyLimit} per day). It resets at midnight IST — you can still add expenses with the form.`,
+        },
+        event: 'error',
+      };
       return;
     }
 

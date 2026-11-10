@@ -19,18 +19,22 @@ export function useOfflineSync() {
       return;
     }
     const queued = listQueuedForUser(user.id);
-    queryClient.setQueryData<Transaction[]>(
-      transactionsKey(user.id),
-      (server = []) => {
-        const serverIds = new Set(server.map((t) => t.id));
-        const pending = queued.filter((q) => !serverIds.has(q.id));
-        const merged = [...pending, ...server];
-        merged.sort(
-          (a, b) => Date.parse(b.bookedAt) - Date.parse(a.bookedAt)
-        );
-        return merged;
-      }
-    );
+    if (queued.length === 0) {
+      return;
+    }
+    const key = transactionsKey(user.id);
+    const server = queryClient.getQueryData<Transaction[]>(key);
+    if (server === undefined) {
+      return;
+    }
+    const serverIds = new Set(server.map((t) => t.id));
+    const pending = queued.filter((q) => !serverIds.has(q.id));
+    if (pending.length === 0) {
+      return;
+    }
+    const merged = [...pending, ...server];
+    merged.sort((a, b) => Date.parse(b.bookedAt) - Date.parse(a.bookedAt));
+    queryClient.setQueryData<Transaction[]>(key, merged);
   }, [queryClient, user]);
 
   const sync = useCallback(async () => {
