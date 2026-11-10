@@ -24,6 +24,7 @@ export function useTransactions() {
     enabled: Boolean(user),
     queryFn: fetchTransactions,
     queryKey: transactionsKey(user?.id),
+    retry: false,
   });
 }
 

@@ -13,14 +13,6 @@ export function MicFab({ micBlocked, onPress }: MicFabProps) {
       <MobileFabWrap>
         <MicButton micBlocked={micBlocked} onPress={onPress} size="lg" />
       </MobileFabWrap>
-      <div className="pointer-events-none fixed bottom-8 right-6 z-50 hidden md:block lg:right-10">
-        <MicButton
-          micBlocked={micBlocked}
-          label="Add expense"
-          onPress={onPress}
-          size="md"
-        />
-      </div>
     </>
   );
 }

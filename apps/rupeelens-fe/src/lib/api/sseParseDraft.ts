@@ -6,6 +6,12 @@ import {
 } from '@shared-types';
 
 import { apiHeaders, apiUrl, readErrorMessage } from '../api';
+import {
+  API_REQUEST_TIMEOUT_MS,
+  assertBrowserOnline,
+  isNetworkFailure,
+  toUserNetworkError,
+} from '../network';
 
 export type ParseStreamHandlers = {
   onStatus?: (message: string) => void;
@@ -37,11 +43,26 @@ export async function sseParseDraft(
     transcript,
   };
 
-  const res = await fetch(apiUrl(API_ROUTES.parseDraft), {
-    body: JSON.stringify(request),
-    headers: await apiHeaders(),
-    method: 'POST',
-  });
+  assertBrowserOnline();
+  const controller = new AbortController();
+  const timeout = setTimeout(
+    () => controller.abort(),
+    API_REQUEST_TIMEOUT_MS
+  );
+  const deadline = Date.now() + API_REQUEST_TIMEOUT_MS;
+
+  let res: Response;
+  try {
+    res = await fetch(apiUrl(API_ROUTES.parseDraft), {
+      body: JSON.stringify(request),
+      headers: await apiHeaders(),
+      method: 'POST',
+      signal: controller.signal,
+    });
+  } catch (error) {
+    clearTimeout(timeout);
+    throw toUserNetworkError(error);
+  }
 
   if (!res.ok) {
     throw new Error(await readErrorMessage(res));
@@ -55,7 +76,12 @@ export async function sseParseDraft(
   let buffer = '';
   let result: ParsedDraft | null = null;
 
+  try {
   for (;;) {
+    if (Date.now() > deadline) {
+      throw toUserNetworkError(new DOMException('timeout', 'AbortError'));
+    }
+    assertBrowserOnline();
     const { done, value } = await reader.read();
     if (done) {
       break;
@@ -84,4 +110,12 @@ export async function sseParseDraft(
     throw new Error('Parse ended without a result');
   }
   return result;
+  } catch (error) {
+    if (error instanceof Error && !isNetworkFailure(error)) {
+      throw error;
+    }
+    throw toUserNetworkError(error);
+  } finally {
+    clearTimeout(timeout);
+  }
 }

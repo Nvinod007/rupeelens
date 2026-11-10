@@ -1,8 +1,9 @@
 'use client';
 
 import { EXPENSE_CATEGORIES, type UserCategory } from '@shared-types';
+import { normalizeCategory } from '@shared-utils';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { addCategory, deleteCategory, fetchCategories } from '../api';
 import { useAuth } from '../auth/AuthProvider';
@@ -55,4 +56,26 @@ export function useCategoryOptions(): readonly string[] {
       .filter((name) => !seen.has(name.toLowerCase()));
     return [...EXPENSE_CATEGORIES, ...extra];
   }, [custom]);
+}
+
+/** Call after a transaction Save/Draft when category should be remembered. */
+export function usePersistCustomCategory() {
+  const { data: custom = [] } = useCategories();
+  const add = useAddCategory();
+
+  return useCallback(
+    (category: string) => {
+      const name = normalizeCategory(category);
+      if (!name) {
+        return;
+      }
+      const key = name.toLowerCase();
+      const builtIn = EXPENSE_CATEGORIES.some((c) => c.toLowerCase() === key);
+      const saved = custom.some((c) => c.name.toLowerCase() === key);
+      if (!builtIn && !saved) {
+        add.mutate(name);
+      }
+    },
+    [add, custom]
+  );
 }

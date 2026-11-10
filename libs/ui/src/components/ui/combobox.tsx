@@ -75,7 +75,7 @@ export function Combobox({
 
   const commitText = () => {
     if (!trimmed) {
-      setText(value);
+      commit('');
       return;
     }
     const exact = options.find((o) => o.toLowerCase() === trimmed.toLowerCase());
@@ -136,8 +136,12 @@ export function Combobox({
         placeholder={placeholder}
         value={text}
         onChange={(e) => {
-          setText(e.target.value);
+          const next = e.target.value;
+          setText(next);
           setOpen(true);
+          if (!next.trim()) {
+            onChange('');
+          }
         }}
         onFocus={() => setOpen(true)}
         onBlur={() => {

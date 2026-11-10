@@ -1,4 +1,4 @@
-import { NotFoundException } from '@nestjs/common';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 import { InMemoryTransactionsRepository } from './repositories/in-memory-transactions.repository';
 import { TransactionsService } from './transactions.service';
@@ -50,6 +50,38 @@ describe('TransactionsService', () => {
       status: 'saved',
       title: 'Lunch',
     });
+  });
+
+  it('rejects future bookedAt on create and update', async () => {
+    const past = '2020-06-15T12:00:00.000Z';
+
+    try {
+    await service.create('owner', {
+      amount: 1,
+      bookedAt: '2099-01-01T00:00:00.000Z',
+      status: 'saved',
+      title: 'Future',
+    });
+      throw new Error('expected create to reject future bookedAt');
+    } catch (error) {
+      expect(error).toBeInstanceOf(BadRequestException);
+    }
+
+    const created = await service.create('owner', {
+      amount: 1,
+      bookedAt: past,
+      status: 'saved',
+      title: 'Past',
+    });
+
+    try {
+      await service.update('owner', created.id, {
+        bookedAt: '2099-06-01T00:00:00.000Z',
+      });
+      throw new Error('expected update to reject future bookedAt');
+    } catch (error) {
+      expect(error).toBeInstanceOf(BadRequestException);
+    }
   });
 
   it('does not let one owner update another owner\'s transaction', async () => {

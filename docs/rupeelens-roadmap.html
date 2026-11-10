@@ -140,10 +140,13 @@ curl https://api-rupeelens.appkits.in/api/health</code></pre>
             { t: "Missing-key help: link AI errors to Settings", s: "done" },
             { t: "Category picker: type to filter, add your own, nothing preselected", s: "done" },
             { t: "Custom categories saved per user (DB) + manage in Settings", s: "done", n: "Migration 004; run it in Supabase before using" },
-            { t: "Delete transactions (soft delete, with confirm)", s: "done" }
+            { t: "Delete transactions (soft delete, with confirm)", s: "done" },
+            { t: "AI rejects non-expense prompts (no amount / chit-chat / injection)", s: "done" },
+            { t: "Expense date cannot be in the future (form + API)", s: "done" },
+            { t: "Offline: save locally tag, sync when back online (form Save/Draft)", s: "done" }
           ]},
           { name: "App shell & settings", items: [
-            { t: "Home with recent activity + summary (month total, entries, drafts)", s: "done" },
+            { t: "Home with recent activity + spend summary", s: "done", n: "Week / Month / Year / Custom / All filter; IST month boundaries" },
             { t: "Shimmer placeholders while transactions load", s: "done" },
             { t: "Settings: Gemini API key (BYOK) + account / sign out", s: "done" },
             { t: "Light / dark / system theme toggle", s: "done" },
@@ -164,7 +167,8 @@ curl https://api-rupeelens.appkits.in/api/health</code></pre>
           { name: "Launch blockers", items: [
             { t: "Consent gate + real Privacy / Terms pages", s: "done", n: "Public /privacy and /terms; login requires ticking consent; recorded on the account" },
             { t: "Deploy: Vercel (FE) + Northflank (API), custom domains, prod env + Supabase redirect URLs", s: "done", n: "rupeelens.appkits.in + api-rupeelens.appkits.in; auto-deploy on push to main" },
-            { t: "Production smoke test of voice, prompt and form flows", s: "todo" }
+            { t: "Production smoke test of voice, prompt and form flows", s: "todo", n: "Use docs/rupeelens-test-suites.html — pass all V1 suites on https://rupeelens.appkits.in" },
+            { t: "Automated unit tests green (utils, API, core FE)", s: "done", n: "pnpm nx run-many -t test; re-run before each release" }
           ]}
         ]
       },
@@ -185,7 +189,7 @@ curl https://api-rupeelens.appkits.in/api/health</code></pre>
             { t: "Export my data", s: "todo" },
             { t: "CI (lint, test, build on every PR)", s: "done", n: "GitHub Actions on Node 22" },
             { t: "Structured logging, error tracking, metrics", s: "todo" },
-            { t: "Frontend unit tests (api client, hooks)", s: "wip", n: "Jest set up; legal, consent, login covered; api client + hooks pending" }
+            { t: "Frontend unit tests (api client, hooks)", s: "wip", n: "offline queue, network, legal, consent, login; hooks/components still thin" }
           ]}
         ]
       },

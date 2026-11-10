@@ -3,7 +3,7 @@
 import { Combobox } from '@shared-ui';
 import { categoryMatchesQuery, normalizeCategory } from '@shared-utils';
 
-import { useAddCategory, useCategoryOptions } from '@/lib/queries/categories';
+import { useCategoryOptions } from '@/lib/queries/categories';
 
 type CategoryFieldProps = {
   id?: string;
@@ -11,21 +11,9 @@ type CategoryFieldProps = {
   onChange: (category: string) => void;
 };
 
-/**
- * Category picker: type to filter the built-in list plus your own categories.
- * Text that isn't in the list can be added; it is remembered for next time.
- */
+/** Category picker: built-ins + your saved custom list. New names commit on Save/Draft only. */
 export function CategoryField({ id, value, onChange }: CategoryFieldProps) {
   const options = useCategoryOptions();
-  const addCategory = useAddCategory();
-
-  const handleChange = (next: string) => {
-    onChange(next);
-    const known = options.some((o) => o.toLowerCase() === next.toLowerCase());
-    if (next && !known) {
-      addCategory.mutate(next);
-    }
-  };
 
   return (
     <Combobox
@@ -33,7 +21,7 @@ export function CategoryField({ id, value, onChange }: CategoryFieldProps) {
       className="field-input"
       filter={categoryMatchesQuery}
       id={id}
-      onChange={handleChange}
+      onChange={onChange}
       options={options}
       placeholder="Search or add category…"
       resolve={normalizeCategory}

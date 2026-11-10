@@ -12,6 +12,11 @@ import {
 } from '@shared-types';
 
 import { getAccessToken } from './auth/AuthProvider';
+import {
+  API_REQUEST_TIMEOUT_MS,
+  assertBrowserOnline,
+  toUserNetworkError,
+} from './network';
 import { getSupabase } from './supabase/client';
 
 const DEFAULT_API_URL = 'http://localhost:4001';
@@ -52,20 +57,34 @@ export async function readErrorMessage(res: Response): Promise<string> {
 }
 
 async function apiFetch<T>(route: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(apiUrl(route), {
-    ...init,
-    headers: { ...(await apiHeaders()), ...init?.headers },
-  });
-  if (res.status === 401) {
-    await handleUnauthorized();
+  assertBrowserOnline();
+  const controller = new AbortController();
+  const timeout = setTimeout(
+    () => controller.abort(),
+    API_REQUEST_TIMEOUT_MS
+  );
+
+  try {
+    const res = await fetch(apiUrl(route), {
+      ...init,
+      headers: { ...(await apiHeaders()), ...init?.headers },
+      signal: init?.signal ?? controller.signal,
+    });
+    if (res.status === 401) {
+      await handleUnauthorized();
+    }
+    if (!res.ok) {
+      throw new Error(await readErrorMessage(res));
+    }
+    if (res.status === 204) {
+      return undefined as T;
+    }
+    return res.json() as Promise<T>;
+  } catch (error) {
+    throw toUserNetworkError(error);
+  } finally {
+    clearTimeout(timeout);
   }
-  if (!res.ok) {
-    throw new Error(await readErrorMessage(res));
-  }
-  if (res.status === 204) {
-    return undefined as T;
-  }
-  return res.json() as Promise<T>;
 }
 
 const json = (method: string, body: unknown): RequestInit => ({

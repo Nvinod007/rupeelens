@@ -1,7 +1,9 @@
 import { type ParsedDraft, TRANSACTION_LIMITS } from '@shared-types';
-import { buildHeuristicDraft, normalizeCategory } from '@shared-utils';
-
-const MAX_FUTURE_MS = 24 * 60 * 60 * 1000;
+import {
+  buildHeuristicDraft,
+  clampBookedAtToNow,
+  normalizeCategory,
+} from '@shared-utils';
 
 type RawDraft = Partial<
   Record<keyof ParsedDraft | 'isExpense' | 'rejectionReason', unknown>
@@ -35,11 +37,10 @@ function normalizeAmount(value: unknown): number {
 
 function normalizeBookedAt(value: unknown, now: Date): string {
   const parsed = typeof value === 'string' ? new Date(value) : null;
-  const isUsable =
-    parsed !== null &&
-    !Number.isNaN(parsed.getTime()) &&
-    parsed.getTime() <= now.getTime() + MAX_FUTURE_MS;
-  return (isUsable ? parsed : now).toISOString();
+  if (parsed === null || Number.isNaN(parsed.getTime())) {
+    return now.toISOString();
+  }
+  return clampBookedAtToNow(parsed.toISOString(), now);
 }
 
 /**

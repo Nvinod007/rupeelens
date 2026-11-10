@@ -71,17 +71,21 @@
         { t:"Amount edge values", st:["Try 0, -5, 1e3, 12.345, 99999999999, abc"], e:"Negative/non-numeric rejected; >2 decimals handled; huge value rejected with message." },
         { t:"Long text limits", st:["Paste 300-char title","Paste 70-char category"], e:"Trimmed or rejected with message; no server 500." },
         { t:"Emoji / Unicode / HTML in title", p:["<img src=x onerror=alert(1)> ☕ चाय 50"], st:["Save with this as title"], e:"Stored and rendered as plain text; no script execution." },
-        { t:"Date: past, today, far future", st:["Pick yesterday, today, then a date next year"], e:"Past/today OK; far future rejected or clamped, never silently wrong." },
+        { t:"Date: past, today, not future", st:["Pick yesterday, today","Try next year in date picker"], e:"Picker max = now; API rejects future if forced." },
         { t:"Double-click Save", st:["Fill form","Double-click Save fast"], e:"Only one transaction created; button disabled while saving." },
         { t:"Cancel discards", st:["Fill form","Cancel / close sheet"], e:"Nothing saved; reopening shows an empty form." },
-        { t:"Offline save", st:["Go offline in DevTools","Save"], e:"Clear inline error, form data kept." }
+        { t:"Amount rejects letters", st:["Type e, abc in amount","Only digits and one decimal"], e:"Letters stripped; never saved as 0 silently." },
+        { t:"Offline save (local queue)", st:["DevTools → Offline","Form → Save or Draft"], e:"Form closes; row shows Saved locally; no stuck Saving…; syncs when online." },
+        { t:"Offline error when not queued", st:["Offline → Settings BYOK Save","Offline → Prompt Save (AI)"], e:"Clear offline/timeout message; no infinite spinner." }
       ]},
       { id:"category", v:"v1", name:"Category picker & custom categories", cases:[
         { t:"Nothing preselected", st:["Open Add → Form"], e:"Category empty with placeholder." },
         { t:"Type to filter", st:["Type 'groc'","Type 'zom'"], e:"Groceries / Food-related options shown (keyword match)." },
         { t:"Keyboard navigation", st:["Type, use ↑ ↓ Enter, Esc"], e:"Selects highlighted option; Esc closes; no auto-pick on focus." },
-        { t:"Add custom category", st:["Type 'Cooler'","Choose “Add Cooler”","Save expense"], e:"Saved as 'Cooler' (not 'Other')." },
+        { t:"Add custom category on Save only", st:["Type 'Cooler' in picker","Do not Save yet","Check Network"], e:"No POST /categories until Save or Draft succeeds." },
+        { t:"Add custom category", st:["Type 'Cooler'","Save expense"], e:"Saved as 'Cooler' (not 'Other'); then in DB/list." },
         { t:"Custom category persists", st:["Reload page","Open Add again, type 'Coo'"], e:"'Cooler' is offered in the list (saved in DB)." },
+        { t:"Clear category field", st:["Select a category","Delete all text"], e:"Field empty; Save blocked until title+amount valid." },
         { t:"Case-insensitive duplicate", st:["Add 'cooler' again in lower/upper case"], e:"No duplicate created; existing one reused." },
         { t:"Built-in name not duplicated", st:["Type 'groceries' and add"], e:"Maps to built-in Groceries; Settings list unchanged." },
         { t:"Settings: add / remove", st:["Settings → Custom categories → add 'Pooja'","Remove it"], e:"Appears then disappears; old transactions keep the text." },
@@ -136,7 +140,16 @@
         { t:"Delete with confirm", st:["Open item","Delete","Confirm"], e:"Removed from list; totals update; cancel keeps it." },
         { t:"Delete is soft", st:["Delete an item","Check Supabase row"], e:"Row has deleted_at set, still present in DB." },
         { t:"Delete twice / stale item", st:["Delete in tab A","Delete same item in tab B"], e:"Friendly not-found handling; no crash." },
-        { t:"Home summary maths", st:["Add items across two months"], e:"Month total counts only the current month, excludes drafts/deleted." }
+        { t:"Home summary maths", st:["Add items across two months","Use Month filter"], e:"Total matches saved rows in IST month; drafts excluded." }
+      ]},
+      { id:"period", v:"v1", name:"Spend period filter (home)", cases:[
+        { t:"Week / Month / Year / All tabs", st:["Switch each tab"], e:"Total spend + recent list filter; All shows everything." },
+        { t:"Custom range", st:["Custom → pick from/to (max today)"], e:"Total and list match range; reversed dates handled." },
+        { t:"August row excluded in Month", st:["One expense in prior month","Month tab"], e:"Old month row hidden from list; not in month total." }
+      ]},
+      { id:"offline", v:"v1", name:"Offline banner & sync", cases:[
+        { t:"Banner when offline", st:["DevTools Offline"], e:"Top banner explains Saved locally + AI needs net." },
+        { t:"Sync on online", st:["Save offline","Go online","Wait ~5s"], e:"Saved locally tag gone; row on server; no duplicate." }
       ]},
       { id:"byok", v:"v1", name:"Gemini API key (BYOK) & AI errors", cases:[
         { t:"No key set", st:["Fresh account","Run any prompt"], e:"Message “key not configured” with link to Settings." },

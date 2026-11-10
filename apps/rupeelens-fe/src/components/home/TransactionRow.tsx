@@ -1,5 +1,8 @@
 import type { Transaction } from '@shared-types';
 import { formatInr } from '@shared-utils';
+import { memo } from 'react';
+
+import { isLocalTransactionId } from '@/lib/offline-queue';
 
 function formatDate(iso: string) {
   return new Intl.DateTimeFormat('en-IN', {
@@ -13,7 +16,10 @@ type TransactionRowProps = {
   onSelect?: () => void;
 };
 
-export function TransactionRow({ transaction, onSelect }: TransactionRowProps) {
+export const TransactionRow = memo(function TransactionRow({
+  transaction,
+  onSelect,
+}: TransactionRowProps) {
   return (
     <li
       className={`glass-card flex items-center justify-between gap-3 p-4 ${
@@ -38,15 +44,21 @@ export function TransactionRow({ transaction, onSelect }: TransactionRowProps) {
               {transaction.category}
             </span>
           ) : null}
-          <span
-            className={`rounded-full px-2 py-0.5 font-medium ${
-              transaction.status === 'draft'
-                ? 'bg-amber-500/20 text-amber-200'
-                : 'bg-primary/20 text-primary'
-            }`}
-          >
-            {transaction.status === 'draft' ? 'Draft' : 'Saved'}
-          </span>
+          {isLocalTransactionId(transaction.id) ? (
+            <span className="rounded-full bg-sky-500/20 px-2 py-0.5 font-medium text-sky-200">
+              Saved locally
+            </span>
+          ) : (
+            <span
+              className={`rounded-full px-2 py-0.5 font-medium ${
+                transaction.status === 'draft'
+                  ? 'bg-amber-500/20 text-amber-200'
+                  : 'bg-primary/20 text-primary'
+              }`}
+            >
+              {transaction.status === 'draft' ? 'Draft' : 'Saved'}
+            </span>
+          )}
         </div>
       </div>
       <p className="shrink-0 text-right text-lg font-semibold tabular-nums text-foreground">
@@ -54,4 +66,4 @@ export function TransactionRow({ transaction, onSelect }: TransactionRowProps) {
       </p>
     </li>
   );
-}
+});

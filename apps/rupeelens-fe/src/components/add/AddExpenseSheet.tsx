@@ -8,7 +8,14 @@ import { Spinner } from '@shared-ui';
 import { AiSettingsLink } from '@/components/common/AiSettingsLink';
 import { CategoryField } from '@/components/common/CategoryField';
 import { DEFAULT_CATEGORY, type DraftTransaction } from '@shared-types';
-import { fromDateTimeLocalValue, toDateTimeLocalValue } from '@shared-utils';
+import {
+  amountFromInput,
+  clampBookedAtToNow,
+  fromDateTimeLocalValue,
+  maxDateTimeLocalValue,
+  sanitizeAmountInput,
+  toDateTimeLocalValue,
+} from '@shared-utils';
 
 export type AddExpenseTab = 'voice' | 'prompt' | 'manual';
 
@@ -16,7 +23,10 @@ type CapturePhase = 'capture' | 'choose';
 
 type AddExpenseSheetProps = {
   open: boolean;
+  /** Bumps when the user opens a new add flow — resets the manual form. */
+  formSession?: number;
   initialTab?: AddExpenseTab;
+  manualError?: string | null;
   micBlocked: boolean;
   speechSupported: boolean;
   speechListening: boolean;
@@ -50,7 +60,9 @@ function emptyManual(): DraftTransaction {
 
 export function AddExpenseSheet({
   open,
+  formSession = 0,
   initialTab = 'voice',
+  manualError = null,
   micBlocked,
   speechSupported,
   speechListening,
@@ -73,6 +85,12 @@ export function AddExpenseSheet({
   const [phase, setPhase] = useState<CapturePhase>('capture');
   const [noteText, setNoteText] = useState('');
   const [manual, setManual] = useState<DraftTransaction>(emptyManual);
+  const [amountText, setAmountText] = useState('');
+
+  useEffect(() => {
+    setManual(emptyManual());
+    setAmountText('');
+  }, [formSession]);
 
   useEffect(() => {
     if (!open) {
@@ -81,7 +99,6 @@ export function AddExpenseSheet({
     setTab(initialTab);
     setPhase('capture');
     setNoteText('');
-    setManual(emptyManual());
     onSpeechReset();
     if (initialTab === 'voice' && !micBlocked && speechSupported) {
       onSpeechStart();
@@ -171,7 +188,10 @@ export function AddExpenseSheet({
 
         {tab === 'manual' ? (
           <ManualPanel
+            amountText={amountText}
             draft={manual}
+            error={manualError}
+            onAmountTextChange={setAmountText}
             onChange={setManual}
             busy={writeBusy}
             onCancel={closeAll}
@@ -436,15 +456,21 @@ function PromptPanel({
 }
 
 function ManualPanel({
+  amountText,
   draft,
+  error,
+  onAmountTextChange,
   onChange,
   onSave,
   onSaveDraft,
   onCancel,
   busy,
 }: {
+  amountText: string;
   busy: boolean;
   draft: DraftTransaction;
+  error: string | null;
+  onAmountTextChange: (value: string) => void;
   onChange: (d: DraftTransaction) => void;
   onSave: () => void;
   onSaveDraft: () => void;
@@ -457,7 +483,7 @@ function ManualPanel({
       className="space-y-3"
       onSubmit={(e) => {
         e.preventDefault();
-        if (valid) {
+        if (valid && !busy) {
           onSave();
         }
       }}
@@ -465,15 +491,24 @@ function ManualPanel({
       <p className="text-sm text-muted-foreground">
         Enter fields directly — saved as a finalized transaction, no AI.
       </p>
+      {error ? (
+        <p role="alert" className="rounded-lg border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+          {error}
+        </p>
+      ) : null}
       <label className="block space-y-1 text-sm">
         <span className="text-muted-foreground">Amount (₹)</span>
         <input
-          type="number"
+          type="text"
+          inputMode="decimal"
+          autoComplete="off"
           className="field-input"
-          value={draft.amount || ''}
-          onChange={(e) =>
-            onChange({ ...draft, amount: Number(e.target.value) || 0 })
-          }
+          value={amountText}
+          onChange={(e) => {
+            const next = sanitizeAmountInput(e.target.value);
+            onAmountTextChange(next);
+            onChange({ ...draft, amount: amountFromInput(next) });
+          }}
         />
       </label>
       <label className="block space-y-1 text-sm">
@@ -489,13 +524,17 @@ function ManualPanel({
         <input
           type="datetime-local"
           className="field-input"
+          max={maxDateTimeLocalValue()}
           value={toDateTimeLocalValue(draft.bookedAt)}
-          onChange={(e) =>
+          onChange={(e) => {
+            const iso = fromDateTimeLocalValue(e.target.value);
             onChange({
               ...draft,
-              bookedAt: fromDateTimeLocalValue(e.target.value) ?? draft.bookedAt,
-            })
-          }
+              bookedAt: iso
+                ? clampBookedAtToNow(iso)
+                : draft.bookedAt,
+            });
+          }}
         />
       </label>
       <label className="block space-y-1 text-sm">

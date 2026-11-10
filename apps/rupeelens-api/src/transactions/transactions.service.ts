@@ -1,6 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { type Transaction } from '@shared-types';
-import { normalizeCategory } from '@shared-utils';
+import { clampBookedAtToNow, isBookedAtInFuture, normalizeCategory } from '@shared-utils';
 
 import type { CreateTransactionDto } from './dto/create-transaction.dto';
 import { DEFAULT_LIST_LIMIT } from './dto/list-transactions-query.dto';
@@ -16,9 +20,10 @@ export class TransactionsService {
   }
 
   create(ownerId: string, dto: CreateTransactionDto): Promise<Transaction> {
+    const bookedAt = this.normalizeBookedAt(dto.bookedAt);
     return this.repository.create(ownerId, {
       amount: dto.amount,
-      bookedAt: dto.bookedAt ?? new Date().toISOString(),
+      bookedAt,
       category: normalizeCategory(dto.category) || null,
       notes: dto.notes ?? null,
       status: dto.status,
@@ -32,9 +37,13 @@ export class TransactionsService {
     id: string,
     dto: UpdateTransactionDto
   ): Promise<Transaction> {
+    const bookedAt =
+      dto.bookedAt === undefined
+        ? undefined
+        : this.normalizeBookedAt(dto.bookedAt);
     const updated = await this.repository.update(ownerId, id, {
       amount: dto.amount,
-      bookedAt: dto.bookedAt,
+      bookedAt,
       category:
         dto.category === undefined
           ? undefined
@@ -55,5 +64,16 @@ export class TransactionsService {
     if (!deleted) {
       throw new NotFoundException('Transaction not found');
     }
+  }
+
+  private normalizeBookedAt(bookedAt?: string): string {
+    const now = new Date();
+    if (!bookedAt) {
+      return now.toISOString();
+    }
+    if (isBookedAtInFuture(bookedAt, now)) {
+      throw new BadRequestException('Expense date cannot be in the future');
+    }
+    return clampBookedAtToNow(bookedAt, now);
   }
 }

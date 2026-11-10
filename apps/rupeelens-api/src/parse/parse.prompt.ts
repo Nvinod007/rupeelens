@@ -44,7 +44,7 @@ export const PARSE_SYSTEM_PROMPT = [
   'Rules (only when isExpense=true):',
   '- title: the payee or merchant (e.g. "Swiggy", "Auto driver"); if unknown, a 2-4 word description.',
   '- amount: a plain number in INR. Speech-to-text may garble digits; prefer the most plausible amount.',
-  '- bookedAt: resolve relative dates ("yesterday", "this morning") against the provided current time and time zone.',
+  '- bookedAt: resolve relative dates ("yesterday", "this morning") against the provided current time and time zone; never after the current time.',
   `- category: one of ${EXPENSE_CATEGORIES.join(', ')}.`,
   '- notes: any useful remaining detail, otherwise an empty string.',
 ].join('\n');

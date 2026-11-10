@@ -50,92 +50,92 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "pnpm-lock.yaml",
-        "hash": "16054378824818442649"
-      },
-      {
-        "file": "docs/rupeelens-roadmap.html",
-        "hash": "16379629022739695410"
-      },
-      {
-        "file": "docs/rupeelens-test-suites.html",
-        "hash": "5269459091573995266"
-      },
-      {
         "file": ".prettierignore",
         "hash": "14688272390704683536"
-      },
-      {
-        "file": "pnpm-workspace.yaml",
-        "hash": "2811845925925127796"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "8094490713162496875"
-      },
-      {
-        "file": ".github/workflows/ci.yml",
-        "hash": "4034064451718582737"
-      },
-      {
-        "file": ".dockerignore",
-        "hash": "17398535027823991950"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "16267754514737964994"
-      },
-      {
-        "file": "supabase/migrations/003_auth_schema_v2.sql",
-        "hash": "15332121087809965246"
-      },
-      {
-        "file": "eslint.config.mjs",
-        "hash": "3462096019013144053"
-      },
-      {
-        "file": "vercel.json",
-        "hash": "11998241608411593838"
-      },
-      {
-        "file": "package.json",
-        "hash": "9484407263021639084"
-      },
-      {
-        "file": "supabase/migrations/004_user_categories.sql",
-        "hash": "16236650264882847805"
-      },
-      {
-        "file": "nx.json",
-        "hash": "985689564224161594"
-      },
-      {
-        "file": "docs/RUPEELENS-SUMMARY.md",
-        "hash": "17618563275569295419"
-      },
-      {
-        "file": "supabase/migrations/001_transactions.sql",
-        "hash": "8788550156546250842"
       },
       {
         "file": "jest.config.ts",
         "hash": "6870352021923392442"
       },
       {
-        "file": "jest.preset.js",
-        "hash": "9430166341120122740"
+        "file": "pnpm-workspace.yaml",
+        "hash": "2811845925925127796"
       },
       {
-        "file": "supabase/migrations/002_byok_keys.sql",
-        "hash": "3109586101418970123"
+        "file": "pnpm-lock.yaml",
+        "hash": "16054378824818442649"
+      },
+      {
+        "file": "docs/rupeelens-test-suites.html",
+        "hash": "860247596613761656"
       },
       {
         "file": "tsconfig.base.json",
         "hash": "9718832641666275383"
       },
       {
+        "file": "supabase/migrations/003_auth_schema_v2.sql",
+        "hash": "15332121087809965246"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "8094490713162496875"
+      },
+      {
+        "file": "supabase/migrations/001_transactions.sql",
+        "hash": "8788550156546250842"
+      },
+      {
+        "file": "docs/rupeelens-roadmap.html",
+        "hash": "9379817591071887166"
+      },
+      {
+        "file": "supabase/migrations/002_byok_keys.sql",
+        "hash": "3109586101418970123"
+      },
+      {
+        "file": "docs/RUPEELENS-SUMMARY.md",
+        "hash": "17618563275569295419"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "16267754514737964994"
+      },
+      {
+        "file": "vercel.json",
+        "hash": "11998241608411593838"
+      },
+      {
+        "file": ".dockerignore",
+        "hash": "17398535027823991950"
+      },
+      {
+        "file": "package.json",
+        "hash": "9484407263021639084"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "9430166341120122740"
+      },
+      {
+        "file": ".github/workflows/ci.yml",
+        "hash": "4034064451718582737"
+      },
+      {
+        "file": "supabase/migrations/004_user_categories.sql",
+        "hash": "16236650264882847805"
+      },
+      {
+        "file": "eslint.config.mjs",
+        "hash": "3462096019013144053"
+      },
+      {
         "file": "docs/rupeelens-srs.html",
         "hash": "17702669150495319209"
+      },
+      {
+        "file": "nx.json",
+        "hash": "985689564224161594"
       }
     ],
     "projectFileMap": {
@@ -233,17 +233,38 @@
           ]
         },
         {
+          "file": "apps/rupeelens-fe/src/app/(app)/home/empty-draft.ts",
+          "hash": "16819713176769387482",
+          "deps": [
+            "types"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-fe/src/app/(app)/home/useHomeExpenseFlow.ts",
+          "hash": "5973970851639055592",
+          "deps": [
+            "types",
+            "utils",
+            "npm:@tanstack/react-query",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-fe/src/app/(app)/home/useSpendPeriodFilter.ts",
+          "hash": "9619931346711166764",
+          "deps": [
+            "types",
+            "utils",
+            "npm:react"
+          ]
+        },
+        {
           "file": "apps/rupeelens-fe/src/app/(app)/layout.tsx",
           "hash": "1265930453356938810"
         },
         {
           "file": "apps/rupeelens-fe/src/app/(app)/page.tsx",
-          "hash": "11376199812213946054",
-          "deps": [
-            "npm:react",
-            "types",
-            "utils"
-          ]
+          "hash": "12190180535929852407"
         },
         {
           "file": "apps/rupeelens-fe/src/app/(app)/settings/page.tsx",
@@ -304,7 +325,7 @@
         },
         {
           "file": "apps/rupeelens-fe/src/components/add/AddExpenseSheet.tsx",
-          "hash": "13997424970679483083",
+          "hash": "5891043511015268345",
           "deps": [
             "npm:react",
             "ui",
@@ -325,14 +346,14 @@
         },
         {
           "file": "apps/rupeelens-fe/src/components/app-shell/AppShell.tsx",
-          "hash": "11178215560612291628",
+          "hash": "10296704937771977499",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "apps/rupeelens-fe/src/components/app-shell/MicFab.tsx",
-          "hash": "3705655784263500861",
+          "hash": "11880359164670900583",
           "deps": [
             "npm:react"
           ]
@@ -409,15 +430,22 @@
         },
         {
           "file": "apps/rupeelens-fe/src/components/common/CategoryField.tsx",
-          "hash": "13258193089307748417",
+          "hash": "14306398729133566489",
           "deps": [
             "ui",
             "utils"
           ]
         },
         {
+          "file": "apps/rupeelens-fe/src/components/common/OfflineBanner.tsx",
+          "hash": "5436641532489392315",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
           "file": "apps/rupeelens-fe/src/components/draft/DraftEditSheet.tsx",
-          "hash": "2754748746599895568",
+          "hash": "3636123991796332398",
           "deps": [
             "npm:react",
             "types",
@@ -426,19 +454,42 @@
           ]
         },
         {
+          "file": "apps/rupeelens-fe/src/components/home/HomeIntro.tsx",
+          "hash": "11439826132092409918",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-fe/src/components/home/HomeOverlays.tsx",
+          "hash": "11207558926593255589",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
           "file": "apps/rupeelens-fe/src/components/home/HomeSummary.tsx",
-          "hash": "11442871807011095663",
+          "hash": "7094118779119117903",
           "deps": [
             "types",
             "utils"
           ]
         },
         {
-          "file": "apps/rupeelens-fe/src/components/home/TransactionRow.tsx",
-          "hash": "5598313246981450209",
+          "file": "apps/rupeelens-fe/src/components/home/TransactionList.tsx",
+          "hash": "4199223411242558714",
           "deps": [
             "types",
-            "utils"
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-fe/src/components/home/TransactionRow.tsx",
+          "hash": "2305326218566475201",
+          "deps": [
+            "types",
+            "utils",
+            "npm:react"
           ]
         },
         {
@@ -495,14 +546,14 @@
         },
         {
           "file": "apps/rupeelens-fe/src/lib/api.ts",
-          "hash": "12995982895964301094",
+          "hash": "5944762217767345948",
           "deps": [
             "types"
           ]
         },
         {
           "file": "apps/rupeelens-fe/src/lib/api/sseParseDraft.ts",
-          "hash": "6018781510694629896",
+          "hash": "17380229187350872655",
           "deps": [
             "types"
           ]
@@ -530,6 +581,24 @@
           ]
         },
         {
+          "file": "apps/rupeelens-fe/src/lib/hooks/useOfflineSync.ts",
+          "hash": "7569088444502631467",
+          "deps": [
+            "types",
+            "npm:@tanstack/react-query",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-fe/src/lib/hooks/useSaveWithOffline.ts",
+          "hash": "12954224685561219604",
+          "deps": [
+            "types",
+            "npm:@tanstack/react-query",
+            "npm:react"
+          ]
+        },
+        {
           "file": "apps/rupeelens-fe/src/lib/legal.spec.ts",
           "hash": "15261422377424369197"
         },
@@ -543,6 +612,28 @@
           "deps": [
             "ui",
             "npm:react"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-fe/src/lib/network.spec.ts",
+          "hash": "14965000053243059396"
+        },
+        {
+          "file": "apps/rupeelens-fe/src/lib/network.ts",
+          "hash": "6040940394349528978"
+        },
+        {
+          "file": "apps/rupeelens-fe/src/lib/offline-queue.spec.ts",
+          "hash": "18114481066282055979",
+          "deps": [
+            "types"
+          ]
+        },
+        {
+          "file": "apps/rupeelens-fe/src/lib/offline-queue.ts",
+          "hash": "15330920020662581531",
+          "deps": [
+            "types"
           ]
         },
         {
@@ -563,16 +654,17 @@
         },
         {
           "file": "apps/rupeelens-fe/src/lib/queries/categories.ts",
-          "hash": "17786452871054103251",
+          "hash": "3226133100740713859",
           "deps": [
             "types",
+            "utils",
             "npm:@tanstack/react-query",
             "npm:react"
           ]
         },
         {
           "file": "apps/rupeelens-fe/src/lib/queries/transactions.ts",
-          "hash": "13153264588891085592",
+          "hash": "10206098100353420181",
           "deps": [
             "types",
             "npm:@tanstack/react-query"
@@ -625,7 +717,7 @@
         },
         {
           "file": "apps/rupeelens-fe/tsconfig.tsbuildinfo",
-          "hash": "8830853676118994818"
+          "hash": "15809183500711275692"
         }
       ],
       "ui": [
@@ -735,7 +827,7 @@
         },
         {
           "file": "libs/ui/src/components/ui/combobox.tsx",
-          "hash": "16019505595644913117",
+          "hash": "1516273356121344362",
           "deps": [
             "npm:react"
           ]
@@ -917,6 +1009,13 @@
           ]
         },
         {
+          "file": "apps/rupeelens-api/src/categories/categories.service.spec.ts",
+          "hash": "17767480584044540313",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
           "file": "apps/rupeelens-api/src/categories/categories.service.ts",
           "hash": "1205429337139196092",
           "deps": [
@@ -1088,11 +1187,11 @@
         },
         {
           "file": "apps/rupeelens-api/src/parse/draft-parser.spec.ts",
-          "hash": "17129403549185535511"
+          "hash": "9980806806804454912"
         },
         {
           "file": "apps/rupeelens-api/src/parse/draft-parser.ts",
-          "hash": "2792101523893460679",
+          "hash": "2534804322086466065",
           "deps": [
             "types",
             "utils"
@@ -1126,7 +1225,7 @@
         },
         {
           "file": "apps/rupeelens-api/src/parse/parse.prompt.ts",
-          "hash": "7458386881228760782",
+          "hash": "12370556205053507891",
           "deps": [
             "types"
           ]
@@ -1270,14 +1369,14 @@
         },
         {
           "file": "apps/rupeelens-api/src/transactions/transactions.service.spec.ts",
-          "hash": "9606306710052527470",
+          "hash": "9049241874225830576",
           "deps": [
             "npm:@nestjs/common"
           ]
         },
         {
           "file": "apps/rupeelens-api/src/transactions/transactions.service.ts",
-          "hash": "17481372854701241749",
+          "hash": "18320575715863806241",
           "deps": [
             "npm:@nestjs/common",
             "types",
@@ -1381,7 +1480,7 @@
         },
         {
           "file": "libs/utils/src/index.ts",
-          "hash": "8146001946127119742"
+          "hash": "11954168082178946393"
         },
         {
           "file": "libs/utils/src/lib/category/category.ts",
@@ -1389,6 +1488,14 @@
           "deps": [
             "types"
           ]
+        },
+        {
+          "file": "libs/utils/src/lib/currency/amount-input.spec.ts",
+          "hash": "16431352683423496651"
+        },
+        {
+          "file": "libs/utils/src/lib/currency/amount-input.ts",
+          "hash": "3918701245144362894"
         },
         {
           "file": "libs/utils/src/lib/currency/inr.spec.ts",
@@ -1399,12 +1506,32 @@
           "hash": "14989297905027006221"
         },
         {
+          "file": "libs/utils/src/lib/datetime/booked-at.spec.ts",
+          "hash": "713454116876938509"
+        },
+        {
+          "file": "libs/utils/src/lib/datetime/calendar-month.spec.ts",
+          "hash": "1206127163539690988"
+        },
+        {
+          "file": "libs/utils/src/lib/datetime/calendar-month.ts",
+          "hash": "16116914348896263124"
+        },
+        {
           "file": "libs/utils/src/lib/datetime/datetime-local.spec.ts",
           "hash": "9575699319211206010"
         },
         {
           "file": "libs/utils/src/lib/datetime/datetime-local.ts",
           "hash": "7040331806034529076"
+        },
+        {
+          "file": "libs/utils/src/lib/datetime/spend-period.spec.ts",
+          "hash": "13918462198623679903"
+        },
+        {
+          "file": "libs/utils/src/lib/datetime/spend-period.ts",
+          "hash": "7885445377797645350"
         },
         {
           "file": "libs/utils/src/lib/draft/heuristic-draft.spec.ts",

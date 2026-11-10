@@ -1,13 +1,20 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 
 import type { DraftTransaction } from '@shared-types';
 import { MicIcon, Spinner } from '@shared-ui';
 
 import { AiSettingsLink } from '@/components/common/AiSettingsLink';
 import { CategoryField } from '@/components/common/CategoryField';
-import { fromDateTimeLocalValue, toDateTimeLocalValue } from '@shared-utils';
+import {
+  amountFromInput,
+  clampBookedAtToNow,
+  fromDateTimeLocalValue,
+  maxDateTimeLocalValue,
+  sanitizeAmountInput,
+  toDateTimeLocalValue,
+} from '@shared-utils';
 
 type DraftEditSheetProps = {
   open: boolean;
@@ -19,6 +26,7 @@ type DraftEditSheetProps = {
   refining?: boolean;
   /** Save is in flight. */
   saving?: boolean;
+  saveError?: string | null;
   refineError?: string | null;
   /** Editing an already-saved transaction. */
   saved?: boolean;
@@ -42,6 +50,7 @@ export function DraftEditSheet({
   onRefineAi,
   refining,
   saving,
+  saveError,
   refineError,
   saved,
   onDelete,
@@ -70,6 +79,7 @@ export function DraftEditSheet({
         onRefineAi={onRefineAi}
         refining={refining}
         saving={saving}
+        saveError={saveError}
         note={note}
         onNoteChange={onNoteChange}
         dictating={dictating}
@@ -91,6 +101,7 @@ function DraftForm({
   onRefineAi,
   refining,
   saving,
+  saveError,
   refineError,
   saved,
   onDelete,
@@ -102,6 +113,14 @@ function DraftForm({
 }: Omit<DraftEditSheetProps, 'open'>) {
   const busy = Boolean(saving || refining || deleting);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [amountText, setAmountText] = useState('');
+
+  useEffect(() => {
+    setAmountText(
+      draft.amount > 0 ? sanitizeAmountInput(String(draft.amount)) : ''
+    );
+  }, [draft.amount]);
+
   return (
     <form
       className="glass-card w-full max-w-lg space-y-4 p-5 pb-6"
@@ -163,12 +182,16 @@ function DraftForm({
       </section>
       <Field label="Amount (₹)">
         <input
-          type="number"
+          type="text"
+          inputMode="decimal"
+          autoComplete="off"
           className="field-input"
-          value={draft.amount}
-          onChange={(e) =>
-            onChange({ ...draft, amount: Number(e.target.value) || 0 })
-          }
+          value={amountText}
+          onChange={(e) => {
+            const next = sanitizeAmountInput(e.target.value);
+            setAmountText(next);
+            onChange({ ...draft, amount: amountFromInput(next) });
+          }}
         />
       </Field>
       <Field label="Payee">
@@ -182,13 +205,17 @@ function DraftForm({
         <input
           type="datetime-local"
           className="field-input"
+          max={maxDateTimeLocalValue()}
           value={toDateTimeLocalValue(draft.bookedAt)}
-          onChange={(e) =>
+          onChange={(e) => {
+            const iso = fromDateTimeLocalValue(e.target.value);
             onChange({
               ...draft,
-              bookedAt: fromDateTimeLocalValue(e.target.value) ?? draft.bookedAt,
-            })
-          }
+              bookedAt: iso
+                ? clampBookedAtToNow(iso)
+                : draft.bookedAt,
+            });
+          }}
         />
       </Field>
       <Field label="Category">
@@ -204,6 +231,11 @@ function DraftForm({
           onChange={(e) => onChange({ ...draft, notes: e.target.value })}
         />
       </Field>
+      {saveError ? (
+        <p role="alert" className="text-sm text-destructive">
+          {saveError}
+        </p>
+      ) : null}
       <div className="flex gap-2 pt-2">
         <button
           type="submit"
