@@ -2,50 +2,59 @@
 
 import type { CategorySpendSlice } from '@shared-utils';
 import { formatInr } from '@shared-utils';
-import { useId, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const SLICE_COLORS = [
-  'hsl(var(--chart-1, 220 70% 50%))',
-  'hsl(var(--chart-2, 160 60% 45%))',
-  'hsl(var(--chart-3, 30 80% 55%))',
-  'hsl(var(--chart-4, 280 65% 60%))',
-  'hsl(var(--chart-5, 340 75% 55%))',
-  'hsl(var(--muted-foreground))',
-];
+  'hsl(160 70% 42%)',
+  'hsl(198 93% 55%)',
+  'hsl(250 90% 78%)',
+  'hsl(38 95% 55%)',
+  'hsl(340 75% 58%)',
+  'hsl(215 20% 60%)',
+] as const;
+
+const RING_RADIUS = 40;
+const RING_STROKE = 11;
+const CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
+/** Small gap between ring segments so neighbours stay distinct. */
+const SEGMENT_GAP = 1.2;
 
 type CategorySpendChartsProps = {
   slices: CategorySpendSlice[];
 };
 
-type Arc = {
+type Segment = {
   slice: CategorySpendSlice;
   color: string;
-  d: string;
   index: number;
-  midAngle: number;
+  length: number;
+  offset: number;
 };
 
-function polarToCartesian(cx: number, cy: number, r: number, angleDeg: number) {
-  const rad = ((angleDeg - 90) * Math.PI) / 180;
-  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
-}
-
-function describeArc(
-  cx: number,
-  cy: number,
-  r: number,
-  startAngle: number,
-  endAngle: number
-) {
-  const start = polarToCartesian(cx, cy, r, endAngle);
-  const end = polarToCartesian(cx, cy, r, startAngle);
-  const large = endAngle - startAngle > 180 ? 1 : 0;
-  return `M ${cx} ${cy} L ${start.x} ${start.y} A ${r} ${r} 0 ${large} 0 ${end.x} ${end.y} Z`;
-}
+const colorAt = (index: number) => SLICE_COLORS[index % SLICE_COLORS.length];
+const pctOf = (share: number) => Math.round(share * 100);
+const entriesLabel = (count: number) =>
+  `${count} ${count === 1 ? 'entry' : 'entries'}`;
+const categoriesLabel = (count: number) =>
+  `${count} ${count === 1 ? 'category' : 'categories'}`;
 
 export function CategorySpendCharts({ slices }: CategorySpendChartsProps) {
-  const tooltipId = useId();
   const [hovered, setHovered] = useState<number | null>(null);
+
+  const { segments, total, entries } = useMemo(() => {
+    let offset = 0;
+    const built: Segment[] = slices.map((slice, index) => {
+      const length = slice.share * CIRCUMFERENCE;
+      const segment = { color: colorAt(index), index, length, offset, slice };
+      offset += length;
+      return segment;
+    });
+    return {
+      entries: slices.reduce((sum, s) => sum + s.count, 0),
+      segments: built,
+      total: slices.reduce((sum, s) => sum + s.amount, 0),
+    };
+  }, [slices]);
 
   if (slices.length === 0) {
     return (
@@ -55,141 +64,208 @@ export function CategorySpendCharts({ slices }: CategorySpendChartsProps) {
     );
   }
 
-  const cx = 50;
-  const cy = 50;
-  const r = 42;
-  let angle = 0;
-  const arcs: Arc[] = slices.map((slice, index) => {
-    const sweep = slice.share * 360;
-    const start = angle;
-    const end = angle + sweep;
-    angle = end;
-    return {
-      color: SLICE_COLORS[index % SLICE_COLORS.length],
-      d: describeArc(cx, cy, r, start, end),
-      index,
-      midAngle: start + sweep / 2,
-      slice,
-    };
-  });
-
   const active = hovered === null ? null : slices[hovered];
 
   return (
-    <div className="grid items-start gap-3 lg:grid-cols-2 lg:gap-6">
-      <div className="mx-auto w-full max-w-xs">
-        <div
-          className="mb-1 flex h-11 items-center justify-center"
-          aria-live="polite"
-        >
-          {active ? (
-            <div
-              id={tooltipId}
-              className="rounded-md border border-border bg-card px-3 py-2 text-center text-xs shadow-sm"
-            >
-              <p className="font-medium">{active.category}</p>
-              <p className="text-muted-foreground">
-                {formatInr(active.amount)} · {Math.round(active.share * 100)}%
-              </p>
-            </div>
-          ) : (
-            <span className="text-xs text-muted-foreground" aria-hidden>
-              Category spending breakdown
-            </span>
-          )}
-        </div>
-        <svg
-          viewBox="0 0 100 100"
-          className="mx-auto block h-52 w-52"
-          role="img"
-          aria-label="Spending pie chart by category"
-          onMouseLeave={() => setHovered(null)}
-        >
-          <title>Category spending breakdown</title>
-          {arcs.map((arc) => (
-            <path
-              key={arc.slice.category}
-              d={arc.d}
-              fill={arc.color}
-              opacity={hovered === null || hovered === arc.index ? 1 : 0.35}
-              className="cursor-pointer outline-none transition-opacity duration-150"
-              onMouseDown={(e) => e.preventDefault()}
-              onMouseEnter={() => setHovered(arc.index)}
-            />
-          ))}
-          <circle cx={cx} cy={cy} r={22} className="fill-background" />
-        </svg>
+    <div className="grid items-start gap-5 lg:grid-cols-2 lg:gap-8">
+      <div className="glass-card space-y-4 p-4 sm:p-5">
+        <Donut
+          active={active}
+          entries={entries}
+          hovered={hovered}
+          onHover={setHovered}
+          segments={segments}
+          total={total}
+        />
+        <Legend hovered={hovered} onHover={setHovered} segments={segments} />
       </div>
 
-      <CategoryBarList
-        arcs={arcs}
+      <CategoryCards
         hovered={hovered}
         onHover={setHovered}
-        tooltipId={tooltipId}
+        segments={segments}
       />
     </div>
   );
 }
 
-function CategoryBarList({
-  arcs,
+function Donut({
+  active,
+  entries,
   hovered,
   onHover,
-  tooltipId,
+  segments,
+  total,
 }: {
-  arcs: Arc[];
+  active: CategorySpendSlice | null;
+  entries: number;
   hovered: number | null;
   onHover: (index: number | null) => void;
-  tooltipId: string;
+  segments: Segment[];
+  total: number;
+}) {
+  return (
+    <div className="relative mx-auto h-56 w-56 sm:h-60 sm:w-60">
+      <svg
+        viewBox="0 0 100 100"
+        className="h-full w-full -rotate-90"
+        role="img"
+        aria-label="Spending by category"
+        onMouseLeave={() => onHover(null)}
+      >
+        <circle
+          cx="50"
+          cy="50"
+          r={RING_RADIUS}
+          fill="none"
+          stroke="hsl(var(--muted))"
+          strokeWidth={RING_STROKE}
+        />
+        {segments.map((s) => {
+          const dim = hovered !== null && hovered !== s.index;
+          const visible = Math.max(s.length - (segments.length > 1 ? SEGMENT_GAP : 0), 0.5);
+          return (
+            <circle
+              key={s.slice.category}
+              cx="50"
+              cy="50"
+              r={RING_RADIUS}
+              fill="none"
+              stroke={s.color}
+              strokeWidth={hovered === s.index ? RING_STROKE + 2.5 : RING_STROKE}
+              strokeDasharray={`${visible} ${CIRCUMFERENCE - visible}`}
+              strokeDashoffset={-s.offset}
+              className="cursor-pointer outline-none transition-[stroke-width,opacity] duration-150"
+              opacity={dim ? 0.3 : 1}
+              onMouseDown={(e) => e.preventDefault()}
+              onMouseEnter={() => onHover(s.index)}
+            />
+          );
+        })}
+      </svg>
+
+      <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-10 text-center">
+        <p className="max-w-full truncate text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
+          {active ? active.category : 'Total spent'}
+        </p>
+        <p className="mt-1 text-2xl font-semibold tabular-nums sm:text-3xl">
+          {formatInr(active ? active.amount : total)}
+        </p>
+        <p className="mt-1 text-xs text-primary">
+          {active
+            ? `${pctOf(active.share)}% · ${entriesLabel(active.count)}`
+            : entriesLabel(entries)}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function Legend({
+  hovered,
+  onHover,
+  segments,
+}: {
+  hovered: number | null;
+  onHover: (index: number | null) => void;
+  segments: Segment[];
 }) {
   return (
     <ul
-      className="divide-y divide-border overflow-hidden rounded-lg border border-border"
-      aria-label="Category bar chart"
+      className="flex flex-wrap justify-center gap-2 text-xs"
+      aria-label="Legend"
       onMouseLeave={() => onHover(null)}
     >
-      {arcs.map((arc) => {
-        const pct = Math.round(arc.slice.share * 100);
-        const dim = hovered !== null && hovered !== arc.index;
-        const active = hovered === arc.index;
-        return (
-          <li
-            key={arc.slice.category}
-            className={`px-3 py-2.5 transition-colors duration-150 ${
-              active ? 'bg-muted/60' : 'hover:bg-muted/40'
-            }`}
-            onMouseEnter={() => onHover(arc.index)}
-          >
-            <div className="flex justify-between gap-2 text-xs">
-              <span
-                className={`truncate font-medium transition-opacity duration-150 ${
-                  dim ? 'opacity-40' : ''
-                }`}
-              >
-                {arc.slice.category}
-              </span>
-              <span
-                className={`shrink-0 text-muted-foreground transition-opacity duration-150 ${
-                  dim ? 'opacity-40' : ''
-                }`}
-                aria-describedby={tooltipId}
-              >
-                {formatInr(arc.slice.amount)} · {pct}%
-              </span>
-            </div>
-            <div className="mt-1 h-2 overflow-hidden rounded-sm bg-muted/80">
-              <div
-                className="h-full rounded-sm transition-[width,opacity] duration-150"
-                style={{
-                  background: arc.color,
-                  opacity: dim ? 0.35 : 1,
-                  width: `${Math.max(pct, 2)}%`,
-                }}
-              />
-            </div>
-          </li>
-        );
-      })}
+      {segments.slice(0, 6).map((s) => (
+        <li
+          key={s.slice.category}
+          className={`flex items-center gap-1.5 rounded-full bg-muted/50 px-2.5 py-1 transition-opacity duration-150 ${
+            hovered !== null && hovered !== s.index ? 'opacity-40' : ''
+          }`}
+          onMouseEnter={() => onHover(s.index)}
+        >
+          <span
+            className="h-2 w-2 shrink-0 rounded-full"
+            style={{ background: s.color }}
+          />
+          <span className="max-w-[7rem] truncate">{s.slice.category}</span>
+          <span className="tabular-nums text-muted-foreground">
+            {pctOf(s.slice.share)}%
+          </span>
+        </li>
+      ))}
     </ul>
+  );
+}
+
+function CategoryCards({
+  hovered,
+  onHover,
+  segments,
+}: {
+  hovered: number | null;
+  onHover: (index: number | null) => void;
+  segments: Segment[];
+}) {
+  return (
+    <section aria-label="Category breakdown" className="space-y-3">
+      <div className="flex items-center justify-between text-xs">
+        <h3 className="font-medium uppercase tracking-widest text-muted-foreground">
+          Category breakdown
+        </h3>
+        <span className="text-secondary">
+          {categoriesLabel(segments.length)}
+        </span>
+      </div>
+
+      {/* Hover is cleared only when leaving the whole list, so moving between cards never flickers. */}
+      <ul className="space-y-2" onMouseLeave={() => onHover(null)}>
+        {segments.map((s) => {
+          const active = hovered === s.index;
+          const dim = hovered !== null && !active;
+          const pct = pctOf(s.slice.share);
+          return (
+            <li
+              key={s.slice.category}
+              className={`rounded-xl border px-3.5 py-3 transition-[background-color,border-color,opacity] duration-150 ${
+                active
+                  ? 'border-border bg-muted/70'
+                  : 'border-transparent bg-card hover:bg-muted/50'
+              } ${dim ? 'opacity-50' : ''}`}
+              onMouseEnter={() => onHover(s.index)}
+            >
+              <div className="flex items-center gap-3">
+                <span
+                  aria-hidden
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-semibold"
+                  style={{
+                    background: `color-mix(in srgb, ${s.color} 18%, transparent)`,
+                    color: s.color,
+                  }}
+                >
+                  {s.slice.category.charAt(0).toUpperCase()}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-medium">{s.slice.category}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {entriesLabel(s.slice.count)} ·{' '}
+                    <span style={{ color: s.color }}>{pct}%</span>
+                  </p>
+                </div>
+                <p className="shrink-0 text-sm font-semibold tabular-nums sm:text-base">
+                  {formatInr(s.slice.amount)}
+                </p>
+              </div>
+              <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-muted">
+                <div
+                  className="h-full rounded-full transition-[width] duration-300"
+                  style={{ background: s.color, width: `${Math.max(pct, 2)}%` }}
+                />
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
   );
 }

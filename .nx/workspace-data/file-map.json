@@ -50,240 +50,240 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "docs/postman/postman/collections/rupeelens-api/categories/list-categories.request.yaml",
-        "hash": "5698750037764397877"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/smoke-flow/2-create-transaction.request.yaml",
-        "hash": "9609112767016021615"
-      },
-      {
-        "file": "eslint.config.mjs",
-        "hash": "3462096019013144053"
-      },
-      {
-        "file": "docs/rupeelens-srs.html",
-        "hash": "17702669150495319209"
-      },
-      {
-        "file": "docs/postman/postman/environments/rupeelens-local.environment.yaml",
-        "hash": "15431496829443485748"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/smoke-flow/.resources/definition.yaml",
-        "hash": "7501589159871927473"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/health/.resources/definition.yaml",
-        "hash": "9879691940693485539"
-      },
-      {
-        "file": "docs/rupeelens-roadmap.html",
-        "hash": "39482438831802993"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/parse-ai-sse/.resources/definition.yaml",
-        "hash": "12131376228931632591"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/auth-supabase/refresh-access-token.request.yaml",
-        "hash": "18432045889836683180"
-      },
-      {
-        "file": "docs/postman/.postman/resources.yaml",
-        "hash": "1655382383094074489"
-      },
-      {
-        "file": "pnpm-lock.yaml",
-        "hash": "16054378824818442649"
-      },
-      {
-        "file": "pnpm-workspace.yaml",
-        "hash": "2811845925925127796"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "8094490713162496875"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/categories/add-custom-category.request.yaml",
-        "hash": "8254813741252076772"
-      },
-      {
-        "file": "tsconfig.base.json",
-        "hash": "9718832641666275383"
-      },
-      {
-        "file": "supabase/migrations/001_transactions.sql",
-        "hash": "8788550156546250842"
-      },
-      {
         "file": "docs/postman/postman/collections/rupeelens-api/smoke-flow/1-health.request.yaml",
         "hash": "4680782133055050515"
-      },
-      {
-        "file": "jest.preset.js",
-        "hash": "9430166341120122740"
-      },
-      {
-        "file": "supabase/migrations/004_user_categories.sql",
-        "hash": "16236650264882847805"
-      },
-      {
-        "file": "nx.json",
-        "hash": "985689564224161594"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/smoke-flow/3-list-transactions.request.yaml",
-        "hash": "5494226768947380054"
-      },
-      {
-        "file": "docs/postman/postman/globals/workspace.globals.yaml",
-        "hash": "8730159271726546077"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/categories/.resources/definition.yaml",
-        "hash": "14529933028022639559"
-      },
-      {
-        "file": "vercel.json",
-        "hash": "11998241608411593838"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/settings-byok/revoke-gemini-api-key.request.yaml",
-        "hash": "13852397385070431949"
-      },
-      {
-        "file": ".prettierignore",
-        "hash": "14688272390704683536"
-      },
-      {
-        "file": "docs/postman/postman/environments/rupeelens-prod.environment.yaml",
-        "hash": "7191316153238030975"
-      },
-      {
-        "file": "docs/seeds/fix-future-booked-at-from-bad-bulk.sql",
-        "hash": "1083702358615012475"
-      },
-      {
-        "file": ".dockerignore",
-        "hash": "17398535027823991950"
-      },
-      {
-        "file": "docs/postman/README.md",
-        "hash": "3333387527232538905"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/parse-ai-sse/parse-draft-sse-stream.request.yaml",
-        "hash": "9554775674288033797"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/categories/remove-category.request.yaml",
-        "hash": "6043521192384603116"
-      },
-      {
-        "file": ".github/workflows/ci.yml",
-        "hash": "4034064451718582737"
-      },
-      {
-        "file": "package.json",
-        "hash": "9484407263021639084"
-      },
-      {
-        "file": "supabase/migrations/005_fuzzy_search.sql",
-        "hash": "13830550194731818394"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/transactions/list-transactions-page.request.yaml",
-        "hash": "1301420478535516458"
-      },
-      {
-        "file": "docs/v2-progress.md",
-        "hash": "3478546195048550595"
-      },
-      {
-        "file": "docs/rupeelens-test-suites.html",
-        "hash": "11584725246729926713"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/.resources/definition.yaml",
-        "hash": "4830241240835806009"
-      },
-      {
-        "file": "supabase/migrations/003_auth_schema_v2.sql",
-        "hash": "15332121087809965246"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/transactions/create-transaction-saved.request.yaml",
-        "hash": "3822051400035846226"
-      },
-      {
-        "file": "docs/seeds/README.md",
-        "hash": "18071895655770622154"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/settings-byok/save-gemini-api-key.request.yaml",
-        "hash": "1931882051100588207"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/auth-supabase/.resources/definition.yaml",
-        "hash": "12508204892924749971"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/settings-byok/.resources/definition.yaml",
-        "hash": "12607639112225646807"
-      },
-      {
-        "file": "docs/postman/postman/collections/rupeelens-api/transactions/.resources/definition.yaml",
-        "hash": "6428620529694966335"
-      },
-      {
-        "file": "docs/seeds/bulk-transactions-once.sql",
-        "hash": "12858818055863622210"
-      },
-      {
-        "file": "supabase/migrations/006_ai_usage.sql",
-        "hash": "12001773959229079779"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "16267754514737964994"
       },
       {
         "file": "docs/postman/postman/collections/rupeelens-api/health/health-check.request.yaml",
         "hash": "2941983127521586675"
       },
       {
-        "file": "docs/postman/postman/collections/rupeelens-api/transactions/create-transaction-draft.request.yaml",
-        "hash": "2581242514847716160"
+        "file": "docs/postman/postman/collections/rupeelens-api/categories/add-custom-category.request.yaml",
+        "hash": "8254813741252076772"
       },
       {
         "file": "docs/postman/postman/collections/rupeelens-api/transactions/delete-transaction.request.yaml",
         "hash": "16034643093860625198"
       },
       {
-        "file": "docs/postman/postman/collections/rupeelens-api/auth-supabase/get-user-verify-token.request.yaml",
-        "hash": "6832327955251562561"
+        "file": "docs/postman/postman/collections/rupeelens-api/transactions/.resources/definition.yaml",
+        "hash": "6428620529694966335"
       },
       {
-        "file": "docs/postman/postman/collections/rupeelens-api/settings-byok/byok-status.request.yaml",
-        "hash": "4250746684475464102"
+        "file": "docs/seeds/fix-future-booked-at-from-bad-bulk.sql",
+        "hash": "1083702358615012475"
       },
       {
-        "file": "docs/postman/postman/collections/rupeelens-api/transactions/update-transaction.request.yaml",
-        "hash": "372068130739444934"
+        "file": "docs/postman/postman/collections/rupeelens-api/.resources/definition.yaml",
+        "hash": "4830241240835806009"
       },
       {
-        "file": "docs/RUPEELENS-SUMMARY.md",
-        "hash": "17618563275569295419"
+        "file": "docs/postman/postman/collections/rupeelens-api/health/.resources/definition.yaml",
+        "hash": "9879691940693485539"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/auth-supabase/.resources/definition.yaml",
+        "hash": "12508204892924749971"
+      },
+      {
+        "file": "docs/postman/postman/environments/rupeelens-local.environment.yaml",
+        "hash": "15431496829443485748"
+      },
+      {
+        "file": ".dockerignore",
+        "hash": "17398535027823991950"
       },
       {
         "file": "jest.config.ts",
         "hash": "6870352021923392442"
       },
       {
+        "file": "docs/postman/postman/collections/rupeelens-api/smoke-flow/3-list-transactions.request.yaml",
+        "hash": "5494226768947380054"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/parse-ai-sse/parse-draft-sse-stream.request.yaml",
+        "hash": "9554775674288033797"
+      },
+      {
+        "file": "docs/rupeelens-test-suites.html",
+        "hash": "11584725246729926713"
+      },
+      {
+        "file": "docs/RUPEELENS-SUMMARY.md",
+        "hash": "17618563275569295419"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/auth-supabase/refresh-access-token.request.yaml",
+        "hash": "18432045889836683180"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "16267754514737964994"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/categories/remove-category.request.yaml",
+        "hash": "6043521192384603116"
+      },
+      {
+        "file": "supabase/migrations/004_user_categories.sql",
+        "hash": "16236650264882847805"
+      },
+      {
+        "file": "supabase/migrations/003_auth_schema_v2.sql",
+        "hash": "15332121087809965246"
+      },
+      {
+        "file": "pnpm-workspace.yaml",
+        "hash": "2811845925925127796"
+      },
+      {
+        "file": "docs/postman/postman/globals/workspace.globals.yaml",
+        "hash": "8730159271726546077"
+      },
+      {
+        "file": "pnpm-lock.yaml",
+        "hash": "16054378824818442649"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/auth-supabase/get-user-verify-token.request.yaml",
+        "hash": "6832327955251562561"
+      },
+      {
+        "file": "eslint.config.mjs",
+        "hash": "3462096019013144053"
+      },
+      {
         "file": "supabase/migrations/002_byok_keys.sql",
         "hash": "3109586101418970123"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/settings-byok/revoke-gemini-api-key.request.yaml",
+        "hash": "13852397385070431949"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/settings-byok/byok-status.request.yaml",
+        "hash": "4250746684475464102"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/transactions/create-transaction-draft.request.yaml",
+        "hash": "2581242514847716160"
+      },
+      {
+        "file": "nx.json",
+        "hash": "985689564224161594"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "9430166341120122740"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/categories/.resources/definition.yaml",
+        "hash": "14529933028022639559"
+      },
+      {
+        "file": "docs/postman/README.md",
+        "hash": "3333387527232538905"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/transactions/update-transaction.request.yaml",
+        "hash": "372068130739444934"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/settings-byok/.resources/definition.yaml",
+        "hash": "12607639112225646807"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/smoke-flow/.resources/definition.yaml",
+        "hash": "7501589159871927473"
+      },
+      {
+        "file": "docs/seeds/README.md",
+        "hash": "18071895655770622154"
+      },
+      {
+        "file": "vercel.json",
+        "hash": "11998241608411593838"
+      },
+      {
+        "file": "docs/seeds/bulk-transactions-once.sql",
+        "hash": "12858818055863622210"
+      },
+      {
+        "file": "supabase/migrations/001_transactions.sql",
+        "hash": "8788550156546250842"
+      },
+      {
+        "file": ".github/workflows/ci.yml",
+        "hash": "4034064451718582737"
+      },
+      {
+        "file": "docs/postman/postman/environments/rupeelens-prod.environment.yaml",
+        "hash": "7191316153238030975"
+      },
+      {
+        "file": "package.json",
+        "hash": "9484407263021639084"
+      },
+      {
+        "file": "docs/v2-progress.md",
+        "hash": "3478546195048550595"
+      },
+      {
+        "file": "docs/rupeelens-srs.html",
+        "hash": "17702669150495319209"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/settings-byok/save-gemini-api-key.request.yaml",
+        "hash": "1931882051100588207"
+      },
+      {
+        "file": "supabase/migrations/005_fuzzy_search.sql",
+        "hash": "13830550194731818394"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/transactions/create-transaction-saved.request.yaml",
+        "hash": "3822051400035846226"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "9718832641666275383"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/transactions/list-transactions-page.request.yaml",
+        "hash": "1301420478535516458"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "14688272390704683536"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/parse-ai-sse/.resources/definition.yaml",
+        "hash": "12131376228931632591"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "8094490713162496875"
+      },
+      {
+        "file": "docs/rupeelens-roadmap.html",
+        "hash": "39482438831802993"
+      },
+      {
+        "file": "docs/postman/.postman/resources.yaml",
+        "hash": "1655382383094074489"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/smoke-flow/2-create-transaction.request.yaml",
+        "hash": "9609112767016021615"
+      },
+      {
+        "file": "docs/postman/postman/collections/rupeelens-api/categories/list-categories.request.yaml",
+        "hash": "5698750037764397877"
+      },
+      {
+        "file": "supabase/migrations/006_ai_usage.sql",
+        "hash": "12001773959229079779"
       }
     ],
     "projectFileMap": {
@@ -641,7 +641,7 @@
         },
         {
           "file": "apps/rupeelens-fe/src/components/dashboard/CategorySpendCharts.tsx",
-          "hash": "13821201568574940777",
+          "hash": "11716446221582823450",
           "deps": [
             "utils",
             "npm:react"
@@ -939,7 +939,7 @@
         },
         {
           "file": "apps/rupeelens-fe/tsconfig.tsbuildinfo",
-          "hash": "5342813389437373198"
+          "hash": "10541174618748059072"
         }
       ],
       "ui": [
@@ -1861,7 +1861,7 @@
         },
         {
           "file": "libs/utils/src/lib/spending/category-breakdown.ts",
-          "hash": "6522183206261606080",
+          "hash": "13813151340836469830",
           "deps": [
             "types"
           ]
